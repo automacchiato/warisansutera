@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col"><input type="number" step="0.01" name="additional_amount" class="form-control" placeholder="Additional Amount"></div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Save Invoice</button>
+            <button type="submit" class="btn btn-primary">Save Invoice?</button>
         </form>
     </div>
 
