@@ -99,31 +99,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <h4>Items</h4>
             <div id="items">
-                <div class="row g-2 mb-2">
-                    <div class="col">
-                        <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
-                            <option value="">Select Apparel</option>
-                            <option value="shirt">Shirt</option>
-                            <option value="trousers">Trousers</option>
-                            <option value="jacket">Jacket</option>
-                            <option value="baju_melayu">Baju Melayu</option>
-                        </select>
+                <div class="item-block border rounded p-2 mb-3">
+                    <div class="row g-2 mb-2">
+                        <div class="col">
+                            <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
+                                <option value="">Select Apparel</option>
+                                <option value="shirt">Shirt</option>
+                                <option value="trousers">Trousers</option>
+                                <option value="jacket">Jacket</option>
+                                <option value="baju_melayu">Baju Melayu</option>
+                            </select>
+                        </div>
+                        <div class="col"><input type="number" name="quantity[]" class="form-control" placeholder="Qty" required></div>
+                        <div class="col"><input type="text" name="fabric_code[]" class="form-control" placeholder="Fabric Code"></div>
+                        <div class="col"><input type="text" name="fabric_name[]" class="form-control" placeholder="Fabric Name"></div>
+                        <div class="col"><input type="text" name="fabric_color[]" class="form-control" placeholder="Color"></div>
+                        <div class="col"><input type="number" step="0.01" name="fabric_usage[]" class="form-control" placeholder="Usage (m)"></div>
+                        <div class="col"><input type="number" step="0.01" name="amount[]" class="form-control" placeholder="Amount"></div>
                     </div>
-                    <div class="col"><input type="number" name="quantity[]" class="form-control" placeholder="Qty" required></div>
-                    <div class="col"><input type="text" name="fabric_code[]" class="form-control" placeholder="Fabric Code"></div>
-                    <div class="col"><input type="text" name="fabric_name[]" class="form-control" placeholder="Fabric Name"></div>
-                    <div class="col"><input type="text" name="fabric_color[]" class="form-control" placeholder="Color"></div>
-                    <div class="col"><input type="number" step="0.01" name="fabric_usage[]" class="form-control" placeholder="Usage (m)"></div>
-                    <div class="col"><input type="number" step="0.01" name="amount[]" class="form-control" placeholder="Amount"></div>
-                </div>
 
-                <!-- Workslip section (hidden by default) -->
-                <div class="workslip mt-2" style="display:none;">
-                    <h6>Workslip</h6>
-                    <div class="workslip-fields"></div>
-                    <div class="mb-2">
-                        <label>Upload Drawing:</label>
-                        <input type="file" name="drawing[]" class="form-control">
+                    <!-- Workslip section (hidden by default) -->
+                    <div class="workslip mt-2" style="display:none;">
+                        <h6>Workslip</h6>
+                        <div class="workslip-fields"></div>
+                        <div class="mb-2">
+                            <label>Upload Drawing:</label>
+                            <input type="file" name="drawing[]" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>
