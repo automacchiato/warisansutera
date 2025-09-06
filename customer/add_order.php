@@ -116,6 +116,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col"><input type="number" step="0.01" name="fabric_usage[]" class="form-control" placeholder="Usage (m)"></div>
                     <div class="col"><input type="number" step="0.01" name="amount[]" class="form-control" placeholder="Amount"></div>
                 </div>
+
+                <!-- Workslip section (hidden by default) -->
+                <div class="workslip mt-2" style="display:none;">
+                    <h6>Workslip</h6>
+                    <div class="workslip-fields"></div>
+                    <div class="mb-2">
+                        <label>Upload Drawing:</label>
+                        <input type="file" name="drawing[]" class="form-control">
+                    </div>
+                </div>
             </div>
             <button type="button" class="btn btn-secondary mb-3" onclick="addItem()">+ Add Item</button>
 
@@ -145,6 +155,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="col"><input type="number" step="0.01" name="amount[]" class="form-control" placeholder="Amount"></div>
     </div>`;
             document.getElementById("items").insertAdjacentHTML("beforeend", row);
+        }
+
+        function addItem() {
+            let template = document.querySelector(".item-block").outerHTML;
+            document.getElementById("items").insertAdjacentHTML("beforeend", template);
+        }
+
+        function showWorkslip(select) {
+            let workslip = select.closest(".item-block").querySelector(".workslip");
+            let fields = workslip.querySelector(".workslip-fields");
+            workslip.style.display = "block";
+
+            let type = select.value;
+            let html = "";
+
+            switch (type) {
+                case "shirt":
+                    html = `
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="shirt_neck[]" class="form-control" placeholder="Neck"></div>
+                            <div class="col"><input type="text" name="shirt_chest[]" class="form-control" placeholder="Chest"></div>
+                            <div class="col"><input type="text" name="shirt_sleeve[]" class="form-control" placeholder="Sleeve"></div>
+                        </div>`;
+                    break;
+                case "trousers":
+                    html = `
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="trouser_waist[]" class="form-control" placeholder="Waist"></div>
+                            <div class="col"><input type="text" name="trouser_hip[]" class="form-control" placeholder="Hip"></div>
+                            <div class="col"><input type="text" name="trouser_length[]" class="form-control" placeholder="Length"></div>
+                        </div>`;
+                    break;
+                case "jacket":
+                    html = `
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="jacket_chest[]" class="form-control" placeholder="Chest"></div>
+                            <div class="col"><input type="text" name="jacket_length[]" class="form-control" placeholder="Length"></div>
+                            <div class="col"><input type="text" name="jacket_sleeve[]" class="form-control" placeholder="Sleeve"></div>
+                        </div>`;
+                    break;
+                case "baju_melayu":
+                    html = `
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="bm_ksleeve[]" class="form-control" placeholder="Kain Sleeve"></div>
+                            <div class="col"><input type="text" name="bm_panjang[]" class="form-control" placeholder="Panjang Baju"></div>
+                            <div class="col"><input type="text" name="bm_pinggang[]" class="form-control" placeholder="Pinggang"></div>
+                        </div>`;
+                    break;
+            }
+            fields.innerHTML = html;
         }
     </script>
 </body>
