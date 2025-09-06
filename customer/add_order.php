@@ -3,7 +3,7 @@ include 'db.php'; // your DB connection file
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Insert customer
-    $stmt = $conn->prepare("INSERT INTO customers (name, address, phone) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO customers (customer_name, customer_address, customer_phone) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $_POST['customer_name'], $_POST['customer_address'], $_POST['customer_phone']);
     $stmt->execute();
     $customer_id = $stmt->insert_id;
