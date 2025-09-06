@@ -144,20 +144,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script>
         function addItem() {
-            let row = `
-    <div class="row g-2 mb-2">
-        <div class="col"><input type="text" name="item_type[]" class="form-control" placeholder="Item"></div>
-        <div class="col"><input type="number" name="quantity[]" class="form-control" placeholder="Qty"></div>
-        <div class="col"><input type="text" name="fabric_code[]" class="form-control" placeholder="Fabric Code"></div>
-        <div class="col"><input type="text" name="fabric_name[]" class="form-control" placeholder="Fabric Name"></div>
-        <div class="col"><input type="text" name="fabric_color[]" class="form-control" placeholder="Color"></div>
-        <div class="col"><input type="number" step="0.01" name="fabric_usage[]" class="form-control" placeholder="Usage (m)"></div>
-        <div class="col"><input type="number" step="0.01" name="amount[]" class="form-control" placeholder="Amount"></div>
-    </div>`;
-            document.getElementById("items").insertAdjacentHTML("beforeend", row);
-        }
-
-        function addItem() {
             let template = document.querySelector(".item-block").outerHTML;
             document.getElementById("items").insertAdjacentHTML("beforeend", template);
         }
