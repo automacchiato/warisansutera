@@ -162,7 +162,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 case "shirt":
                     html = `
                         <div class="row mb-2">
-                            <div class="col"><input type="text" name="shirt_neck[]" class="form-control" placeholder="Neck"></div>
+                            <div class="col">
+                            <select name="shirt_neck[]" class="form-control" required">
+                                <option value="">Select Manufacturer</option>
+                                <option value="In-House Factory">In-House Factory</option>
+                                <option value="Fabrica">Fabrica</option>
+                            </select>
+                            </div>
                             <div class="col"><input type="text" name="shirt_chest[]" class="form-control" placeholder="Chest"></div>
                             <div class="col"><input type="text" name="shirt_sleeve[]" class="form-control" placeholder="Sleeve"></div>
                         </div>`;
