@@ -100,13 +100,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h4>Items</h4>
             <div id="items">
                 <div class="row g-2 mb-2">
-                    <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
-                        <option value="">Select Apparel</option>
-                        <option value="shirt">Shirt</option>
-                        <option value="trousers">Trousers</option>
-                        <option value="jacket">Jacket</option>
-                        <option value="baju_melayu">Baju Melayu</option>
-                    </select>
+                    <div class="col">
+                        <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
+                            <option value="">Select Apparel</option>
+                            <option value="shirt">Shirt</option>
+                            <option value="trousers">Trousers</option>
+                            <option value="jacket">Jacket</option>
+                            <option value="baju_melayu">Baju Melayu</option>
+                        </select>
+                    </div>
                     <div class="col"><input type="number" name="quantity[]" class="form-control" placeholder="Qty" required></div>
                     <div class="col"><input type="text" name="fabric_code[]" class="form-control" placeholder="Fabric Code"></div>
                     <div class="col"><input type="text" name="fabric_name[]" class="form-control" placeholder="Fabric Name"></div>
