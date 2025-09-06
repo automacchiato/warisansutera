@@ -30,7 +30,7 @@
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $stmt = $conn->prepare("INSERT INTO customers (name, address, phone) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO customers (customer_name, customer_address, customer_phone) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $_POST['name'], $_POST['address'], $_POST['phone']);
     $stmt->execute();
     echo "<div class='alert alert-success mt-3'>Customer Added!</div>";
