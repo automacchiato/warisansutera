@@ -181,16 +181,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <option value="BSH/S">Batik Shirt (Long Sleeve)</option>
                             </select>
                             </div>
-                            <br>
                             <div class="col">
-                            <select name="shirt_type[]" class="form-control" required">
-                                <option value="">Select Shirt Type</option>
-                                <option value="SH/S">Shirt (Short Sleeve)</option>
-                                <option value="SH/L">Shirt (Long Sleeve)</option>
-                                <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
-                                <option value="BSH/S">Batik Shirt (Long Sleeve)</option>
-                            </select>
+                            <select name="gender[]" class="form-control" required">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>   
                             </div>
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="special_instructions[]" class="form-control" placeholder="Special Instructions"></div>
+                        </div>
+
 
                         </div>`;
                     break;
