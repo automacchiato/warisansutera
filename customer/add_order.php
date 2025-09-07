@@ -173,6 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="item-block border rounded p-2 mb-3">
                     <div class="row g-2 mb-2">
                         <div class="col">
+                            <label>Apparel Type</label>
                             <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
                                 <option value="">Select Apparel</option>
                                 <option value="SHIRT">Shirt</option>
@@ -181,12 +182,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <option value="BAJU MELAYU">Baju Melayu</option>
                             </select>
                         </div>
-                        <div class="col"><input type="number" name="quantity[]" class="form-control" placeholder="Qty" required></div>
-                        <div class="col"><input type="text" name="fabric_code[]" class="form-control" placeholder="Fabric Code"></div>
-                        <div class="col"><input type="text" name="fabric_name[]" class="form-control" placeholder="Fabric Name"></div>
-                        <div class="col"><input type="text" name="fabric_color[]" class="form-control" placeholder="Color"></div>
-                        <div class="col"><input type="number" step="0.01" name="fabric_usage[]" class="form-control" placeholder="Usage (m)"></div>
-                        <div class="col"><input type="number" step="0.01" name="amount[]" class="form-control" placeholder="Amount"></div>
+                        <div class="col">
+                            <label>Quantity</label>
+                            <input type="number" name="quantity[]" class="form-control" placeholder="Qty" required>
+                        </div>
+                        <div class="col">
+                            <label>Fabric Code</label>
+                            <input type="text" name="fabric_code[]" class="form-control" placeholder="Fabric Code">
+                        </div>
+                        <div class="col">
+                            <label>Fabric Name</label>
+                            <input type="text" name="fabric_name[]" class="form-control" placeholder="Fabric Name">
+                        </div>
+                        <div class="col">
+                            <label>Fabric Color</label>
+                            <input type="text" name="fabric_color[]" class="form-control" placeholder="Color">
+                        </div>
+                        <div class="col">
+                            <label>Fabric Usage</label>
+                            <input type="number" step="0.01" name="fabric_usage[]" class="form-control" placeholder="Usage (m)">
+                        </div>
+                        <div class="col">
+                            <label>Amount</label>
+                            <input type="number" step="0.01" name="amount[]" class="form-control" placeholder="Amount">
+                        </div>
                     </div>
 
                     <!-- Workslip section (hidden by default) -->
@@ -234,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     html = `
                         <div class="row mb-2">
                             <div class="col">
-                            <select name="shirt_neck[]" class="form-control" required>
+                            <select name="manufacturer[]" class="form-control" required>
                                 <option value="">Select Manufacturer</option>
                                 <option value="In-House Factory">In-House Factory</option>
                                 <option value="Fabrica">Fabrica</option>
