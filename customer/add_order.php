@@ -45,7 +45,70 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['amount'][$key]
         );
         $stmt->execute();
+        $invoice_item_id = $stmt->insert_id;
+
+        //Workslip handling
+        if ($item === 'Shirt') {
+            // SHIRT WORKSLIP
+            $stmt = $conn->prepare("INSERT INTO workslip_shirts
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, elbow_length, cuff_type, cuff_length, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param(
+                "issssssssssssssssssssssssssssssssssssss",
+                $invoice_item_id,
+                $_POST['manufacturer'][$key],
+                $_POST['salesman_name'][$key],
+                $_POST['cutter_name'][$key],
+                $_POST['tailor_name'][$key],
+                $_POST['shirt_type'][$key],
+                $_POST['gender'][$key],
+                $_POST['special_instructions'][$key],
+                $_POST['previous_invoice_number'][$key],
+                $_POST['fabric_direction'][$key],
+                $_POST['collar_design'][$key],
+                $_POST['collar_height'][$key],
+                $_POST['collar_width'][$key],
+                $_POST['collar_gap'][$key],
+                $_POST['collar_meet'][$key],
+                $_POST['collar_length'][$key],
+                $_POST['back_length'][$key],
+                $_POST['front_length'][$key],
+                $_POST['chest_fit'][$key],
+                $_POST['chest_loose'][$key],
+                $_POST['waist_fit'][$key],
+                $_POST['waist_loose'][$key],
+                $_POST['hip_fit'][$key],
+                $_POST['hip_loose'][$key],
+                $_POST['shoulder'][$key],
+                $_POST['sleeve_length'][$key],
+                $_POST['elbow_length'][$key],
+                $_POST['cuff_type'][$key],
+                $_POST['cuff_length'][$key],
+                $_POST['armhole'][$key],
+                $_POST['erect'][$key],
+                $_POST['hunch'][$key],
+                $_POST['shoulder_type'][$key],
+                $_POST['corpulent'][$key],
+                $_POST['front_cutting'][$key],
+                $_POST['placket_type'][$key],
+                $_POST['top_initial'][$key],
+                $_POST['bottom_initial'][$key],
+                $_POST['cleaning_type'][$key],
+            );
+            $stmt->execute();
+        } elseif ($item === 'Trousers') {
+            // TROUSERS WORKSLIP (mapping only)
+            // INSERT INTO trousers_workslip(invoice_item_id, manufacturer, salesman_name, cutter_name, tailor_name, item, gender, ...)
+            // bind_param with trousers fields
+        } elseif ($item === 'Jackets') {
+            // JACKET WORKSLIP (mapping only)
+        } elseif ($item === 'Baju Melayu') {
+            // BAJU MELAYU WORKSLIP (mapping only)
+        }
     }
+
+    //Insert workslip
+
 
     echo "<div class='alert alert-success'>Invoice Saved!</div>";
 }
@@ -163,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     html = `
                         <div class="row mb-2">
                             <div class="col">
-                            <select name="shirt_neck[]" class="form-control" required">
+                            <select name="shirt_neck[]" class="form-control" required>
                                 <option value="">Select Manufacturer</option>
                                 <option value="In-House Factory">In-House Factory</option>
                                 <option value="Fabrica">Fabrica</option>
@@ -173,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="cutter_name[]" class="form-control" placeholder="Cutter Name"></div>
                             <div class="col"><input type="text" name="tailor_name[]" class="form-control" placeholder="Tailor Name"></div>
                             <div class="col">
-                            <select name="shirt_type[]" class="form-control" required">
+                            <select name="shirt_type[]" class="form-control" required>
                                 <option value="">Select Shirt Type</option>
                                 <option value="SH/S">Shirt (Short Sleeve)</option>
                                 <option value="SH/L">Shirt (Long Sleeve)</option>
@@ -182,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </select>
                             </div>
                             <div class="col">
-                            <select name="gender[]" class="form-control" required">
+                            <select name="gender[]" class="form-control" required>
                                 <option value="">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -193,7 +256,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="special_instructions[]" class="form-control" placeholder="Special Instructions"></div>
                             <div class="col"><input type="text" name="previous_invoice_number[]" class="form-control" placeholder="Previous Invoice No."></div>
                             <div class="col">
-                            <select name="fabric_direction[]" class="form-control" required">
+                            <select name="fabric_direction[]" class="form-control" required>
                                 <option value="">Select Fabric Direction</option>
                                 <option value="Vertical">Vertical</option>
                                 <option value="Horizontal">Horizontal</option>
@@ -202,7 +265,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <select name="collar_design[]" class="form-control" required">
+                                <select name="collar_design[]" class="form-control" required>
                                     <option value="">Select Collar Design</option>
                                     <option value="Button Down">Button Down</option>
                                     <option value="Classic">Classic</option>
@@ -232,12 +295,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="chest_loose[]" class="form-control" placeholder="Chest (Loose)"></div>
                             <div class="col"><input type="text" name="waist_fit[]" class="form-control" placeholder="Waist (Fit)"></div>
                             <div class="col"><input type="text" name="waist_loose[]" class="form-control" placeholder="Waist (Loose)"></div>
-                            <div class="col"><input type="text" name="Waist_fit[]" class="form-control" placeholder="Waist (Fit)"></div>
-                            <div class="col"><input type="text" name="Waist_loose[]" class="form-control" placeholder="Waist (Loose)"></div>
+                            <div class="col"><input type="text" name="hip_fit[]" class="form-control" placeholder="Hip (Fit)"></div>
+                            <div class="col"><input type="text" name="hip_loose[]" class="form-control" placeholder="Hip (Loose)"></div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <select name="shoulder_type[]" class="form-control" required">
+                                <select name="shoulder_type[]" class="form-control" required>
                                     <option value="">Select Shoulder Type</option>
                                     <option value="Square">Square</option>
                                     <option value="Drop">Drop</option>
@@ -247,7 +310,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="sleeve_length[]" class="form-control" placeholder="Sleeve"></div>
                             <div class="col"><input type="text" name="elbow_length[]" class="form-control" placeholder="Elbow"></div>
                             <div class="col">
-                                <select name="cuff_type[]" class="form-control" required">
+                                <select name="cuff_type[]" class="form-control" required>
                                     <option value="">Select Cuff Type</option>
                                     <option value="Single Cuff">Single Cuff</option>
                                     <option value="Double Cuff">Double Cuff</option>
@@ -267,14 +330,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
-                                <select name="front_cutting[]" class="form-control" required">
+                                <select name="front_cutting[]" class="form-control" required>
                                     <option value="">Select Front Cutting</option>
                                     <option value="Straight">Straight</option>
                                     <option value="Rounded">Rounded</option>
                                 </select>   
                             </div>
                             <div class="col">
-                                <select name="placket_type[]" class="form-control" required">
+                                <select name="placket_type[]" class="form-control" required>
                                     <option value="">Select Placket Type</option>
                                     <option value="Hidden Button">Hidden Button</option>
                                     <option value="Live Placket">Live Placket</option>
@@ -294,11 +357,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                         </div>
-                        
-
-
-                        
-                        
                         `;
                     break;
                 case "trousers":
