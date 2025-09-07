@@ -120,13 +120,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 
 <head>
-    <title class="text-center">Create Invoice</title>
+    <title>Create Invoice</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body class="p-4">
     <div class="container">
-        <h2>Create Invoice</h2>
+        <h2 class="text-center">Create Invoice</h2>
         <form method="post">
             <h4>Customer Details</h4>
             <div class="mb-3">
