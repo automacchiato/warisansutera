@@ -222,7 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             let html = "";
 
             switch (type) {
-                case "shirt":
+                case "SHIRT":
                     html = `
                         <div class="row mb-2">
                             <div class="col">
@@ -359,7 +359,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         `;
                     break;
-                case "trousers":
+                case "TROUSER":
                     html = `
                         <div class="row mb-2">
                             <div class="col"><input type="text" name="trouser_waist[]" class="form-control" placeholder="Waist"></div>
@@ -367,7 +367,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="trouser_length[]" class="form-control" placeholder="Length"></div>
                         </div>`;
                     break;
-                case "jacket":
+                case "JACKET":
                     html = `
                         <div class="row mb-2">
                             <div class="col"><input type="text" name="jacket_chest[]" class="form-control" placeholder="Chest"></div>
@@ -375,7 +375,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="jacket_sleeve[]" class="form-control" placeholder="Sleeve"></div>
                         </div>`;
                     break;
-                case "baju_melayu":
+                case "BAJU MELAYU":
                     html = `
                         <div class="row mb-2">
                             <div class="col"><input type="text" name="bm_ksleeve[]" class="form-control" placeholder="Kain Sleeve"></div>
