@@ -184,27 +184,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="col">
                             <label>Quantity</label>
-                            <input type="number" name="quantity[]" class="form-control" placeholder="Qty" required>
+                            <input type="number" name="quantity[]" class="form-control" required>
                         </div>
                         <div class="col">
                             <label>Fabric Code</label>
-                            <input type="text" name="fabric_code[]" class="form-control" placeholder="Fabric Code">
+                            <input type="text" name="fabric_code[]" class="form-control">
                         </div>
                         <div class="col">
                             <label>Fabric Name</label>
-                            <input type="text" name="fabric_name[]" class="form-control" placeholder="Fabric Name">
+                            <input type="text" name="fabric_name[]" class="form-control">
                         </div>
                         <div class="col">
                             <label>Fabric Color</label>
-                            <input type="text" name="fabric_color[]" class="form-control" placeholder="Color">
+                            <input type="text" name="fabric_color[]" class="form-control">
                         </div>
                         <div class="col">
                             <label>Fabric Usage</label>
-                            <input type="number" step="0.01" name="fabric_usage[]" class="form-control" placeholder="Usage (m)">
+                            <input type="number" step="0.01" name="fabric_usage[]" class="form-control">
                         </div>
                         <div class="col">
                             <label>Amount</label>
-                            <input type="number" step="0.01" name="amount[]" class="form-control" placeholder="Amount">
+                            <input type="number" step="0.01" name="amount[]" class="form-control">
                         </div>
                     </div>
 
