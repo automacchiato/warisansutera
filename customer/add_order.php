@@ -294,11 +294,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row mb-2">
                             <div class="col">
                                 <label>Special Instructions</label>
-                                <input type="text" name="special_instructions[]" class="form-control" placeholder="Special Instructions">
+                                <input type="text" name="special_instructions[]" class="form-control">
                             </div>
                             <div class="col">
                                 <label>Previous Invoice No.</label>
-                                <input type="text" name="previous_invoice_number[]" class="form-control" placeholder="Previous Invoice No.">
+                                <input type="text" name="previous_invoice_number[]" class="form-control">
                             </div>
                             <div class="col">
                                 <label>Fabric Direction</label>
