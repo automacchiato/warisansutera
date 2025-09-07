@@ -262,15 +262,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label>Salesman</label>
-                                <input type="text" name="salesman_name[]" class="form-control" placeholder="Salesman Name">
+                                <input type="text" name="salesman_name[]" class="form-control">
                             </div>
                             <div class="col">
                                 <label>Cutter Name</label>
-                                <input type="text" name="cutter_name[]" class="form-control" placeholder="Cutter Name">
+                                <input type="text" name="cutter_name[]" class="form-control">
                             </div>
                             <div class="col">
                                 <label>Tailor Name</label>
-                                <input type="text" name="tailor_name[]" class="form-control" placeholder="Tailor Name">
+                                <input type="text" name="tailor_name[]" class="form-control">
                             </div>
                             <div class="col">
                                 <label>Shirt Type</label>
