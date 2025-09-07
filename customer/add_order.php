@@ -421,12 +421,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <label>Cuff Width</label>
                                 <input type="text" name="cuff_width[]" class="form-control">
                             </div>
+                        </div>
+                        <div class="row mb-2">
                             <div class="col">
                                 <label>Armhole</label>
                                 <input type="text" name="armhole[]" class="form-control">
                             </div>
-                        </div>
-                        <div class="row mb-2">
                             <div class="col">
                                 <label>Erect</label>
                                 <input type="text" name="erect[]" class="form-control" disabled>
