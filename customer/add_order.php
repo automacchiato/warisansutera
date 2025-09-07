@@ -195,11 +195,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                             <select name="fabric_direction[]" class="form-control" required">
                                 <option value="">Select Fabric Direction</option>
-                                <option value="Verical">Verical</option>
+                                <option value="Vertical">Vertical</option>
                                 <option value="Horizontal">Horizontal</option>
                             </select>   
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <select name="collar_design[]" class="form-control" required">
+                                    <option value="">Select Collar Design</option>
+                                    <option value="Button Down">Button Down</option>
+                                    <option value="Classic">Classic</option>
+                                    <option value="Cutaway">Cutaway</option>
+                                    <option value="Wing">Wing</option>
+                                    <option value="Wing (Narrow)">Wing (Narrow)</option>
+                                    <option value="Wing (Round Tip)">Wing (Round Tip)</option>
+                                    <option value="Tab Collar">Tab Collar</option>
+                                    <option value="Button Loop">Button Loop</option>
+                                    <option value="BDI">BDI</option>
+                                    <option value="NAP">NAP</option>
+                                    <option value="MAPS">MAPS</option>
+                                </select>   
+                            </div>
+                            <div class="col"><input type="text" name="collar_height[]" class="form-control" placeholder="Collar Height"></div>
+                            <div class="col"><input type="text" name="collar_width[]" class="form-control" placeholder="Collar Width"></div>
+                            <div class="col"><input type="text" name="collar_gap[]" class="form-control" placeholder="Collar Gap"></div>
+                            <div class="col"><input type="text" name="collar_meet[]" class="form-control" placeholder="Collar Meet"></div>
+                            <div class="col"><input type="text" name="collar_length[]" class="form-control" placeholder="Collar Length"></div>
+                           
 
 
                         </div>`;
