@@ -311,26 +311,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="row mb-2">
                             <div class="col">
+                                <label>Collar Design</label>
                                 <select name="collar_design[]" class="form-control" required>
                                     <option value="">Select Collar Design</option>
-                                    <option value="Button Down">Button Down</option>
-                                    <option value="Classic">Classic</option>
-                                    <option value="Cutaway">Cutaway</option>
-                                    <option value="Wing">Wing</option>
-                                    <option value="Wing (Narrow)">Wing (Narrow)</option>
-                                    <option value="Wing (Round Tip)">Wing (Round Tip)</option>
-                                    <option value="Tab Collar">Tab Collar</option>
-                                    <option value="Button Loop">Button Loop</option>
-                                    <option value="BDI">BDI</option>
-                                    <option value="NAP">NAP</option>
-                                    <option value="MAPS">MAPS</option>
+                                    <option value="Button Down (C1)">Button Down (C1)</option>
+                                    <option value="Classic (C2)">Classic (C2)</option>
+                                    <option value="Cutaway (C3)">Cutaway (C3)</option>
+                                    <option value="Wing (C4)">Wing (C4)</option>
+                                    <option value="Wing (Narrow) (C5)">Wing (Narrow) (C5)</option>
+                                    <option value="Wing (Round Tip) (C6)">Wing (Round Tip) (C6)</option>
+                                    <option value="Tab Collar (C7)">Tab Collar (C7)</option>
+                                    <option value="Button Loop (C8)">Button Loop (C8)</option>
+                                    <option value="BDI (C9)">BDI (C9)</option>
+                                    <option value="NAP (C10)">NAP (C10)</option>
+                                    <option value="MAPS (C11)">MAPS (C11)</option>
                                 </select>   
                             </div>
-                            <div class="col"><input type="text" name="collar_height[]" class="form-control" placeholder="Collar Height"></div>
-                            <div class="col"><input type="text" name="collar_width[]" class="form-control" placeholder="Collar Width"></div>
-                            <div class="col"><input type="text" name="collar_gap[]" class="form-control" placeholder="Collar Gap"></div>
-                            <div class="col"><input type="text" name="collar_meet[]" class="form-control" placeholder="Collar Meet"></div>
-                            <div class="col"><input type="text" name="collar_length[]" class="form-control" placeholder="Collar Length"></div>
+                            <div class="col">
+                                <label>Collar Height</label>
+                                <input type="text" name="collar_height[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Collar Width</label>
+                                <input type="text" name="collar_width[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Collar Gap</label>
+                                <input type="text" name="collar_gap[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Collar Meet</label>
+                                <input type="text" name="collar_meet[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Collar Length</label>
+                                <input type="text" name="collar_length[]" class="form-control">
+                            </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col"><input type="text" name="back_length[]" class="form-control" placeholder="Back Length"></div>
