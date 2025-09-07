@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $invoice_item_id = $stmt->insert_id;
 
         //Workslip handling
-        if ($item === 'Shirt') {
+        if ($item === 'SHIRT') {
             // SHIRT WORKSLIP
             $stmt = $conn->prepare("INSERT INTO workslip_shirts
                 (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, elbow_length, cuff_type, cuff_length, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type)
@@ -96,13 +96,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['cleaning_type'][$key],
             );
             $stmt->execute();
-        } elseif ($item === 'Trousers') {
+        } elseif ($item === 'TROUSERS') {
             // TROUSERS WORKSLIP (mapping only)
             // INSERT INTO trousers_workslip(invoice_item_id, manufacturer, salesman_name, cutter_name, tailor_name, item, gender, ...)
             // bind_param with trousers fields
-        } elseif ($item === 'Jackets') {
+        } elseif ($item === 'JACKETS') {
             // JACKET WORKSLIP (mapping only)
-        } elseif ($item === 'Baju Melayu') {
+        } elseif ($item === 'BAJU MELAYU') {
             // BAJU MELAYU WORKSLIP (mapping only)
         }
     }
@@ -167,10 +167,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="col">
                             <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
                                 <option value="">Select Apparel</option>
-                                <option value="shirt">Shirt</option>
-                                <option value="trousers">Trousers</option>
-                                <option value="jacket">Jacket</option>
-                                <option value="baju_melayu">Baju Melayu</option>
+                                <option value="SHIRT">Shirt</option>
+                                <option value="TROUSER">Trousers</option>
+                                <option value="JACKET">Jacket</option>
+                                <option value="BAJU MELAYU">Baju Melayu</option>
                             </select>
                         </div>
                         <div class="col"><input type="number" name="quantity[]" class="form-control" placeholder="Qty" required></div>
