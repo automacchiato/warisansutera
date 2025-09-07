@@ -260,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="erect[]" class="form-control disabled" placeholder="Erect"></div>
                             <div class="col"><input type="text" name="hunch[]" class="form-control disabled" placeholder="Hunch"></div>
                             <div class="col">
-                                <select name="corpulent[]" class="form-control" disabled">
+                                <select name="corpulent[]" class="form-control" disabled>
                                     <option value="">Have corpulent?</option>
                                     <option value="Yes">Yes</option>
                                     <option value="">No</option>
