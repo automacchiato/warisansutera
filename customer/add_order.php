@@ -253,30 +253,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     html = `
                         <div class="row mb-2">
                             <div class="col">
+                            <label>Manufacturer</label>
                             <select name="manufacturer[]" class="form-control" required>
                                 <option value="">Select Manufacturer</option>
                                 <option value="In-House Factory">In-House Factory</option>
                                 <option value="Fabrica">Fabrica</option>
                             </select>
                             </div>
-                            <div class="col"><input type="text" name="salesman_name[]" class="form-control" placeholder="Salesman Name"></div>
-                            <div class="col"><input type="text" name="cutter_name[]" class="form-control" placeholder="Cutter Name"></div>
-                            <div class="col"><input type="text" name="tailor_name[]" class="form-control" placeholder="Tailor Name"></div>
                             <div class="col">
-                            <select name="shirt_type[]" class="form-control" required>
-                                <option value="">Select Shirt Type</option>
-                                <option value="SH/S">Shirt (Short Sleeve)</option>
-                                <option value="SH/L">Shirt (Long Sleeve)</option>
-                                <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
-                                <option value="BSH/S">Batik Shirt (Long Sleeve)</option>
-                            </select>
+                                <label>Salesman</label>
+                                <input type="text" name="salesman_name[]" class="form-control" placeholder="Salesman Name">
                             </div>
                             <div class="col">
-                            <select name="gender[]" class="form-control" required>
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>   
+                                <label>Cutter Name</label>
+                                <input type="text" name="cutter_name[]" class="form-control" placeholder="Cutter Name">
+                            </div>
+                            <div class="col">
+                                <label>Tailor Name</label>
+                                <input type="text" name="tailor_name[]" class="form-control" placeholder="Tailor Name">
+                            </div>
+                            <div class="col">
+                                <label>Shirt Type</label>
+                                <select name="shirt_type[]" class="form-control" required>
+                                    <option value="">Select Shirt Type</option>
+                                    <option value="SH/S">Shirt (Short Sleeve)</option>
+                                    <option value="SH/L">Shirt (Long Sleeve)</option>
+                                    <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
+                                    <option value="BSH/S">Batik Shirt (Long Sleeve)</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label>Gender</label>
+                                <select name="gender[]" class="form-control" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>   
                             </div>
                         </div>
                         <div class="row mb-2">
