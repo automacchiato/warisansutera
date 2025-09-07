@@ -3,18 +3,19 @@ include 'db.php'; // your DB connection file
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Insert customer
-    $stmt = $conn->prepare("INSERT INTO customers (customer_name, customer_address, customer_phone) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $_POST['customer_name'], $_POST['customer_address'], $_POST['customer_phone']);
+    $stmt = $conn->prepare("INSERT INTO customers (customer_name, customer_address, customer_email, customer_phone) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $_POST['customer_name'], $_POST['customer_address'], $_POST['customer_email'], $_POST['customer_phone']);
     $stmt->execute();
     $customer_id = $stmt->insert_id;
 
     // Insert invoice
     $stmt = $conn->prepare("INSERT INTO invoices 
-        (invoice_number, customer_id, order_date, fitting_date, delivery_date, total_amount, deposit_amount, balance_amount, additional_deposit, additional_amount)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        (invoice_number, invoice_details, customer_id, order_date, fitting_date, delivery_date, total_amount, deposit_amount, balance_amount, additional_deposit, additional_amount)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param(
-        "sisssddddd",
+        "ssisssddddd",
         $_POST['invoice_number'],
+        $_POST['invoice_details'],
         $customer_id,
         $_POST['order_date'],
         $_POST['fitting_date'],
@@ -51,10 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($item === 'SHIRT') {
             // SHIRT WORKSLIP
             $stmt = $conn->prepare("INSERT INTO workslip_shirts
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, elbow_length, cuff_type, cuff_length, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, elbow_length, cuff_type, cuff_length, cuff_width, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "issssssssssssssssssssssssssssssssssssss",
+                "isssssssssssssssssssssssssssssssssssssss",
                 $invoice_item_id,
                 $_POST['manufacturer'][$key],
                 $_POST['salesman_name'][$key],
@@ -84,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['elbow_length'][$key],
                 $_POST['cuff_type'][$key],
                 $_POST['cuff_length'][$key],
+                $_POST['cuff_width'][$key],
                 $_POST['armhole'][$key],
                 $_POST['erect'][$key],
                 $_POST['hunch'][$key],
@@ -133,17 +135,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="mb-3">
                 <label>Address</label>
-                <textarea name="customer_address" class="form-control"></textarea>
+                <textarea name="customer_address" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="text" name="customer_email" class="form-control">
             </div>
             <div class="mb-3">
                 <label>Phone</label>
-                <input type="text" name="customer_phone" class="form-control">
+                <input type="text" name="customer_phone" class="form-control" required>
             </div>
 
             <h4>Invoice Details</h4>
-            <div class="mb-3">
+            <div class="row mb-3">
                 <label>Invoice Number</label>
                 <input type="text" name="invoice_number" class="form-control" required>
+                <label>Invoice Description</label>
+                <input type="text" name="invoice_details" class="form-control" required>
             </div>
             <div class="row mb-3">
                 <div class="col">
