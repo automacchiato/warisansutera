@@ -188,6 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <option value="Female">Female</option>
                             </select>   
                             </div>
+                        </div>
                         <div class="row mb-2">
                             <div class="col"><input type="text" name="special_instructions[]" class="form-control" placeholder="Special Instructions"></div>
                         </div>
