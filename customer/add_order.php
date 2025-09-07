@@ -394,11 +394,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
-                                <label>Shoulder Type</label>
+                                <label>Shoulder Length</label>
                                 <input type="text" name="shoulder[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Shoulder Type</label>
+                                <label>Sleeve Length</label>
                                 <input type="text" name="sleeve_length[]" class="form-control">
                             </div>
                             <div class="col">
@@ -406,7 +406,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="text" name="elbow_length[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Elbow</label>
+                                <label>Cuff Type</label>
                                 <select name="cuff_type[]" class="form-control" required>
                                     <option value="">Select Cuff Type</option>
                                     <option value="Single Cuff">Single Cuff</option>
