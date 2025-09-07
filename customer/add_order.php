@@ -292,14 +292,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col"><input type="text" name="special_instructions[]" class="form-control" placeholder="Special Instructions"></div>
-                            <div class="col"><input type="text" name="previous_invoice_number[]" class="form-control" placeholder="Previous Invoice No."></div>
                             <div class="col">
-                            <select name="fabric_direction[]" class="form-control" required>
-                                <option value="">Select Fabric Direction</option>
-                                <option value="Vertical">Vertical</option>
-                                <option value="Horizontal">Horizontal</option>
-                            </select>   
+                                <label>Special Instructions</label>
+                                <input type="text" name="special_instructions[]" class="form-control" placeholder="Special Instructions">
+                            </div>
+                            <div class="col">
+                                <label>Previous Invoice No.</label>
+                                <input type="text" name="previous_invoice_number[]" class="form-control" placeholder="Previous Invoice No.">
+                            </div>
+                            <div class="col">
+                                <label>Fabric Direction</label>
+                                <select name="fabric_direction[]" class="form-control" required>
+                                    <option value="">Select Fabric Direction</option>
+                                    <option value="Vertical">Vertical</option>
+                                    <option value="Horizontal">Horizontal</option>
+                                </select>   
                             </div>
                         </div>
                         <div class="row mb-2">
