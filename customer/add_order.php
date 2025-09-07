@@ -172,7 +172,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="salesman_name[]" class="form-control" placeholder="Salesman Name"></div>
                             <div class="col"><input type="text" name="cutter_name[]" class="form-control" placeholder="Cutter Name"></div>
                             <div class="col"><input type="text" name="tailor_name[]" class="form-control" placeholder="Tailor Name"></div>
-                
+                            <div class="col">
+                            <select name="shirt_type[]" class="form-control" required">
+                                <option value="">Select Shirt Type</option>
+                                <option value="SH/S">Shirt (Short Sleeve)</option>
+                                <option value="SH/L">Shirt (Long Sleeve)</option>
+                                <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
+                                <option value="BSH/S">Batik Shirt (Long Sleeve)</option>
+                            </select>
+                            </div>
                         </div>`;
                     break;
                 case "trousers":
