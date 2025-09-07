@@ -253,8 +253,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     html = `
                         <div class="row mb-2">
                             <div class="col">
-                            <label>Manufacturer</label>
-                            <select name="manufacturer[]" class="form-control" aria-label="Select Manufacturer" required>
+                            <label class="fw-bold">Manufacturer</label>
+                            <select name="manufacturer[]" class="form-control" required>
                                 <option value="" disabled selected>Select Manufacturer</option>
                                 <option value="In-House Factory">In-House Factory</option>
                                 <option value="Fabrica">Fabrica</option>
@@ -275,7 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label>Shirt Type</label>
                                 <select name="shirt_type[]" class="form-control" required>
-                                    <option value="">Select Shirt Type</option>
+                                    <option value="" disabled selected >Select Shirt Type</option>
                                     <option value="SH/S">Shirt (Short Sleeve)</option>
                                     <option value="SH/L">Shirt (Long Sleeve)</option>
                                     <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
@@ -285,7 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label>Gender</label>
                                 <select name="gender[]" class="form-control" required>
-                                    <option value="">Select Gender</option>
+                                    <option value="" disabled selected>Select Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>   
@@ -303,7 +303,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label>Fabric Direction</label>
                                 <select name="fabric_direction[]" class="form-control" required>
-                                    <option value="">Select Fabric Direction</option>
+                                    <option value="" disabled selected>Select Fabric Direction</option>
                                     <option value="Vertical">Vertical</option>
                                     <option value="Horizontal">Horizontal</option>
                                 </select>   
@@ -313,7 +313,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label>Collar Design</label>
                                 <select name="collar_design[]" class="form-control" required>
-                                    <option value="">Select Collar Design</option>
+                                    <option value="" disabled selected>Select Collar Design</option>
                                     <option value="Button Down (C1)">Button Down (C1)</option>
                                     <option value="Classic (C2)">Classic (C2)</option>
                                     <option value="Cutaway (C3)">Cutaway (C3)</option>
