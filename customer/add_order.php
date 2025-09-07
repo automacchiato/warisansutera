@@ -130,40 +130,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="post">
             <h4>Customer Details</h4>
             <div class="mb-3">
-                <label>Name</label>
+                <label class="fw-bold">Name</label>
                 <input type="text" name="customer_name" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label>Address</label>
+                <label class="fw-bold">Address</label>
                 <textarea name="customer_address" class="form-control" required></textarea>
             </div>
             <div class="mb-3">
-                <label>Email</label>
+                <label class="fw-bold">Email</label>
                 <input type="text" name="customer_email" class="form-control">
             </div>
             <div class="mb-3">
-                <label>Phone</label>
+                <label class="fw-bold">Phone</label>
                 <input type="text" name="customer_phone" class="form-control" required>
             </div>
 
             <h4>Invoice Details</h4>
             <div class="mb-3">
-                <label>Invoice Number</label>
+                <label class="fw-bold">Invoice Number</label>
                 <input type="text" name="invoice_number" class="form-control" required>
-                <label>Invoice Description</label>
+                <label class="fw-bold">Invoice Description</label>
                 <input type="text" name="invoice_details" class="form-control" required>
             </div>
             <div class="row mb-3">
                 <div class="col">
-                    <label>Order Date</label>
+                    <label class="fw-bold">Order Date</label>
                     <input type="date" name="order_date" class="form-control">
                 </div>
                 <div class="col">
-                    <label>Fitting Date</label>
+                    <label class="fw-bold">Fitting Date</label>
                     <input type="date" name="fitting_date" class="form-control">
                 </div>
                 <div class="col">
-                    <label>Delivery Date</label>
+                    <label class="fw-bold">Delivery Date</label>
                     <input type="date" name="delivery_date" class="form-control">
                 </div>
             </div>
@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="item-block border rounded p-2 mb-3">
                     <div class="row g-2 mb-2">
                         <div class="col">
-                            <label>Apparel Type</label>
+                            <label class="fw-bold">Apparel Type</label>
                             <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
                                 <option value="">Select Apparel</option>
                                 <option value="SHIRT">Shirt</option>
@@ -183,27 +183,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </select>
                         </div>
                         <div class="col">
-                            <label>Quantity</label>
+                            <label class="fw-bold">Quantity</label>
                             <input type="number" name="quantity[]" class="form-control" required>
                         </div>
                         <div class="col">
-                            <label>Fabric Code</label>
+                            <label class="fw-bold">Fabric Code</label>
                             <input type="text" name="fabric_code[]" class="form-control">
                         </div>
                         <div class="col">
-                            <label>Fabric Name</label>
+                            <label class="fw-bold">Fabric Name</label>
                             <input type="text" name="fabric_name[]" class="form-control">
                         </div>
                         <div class="col">
-                            <label>Fabric Color</label>
+                            <label class="fw-bold">Fabric Color</label>
                             <input type="text" name="fabric_color[]" class="form-control">
                         </div>
                         <div class="col">
-                            <label>Fabric Usage</label>
+                            <label class="fw-bold">Fabric Usage</label>
                             <input type="number" step="0.01" name="fabric_usage[]" class="form-control">
                         </div>
                         <div class="col">
-                            <label>Amount</label>
+                            <label class="fw-bold">Amount</label>
                             <input type="number" step="0.01" name="amount[]" class="form-control">
                         </div>
                     </div>
@@ -213,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <h6>Workslip</h6>
                         <div class="workslip-fields"></div>
                         <div class="mb-2">
-                            <label>Upload Drawing:</label>
+                            <label class="fw-bold">Upload Drawing:</label>
                             <input type="file" name="drawing[]" class="form-control">
                         </div>
                     </div>
@@ -261,19 +261,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </select>
                             </div>
                             <div class="col">
-                                <label>Salesman</label>
+                                <label class="fw-bold">Salesman</label>
                                 <input type="text" name="salesman_name[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Cutter Name</label>
+                                <label class="fw-bold">Cutter Name</label>
                                 <input type="text" name="cutter_name[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Tailor Name</label>
+                                <label class="fw-bold">Tailor Name</label>
                                 <input type="text" name="tailor_name[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Shirt Type</label>
+                                <label class="fw-bold">Shirt Type</label>
                                 <select name="shirt_type[]" class="form-control" required>
                                     <option value="" disabled selected >Select Shirt Type</option>
                                     <option value="SH/S">Shirt (Short Sleeve)</option>
@@ -283,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>
                             </div>
                             <div class="col">
-                                <label>Gender</label>
+                                <label class="fw-bold">Gender</label>
                                 <select name="gender[]" class="form-control" required>
                                     <option value="" disabled selected>Select Gender</option>
                                     <option value="Male">Male</option>
@@ -293,15 +293,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label>Special Instructions</label>
+                                <label class="fw-bold">Special Instructions</label>
                                 <input type="text" name="special_instructions[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Previous Invoice No.</label>
+                                <label class="fw-bold">Previous Invoice No.</label>
                                 <input type="text" name="previous_invoice_number[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Fabric Direction</label>
+                                <label class="fw-bold">Fabric Direction</label>
                                 <select name="fabric_direction[]" class="form-control" required>
                                     <option value="" disabled selected>Select Fabric Direction</option>
                                     <option value="Vertical">Vertical</option>
@@ -311,7 +311,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label>Collar Design</label>
+                                <label class="fw-bold">Collar Design</label>
                                 <select name="collar_design[]" class="form-control" required>
                                     <option value="" disabled selected>Select Collar Design</option>
                                     <option value="Button Down (C1)">Button Down (C1)</option>
@@ -328,65 +328,65 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
-                                <label>Collar Height</label>
+                                <label class="fw-bold">Collar Height</label>
                                 <input type="text" name="collar_height[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Collar Width</label>
+                                <label class="fw-bold">Collar Width</label>
                                 <input type="text" name="collar_width[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Collar Gap</label>
+                                <label class="fw-bold">Collar Gap</label>
                                 <input type="text" name="collar_gap[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Collar Meet</label>
+                                <label class="fw-bold">Collar Meet</label>
                                 <input type="text" name="collar_meet[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Collar Length</label>
+                                <label class="fw-bold">Collar Length</label>
                                 <input type="text" name="collar_length[]" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label>Back Length</label>
+                                <label class="fw-bold">Back Length</label>
                                 <input type="text" name="back_length[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Front Length</label>
+                                <label class="fw-bold">Front Length</label>
                                 <input type="text" name="front_length[]" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label>Chest (Fit)</label>
+                                <label class="fw-bold">Chest (Fit)</label>
                                 <input type="text" name="chest_fit[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Chest (Loose)</label>
+                                <label class="fw-bold">Chest (Loose)</label>
                                 <input type="text" name="chest_loose[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Waist (Fit)</label>
+                                <label class="fw-bold">Waist (Fit)</label>
                                 <input type="text" name="waist_fit[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Waist (Loose)</label>
+                                <label class="fw-bold">Waist (Loose)</label>
                                 <input type="text" name="waist_loose[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Hip (Fit)</label>
+                                <label class="fw-bold">Hip (Fit)</label>
                                 <input type="text" name="hip_fit[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Hip (Loose)</label>
+                                <label class="fw-bold">Hip (Loose)</label>
                                 <input type="text" name="hip_loose[]" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label>Shoulder Type</label>
+                                <label class="fw-bold">Shoulder Type</label>
                                 <select name="shoulder_type[]" class="form-control">
                                     <option value="">Select Shoulder Type</option>
                                     <option value="Square">Square</option>
@@ -394,19 +394,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
-                                <label>Shoulder Length</label>
+                                <label class="fw-bold">Shoulder Length</label>
                                 <input type="text" name="shoulder[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Sleeve Length</label>
+                                <label class="fw-bold">Sleeve Length</label>
                                 <input type="text" name="sleeve_length[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Elbow</label>
+                                <label class="fw-bold">Elbow</label>
                                 <input type="text" name="elbow_length[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Cuff Type</label>
+                                <label class="fw-bold">Cuff Type</label>
                                 <select name="cuff_type[]" class="form-control" required>
                                     <option value="">Select Cuff Type</option>
                                     <option value="Single Cuff">Single Cuff</option>
@@ -414,29 +414,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
-                                <label>Cuff Length</label>
+                                <label class="fw-bold">Cuff Length</label>
                                 <input type="text" name="cuff_length[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Cuff Width</label>
+                                <label class="fw-bold">Cuff Width</label>
                                 <input type="text" name="cuff_width[]" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label>Armhole</label>
+                                <label class="fw-bold">Armhole</label>
                                 <input type="text" name="armhole[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Erect</label>
+                                <label class="fw-bold">Erect</label>
                                 <input type="text" name="erect[]" class="form-control" disabled>
                             </div>
                             <div class="col">
-                                <label>Hunch</label>
+                                <label class="fw-bold">Hunch</label>
                                 <input type="text" name="hunch[]" class="form-control" disabled>
                             </div>
                             <div class="col">
-                                <label>Corpulent</label>
+                                <label class="fw-bold">Corpulent</label>
                                 <select name="corpulent[]" class="form-control" disabled>
                                     <option value="">Have corpulent?</option>
                                     <option value="Yes">Yes</option>
@@ -444,7 +444,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
-                                <label>Front Cutting</label>
+                                <label class="fw-bold">Front Cutting</label>
                                 <select name="front_cutting[]" class="form-control" required>
                                     <option value="">Select Front Cutting</option>
                                     <option value="Straight">Straight</option>
@@ -452,7 +452,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
-                                <label>Placket Type</label>
+                                <label class="fw-bold">Placket Type</label>
                                 <select name="placket_type[]" class="form-control" required>
                                     <option value="">Select Placket Type</option>
                                     <option value="Hidden Button">Hidden Button</option>
@@ -463,15 +463,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label>Top Initial</label>
+                                <label class="fw-bold">Top Initial</label>
                                 <input type="text" name="top_initial[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Bottom Initial</label>
+                                <label class="fw-bold">Bottom Initial</label>
                                 <input type="text" name="bottom_initial[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label>Cleaning Type</label>
+                                <label class="fw-bold">Cleaning Type</label>
                                 <select name="cleaning_type[]" class="form-control">
                                     <option value="">Select Cleaning Type</option>
                                     <option value="No Restriction">No Restriction</option>
