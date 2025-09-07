@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $invoice_id = $stmt->insert_id;
 
     // Insert items
-    foreach ($_POST['item_name'] as $key => $item) {
+    foreach ($_POST['item_type'] as $key => $item) {
         $stmt = $conn->prepare("INSERT INTO invoice_items 
             (invoice_id, item_type, quantity, fabric_code, fabric_name, fabric_color, fabric_usage, amount) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
