@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <h4>Invoice Details</h4>
-            <div class="row mb-3">
+            <div class="mb-3">
                 <label>Invoice Number</label>
                 <input type="text" name="invoice_number" class="form-control" required>
                 <label>Invoice Description</label>
@@ -324,7 +324,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Double Cuff">Double Cuff</option>
                                 </select>   
                             </div>
-                            <div class="col"><input type="text" name="cuff_length[]" class="form-control" placeholder="Cuff"></div>
+                            <div class="col"><input type="text" name="cuff_length[]" class="form-control" placeholder="Cuff Length"></div>
+                            <div class="col"><input type="text" name="cuff_width[]" class="form-control" placeholder="Cuff Width"></div>
                             <div class="col"><input type="text" name="armhole[]" class="form-control" placeholder="Armhole"></div>
                         </div>
                         <div class="row mb-2">
