@@ -485,12 +485,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     html = `
                     <div class="row mb-2">
                             <div class="col">
-                            <label class="fw-bold">Manufacturer</label>
-                            <select name="manufacturer[]" class="form-control" required>
-                                <option value="" disabled selected>Select Manufacturer</option>
-                                <option value="In-House Factory">In-House Factory</option>
-                                <option value="Fabrica">Fabrica</option>
-                            </select>
+                                <label class="fw-bold">Manufacturer</label>
+                                <select name="manufacturer[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Manufacturer</option>
+                                    <option value="In-House Factory">In-House Factory</option>
+                                    <option value="Fabrica">Fabrica</option>
+                                </select>
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Salesman</label>
@@ -503,16 +503,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Tailor Name</label>
                                 <input type="text" name="tailor_name[]" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Shirt Type</label>
-                                <select name="shirt_type[]" class="form-control" required>
-                                    <option value="" disabled selected >Select Shirt Type</option>
-                                    <option value="SH/S">Shirt (Short Sleeve)</option>
-                                    <option value="SH/L">Shirt (Long Sleeve)</option>
-                                    <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
-                                    <option value="BSH/S">Batik Shirt (Long Sleeve)</option>
-                                </select>
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Gender</label>
@@ -531,14 +521,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Previous Invoice No.</label>
                                 <input type="text" name="previous_invoice_number[]" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Fabric Direction</label>
-                                <select name="fabric_direction[]" class="form-control" required>
-                                    <option value="" disabled selected>Select Fabric Direction</option>
-                                    <option value="Vertical">Vertical</option>
-                                    <option value="Horizontal">Horizontal</option>
-                                </select>   
                             </div>
                         </div>
                         <div class="row mb-2">
