@@ -388,7 +388,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Shoulder Type</label>
                                 <select name="shoulder_type[]" class="form-control">
-                                    <option value="">Select Shoulder Type</option>
                                     <option value="Square">Square</option>
                                     <option value="Drop" selected>Drop</option>
                                 </select>   
@@ -408,7 +407,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Cuff Type</label>
                                 <select name="cuff_type[]" class="form-control" required>
-                                    <option value="">Select Cuff Type</option>
+                                    <option value="" disabled selected>Select Cuff Type</option>
                                     <option value="Single Cuff">Single Cuff</option>
                                     <option value="Double Cuff">Double Cuff</option>
                                 </select>   
@@ -438,7 +437,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
                                 <select name="corpulent[]" class="form-control" disabled>
-                                    <option value="">Have corpulent?</option>
+                                    <option value="" disabled selected>Have corpulent?</option>
                                     <option value="Yes">Yes</option>
                                     <option value="">No</option>
                                 </select>   
@@ -446,7 +445,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Front Cutting</label>
                                 <select name="front_cutting[]" class="form-control" required>
-                                    <option value="">Select Front Cutting</option>
+                                    <option value="" disabled selected>Select Front Cutting</option>
                                     <option value="Straight">Straight</option>
                                     <option value="Rounded">Rounded</option>
                                 </select>   
@@ -454,7 +453,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Placket Type</label>
                                 <select name="placket_type[]" class="form-control" required>
-                                    <option value="">Select Placket Type</option>
+                                    <option value="" disabled selected>Select Placket Type</option>
                                     <option value="Hidden Button">Hidden Button</option>
                                     <option value="Live Placket">Live Placket</option>
                                     <option value="Front Placket">Front Placket</option>
@@ -473,7 +472,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Cleaning Type</label>
                                 <select name="cleaning_type[]" class="form-control">
-                                    <option value="">Select Cleaning Type</option>
+                                    <option value="" disabled selected>Select Cleaning Type</option>
                                     <option value="No Restriction">No Restriction</option>
                                     <option value="Dry Clean Only">Dry Clean Only</option>
                                     <option value="Hand Wash Only">Hand Wash Only</option>
