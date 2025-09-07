@@ -349,43 +349,94 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col"><input type="text" name="back_length[]" class="form-control" placeholder="Back Length"></div>
-                            <div class="col"><input type="text" name="front_length[]" class="form-control" placeholder="Front Length"></div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col"><input type="text" name="chest_fit[]" class="form-control" placeholder="Chest (Fit)"></div>
-                            <div class="col"><input type="text" name="chest_loose[]" class="form-control" placeholder="Chest (Loose)"></div>
-                            <div class="col"><input type="text" name="waist_fit[]" class="form-control" placeholder="Waist (Fit)"></div>
-                            <div class="col"><input type="text" name="waist_loose[]" class="form-control" placeholder="Waist (Loose)"></div>
-                            <div class="col"><input type="text" name="hip_fit[]" class="form-control" placeholder="Hip (Fit)"></div>
-                            <div class="col"><input type="text" name="hip_loose[]" class="form-control" placeholder="Hip (Loose)"></div>
+                            <div class="col">
+                                <label>Back Length</label>
+                                <input type="text" name="back_length[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Front Length</label>
+                                <input type="text" name="front_length[]" class="form-control">
+                            </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <select name="shoulder_type[]" class="form-control" required>
+                                <label>Chest (Fit)</label>
+                                <input type="text" name="chest_fit[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Chest (Loose)</label>
+                                <input type="text" name="chest_loose[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Waist (Fit)</label>
+                                <input type="text" name="waist_fit[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Waist (Loose)</label>
+                                <input type="text" name="waist_loose[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Hip (Fit)</label>
+                                <input type="text" name="hip_fit[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Hip (Loose)</label>
+                                <input type="text" name="hip_loose[]" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label>Shoulder Type</label>
+                                <select name="shoulder_type[]" class="form-control">
                                     <option value="">Select Shoulder Type</option>
                                     <option value="Square">Square</option>
-                                    <option value="Drop">Drop</option>
+                                    <option value="Drop" selected>Drop</option>
                                 </select>   
                             </div>
-                            <div class="col"><input type="text" name="shoulder[]" class="form-control" placeholder="Shoulder"></div>
-                            <div class="col"><input type="text" name="sleeve_length[]" class="form-control" placeholder="Sleeve"></div>
-                            <div class="col"><input type="text" name="elbow_length[]" class="form-control" placeholder="Elbow"></div>
                             <div class="col">
+                                <label>Shoulder Type</label>
+                                <input type="text" name="shoulder[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Shoulder Type</label>
+                                <input type="text" name="sleeve_length[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Elbow</label>
+                                <input type="text" name="elbow_length[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Elbow</label>
                                 <select name="cuff_type[]" class="form-control" required>
                                     <option value="">Select Cuff Type</option>
                                     <option value="Single Cuff">Single Cuff</option>
                                     <option value="Double Cuff">Double Cuff</option>
                                 </select>   
                             </div>
-                            <div class="col"><input type="text" name="cuff_length[]" class="form-control" placeholder="Cuff Length"></div>
-                            <div class="col"><input type="text" name="cuff_width[]" class="form-control" placeholder="Cuff Width"></div>
-                            <div class="col"><input type="text" name="armhole[]" class="form-control" placeholder="Armhole"></div>
+                            <div class="col">
+                                <label>Cuff Length</label>
+                                <input type="text" name="cuff_length[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Cuff Width</label>
+                                <input type="text" name="cuff_width[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Armhole</label>
+                                <input type="text" name="armhole[]" class="form-control">
+                            </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col"><input type="text" name="erect[]" class="form-control" placeholder="Erect" disabled></div>
-                            <div class="col"><input type="text" name="hunch[]" class="form-control" placeholder="Hunch" disabled></div>
                             <div class="col">
+                                <label>Erect</label>
+                                <input type="text" name="erect[]" class="form-control" disabled>
+                            </div>
+                            <div class="col">
+                                <label>Hunch</label>
+                                <input type="text" name="hunch[]" class="form-control" disabled>
+                            </div>
+                            <div class="col">
+                                <label>Corpulent</label>
                                 <select name="corpulent[]" class="form-control" disabled>
                                     <option value="">Have corpulent?</option>
                                     <option value="Yes">Yes</option>
@@ -393,6 +444,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
+                                <label>Front Cutting</label>
                                 <select name="front_cutting[]" class="form-control" required>
                                     <option value="">Select Front Cutting</option>
                                     <option value="Straight">Straight</option>
@@ -400,6 +452,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="col">
+                                <label>Placket Type</label>
                                 <select name="placket_type[]" class="form-control" required>
                                     <option value="">Select Placket Type</option>
                                     <option value="Hidden Button">Hidden Button</option>
@@ -409,9 +462,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col"><input type="text" name="top_initial[]" class="form-control" placeholder="Top Initial"></div>
-                            <div class="col"><input type="text" name="bottom_initial[]" class="form-control" placeholder="Bottom Initial"></div>
                             <div class="col">
+                                <label>Top Initial</label>
+                                <input type="text" name="top_initial[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Bottom Initial</label>
+                                <input type="text" name="bottom_initial[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label>Cleaning Type</label>
                                 <select name="cleaning_type[]" class="form-control">
                                     <option value="">Select Cleaning Type</option>
                                     <option value="No Restriction">No Restriction</option>
