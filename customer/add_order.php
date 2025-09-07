@@ -222,10 +222,84 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col"><input type="text" name="collar_gap[]" class="form-control" placeholder="Collar Gap"></div>
                             <div class="col"><input type="text" name="collar_meet[]" class="form-control" placeholder="Collar Meet"></div>
                             <div class="col"><input type="text" name="collar_length[]" class="form-control" placeholder="Collar Length"></div>
-                           
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="back_length[]" class="form-control" placeholder="Back Length"></div>
+                            <div class="col"><input type="text" name="front_length[]" class="form-control" placeholder="Front Length"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="chest_fit[]" class="form-control" placeholder="Chest (Fit)"></div>
+                            <div class="col"><input type="text" name="chest_loose[]" class="form-control" placeholder="Chest (Loose)"></div>
+                            <div class="col"><input type="text" name="waist_fit[]" class="form-control" placeholder="Waist (Fit)"></div>
+                            <div class="col"><input type="text" name="waist_loose[]" class="form-control" placeholder="Waist (Loose)"></div>
+                            <div class="col"><input type="text" name="Waist_fit[]" class="form-control" placeholder="Waist (Fit)"></div>
+                            <div class="col"><input type="text" name="Waist_loose[]" class="form-control" placeholder="Waist (Loose)"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <select name="shoulder_type[]" class="form-control" required">
+                                    <option value="">Select Shoulder Type</option>
+                                    <option value="Square">Square</option>
+                                    <option value="Drop">Drop</option>
+                                </select>   
+                            </div>
+                            <div class="col"><input type="text" name="shoulder[]" class="form-control" placeholder="Shoulder"></div>
+                            <div class="col"><input type="text" name="sleeve_length[]" class="form-control" placeholder="Sleeve"></div>
+                            <div class="col"><input type="text" name="elbow_length[]" class="form-control" placeholder="Elbow"></div>
+                            <div class="col">
+                                <select name="cuff_type[]" class="form-control" required">
+                                    <option value="">Select Cuff Type</option>
+                                    <option value="Single Cuff">Single Cuff</option>
+                                    <option value="Double Cuff">Double Cuff</option>
+                                </select>   
+                            </div>
+                            <div class="col"><input type="text" name="cuff_length[]" class="form-control" placeholder="Cuff"></div>
+                            <div class="col"><input type="text" name="armhole[]" class="form-control" placeholder="Armhole"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="erect[]" class="form-control disabled" placeholder="Erect"></div>
+                            <div class="col"><input type="text" name="hunch[]" class="form-control disabled" placeholder="Hunch"></div>
+                            <div class="col">
+                                <select name="corpulent[]" class="form-control disabled" required">
+                                    <option value="">Have corpulent?</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="">No</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <select name="front_cutting[]" class="form-control" required">
+                                    <option value="">Select Front Cutting</option>
+                                    <option value="Straight">Straight</option>
+                                    <option value="Rounded">Rounded</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <select name="placket_type[]" class="form-control" required">
+                                    <option value="">Select Placket Type</option>
+                                    <option value="Hidden Button">Hidden Button</option>
+                                    <option value="Live Placket">Live Placket</option>
+                                    <option value="Front Placket">Front Placket</option>
+                                </select>   
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col"><input type="text" name="top_initial[]" class="form-control" placeholder="Top Initial"></div>
+                            <div class="col"><input type="text" name="bottom_initial[]" class="form-control" placeholder="Bottom Initial"></div>
+                            <div class="col">
+                                <select name="cleaning_type[]" class="form-control">
+                                    <option value="">Select Cleaning Type</option>
+                                    <option value="No Restriction">No Restriction</option>
+                                    <option value="Dry Clean Only">Dry Clean Only</option>
+                                    <option value="Hand Wash Only">Hand Wash Only</option>
+                                </select>   
+                            </div>
+                        </div>
+                        
 
 
-                        </div>`;
+                        
+                        
+                        `;
                     break;
                 case "trousers":
                     html = `
