@@ -255,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                             <label>Manufacturer</label>
                             <select name="manufacturer[]" class="form-control" required>
-                                <option value="">Select Manufacturer</option>
+                                <option value="" selected disabled>Select Manufacturer</option>
                                 <option value="In-House Factory">In-House Factory</option>
                                 <option value="Fabrica">Fabrica</option>
                             </select>
