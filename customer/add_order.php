@@ -437,9 +437,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
                                 <select name="corpulent[]" class="form-control" disabled>
-                                    <option value="" disabled selected>Have corpulent?</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="">No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
                                 </select>   
                             </div>
                             <div class="col">
@@ -565,49 +564,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Waist (Fit)</label>
-                                <input type="text" name="waist_fit[]" class="form-control">
+                                <input type="number" name="waist_fit[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Waist (Loose)</label>
-                                <input type="text" name="waist_loose[]" class="form-control">
+                                <input type="number" name="waist_loose[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Hip (Fit)</label>
-                                <input type="text" name="hip_fit[]" class="form-control">
+                                <input type="number" name="hip_fit[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Hip (Loose)</label>
-                                <input type="text" name="hip_loose[]" class="form-control">
+                                <input type="number" name="hip_loose[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Top Hip (Fit)</label>
-                                <input type="text" name="top_hip_fit[]" class="form-control">
+                                <input type="number" name="top_hip_fit[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Top Hip (Loose)</label>
-                                <input type="text" name="top_hip_loose[]" class="form-control">
+                                <input type="number" name="top_hip_loose[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Length</label>
-                                <input type="text" name="length[]" class="form-control">
+                                <input type="number" name="length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Thigh</label>
-                                <input type="text" name="thigh[]" class="form-control">
+                                <input type="number" name="thigh[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Knee</label>
-                                <input type="text" name="knee[]" class="form-control">
+                                <input type="number" name="knee[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Bottom</label>
-                                <input type="text" name="bottom[]" class="form-control">
+                                <input type="number" name="bottom[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Crotch</label>
-                                <input type="text" name="crotch[]" class="form-control">
+                                <input type="number" name="loop_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -622,9 +621,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
                                 <select name="corpulent[]" class="form-control" disabled>
-                                    <option value="" disabled selected>Have corpulent?</option>
                                     <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="0" selected>No</option>
                                 </select>   
                             </div>
                             <div class="col">
@@ -677,11 +675,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Loop Width</label>
-                                <input type="number" name="loop_width" class="form-control" step="0.01" max="999.99">
+                                <input type="number" name="loop_width[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Loop Length</label>
-                                <input type="number" name="loop_length" class="form-control" step="0.01" max="999.99">
+                                <input type="number" name="loop_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
