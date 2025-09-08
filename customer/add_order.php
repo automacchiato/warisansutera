@@ -525,41 +525,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label class="fw-bold">Collar Design</label>
-                                <select name="collar_design[]" class="form-control" required>
-                                    <option value="" disabled selected>Select Collar Design</option>
-                                    <option value="Button Down (C1)">Button Down (C1)</option>
-                                    <option value="Classic (C2)">Classic (C2)</option>
-                                    <option value="Cutaway (C3)">Cutaway (C3)</option>
-                                    <option value="Wing (C4)">Wing (C4)</option>
-                                    <option value="Wing (Narrow) (C5)">Wing (Narrow) (C5)</option>
-                                    <option value="Wing (Round Tip) (C6)">Wing (Round Tip) (C6)</option>
-                                    <option value="Tab Collar (C7)">Tab Collar (C7)</option>
-                                    <option value="Button Loop (C8)">Button Loop (C8)</option>
-                                    <option value="BDI (C9)">BDI (C9)</option>
-                                    <option value="NAP (C10)">NAP (C10)</option>
-                                    <option value="MAPS (C11)">MAPS (C11)</option>
+                                <label class="fw-bold">Fly Hand Stitch?</label>
+                                <select name="fly_hs[]" class="form-control" required>
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
                                 </select>   
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Collar Height</label>
-                                <input type="text" name="collar_height[]" class="form-control">
+                                <label class="fw-bold">Side Pocket Stitch?</label>
+                                <select name="side_pocket_hs[]" class="form-control" required>
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
+                                </select>   
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Collar Width</label>
-                                <input type="text" name="collar_width[]" class="form-control">
+                                <label class="fw-bold">Side Seams Stitch?</label>
+                                <select name="side_seams_hs[]" class="form-control" required>
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
+                                </select>   
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Collar Gap</label>
-                                <input type="text" name="collar_gap[]" class="form-control">
+                                <label class="fw-bold">Pocket Pull Stitch?</label>
+                                <select name="pocket_pull[]" class="form-control" required>
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
+                                </select>   
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Collar Meet</label>
-                                <input type="text" name="collar_meet[]" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Collar Length</label>
-                                <input type="text" name="collar_length[]" class="form-control">
+                                <label class="fw-bold">Pleat Number</label>
+                                <select name="pleat_num[]" class="form-control" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>   
                             </div>
                         </div>
                         <div class="row mb-2">
