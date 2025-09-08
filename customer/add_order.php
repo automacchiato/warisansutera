@@ -178,8 +178,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <option value="">Select Apparel</option>
                                 <option value="SHIRT">Shirt</option>
                                 <option value="TROUSER">Trousers</option>
-                                <option value="JACKET">Jacket</option>
-                                <option value="BAJU MELAYU">Baju Melayu</option>
+                                <option value="JACKET" disabled>Jacket</option>
+                                <option value="BAJU MELAYU" disabled>Baju Melayu</option>
                             </select>
                         </div>
                         <div class="col">
