@@ -629,7 +629,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Seating Type</label>
-                                <select name="seating_type[]" class="form-control" disabled>
+                                <select name="seating_type[]" class="form-control">
                                     <option value="" disabled selected>Select Seating Type</option>
                                     <option value="Prom Seat (Hollow Back Waist)">Prom Seat (Hollow Back Waist)</option>
                                     <option value="Flat Seat">Flat Seat</option>
@@ -639,7 +639,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Turn Up</label>
-                                <select name="turn_up[]" class="form-control" disabled>
+                                <select name="turn_up[]" class="form-control">
                                     <option value="" disabled selected>Select Option</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
@@ -651,7 +651,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Right Pocket</label>
-                                <select name="right_pocket[]" class="form-control" disabled>
+                                <select name="right_pocket[]" class="form-control">
                                     <option value="" disabled selected>Select Option</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
@@ -659,7 +659,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Left Pocket</label>
-                                <select name="left_pocket[]" class="form-control" disabled>
+                                <select name="left_pocket[]" class="form-control">
                                     <option value="" disabled selected>Select Option</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
