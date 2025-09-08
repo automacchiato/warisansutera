@@ -436,7 +436,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
-                                <select name="corpulent[]" class="form-control" disabled>
+                                <select name="corpulent[]" class="form-control">
                                     <option value="1">Yes</option>
                                     <option value="0" selected>No</option>
                                 </select>   
@@ -620,7 +620,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
-                                <select name="corpulent[]" class="form-control" disabled>
+                                <select name="corpulent[]" class="form-control">
                                     <option value="1">Yes</option>
                                     <option value="0" selected>No</option>
                                 </select>   
