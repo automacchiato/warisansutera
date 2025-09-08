@@ -66,31 +66,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['special_instructions'][$key],
                 $_POST['previous_invoice_number'][$key],
                 $_POST['fabric_direction'][$key],
-                $_POST['collar_design'][$key],
-                $_POST['collar_height'][$key],
-                $_POST['collar_width'][$key],
-                $_POST['collar_gap'][$key],
-                $_POST['collar_meet'][$key],
-                $_POST['collar_length'][$key],
-                $_POST['back_length'][$key],
-                $_POST['front_length'][$key],
-                $_POST['chest_fit'][$key],
-                $_POST['chest_loose'][$key],
-                $_POST['waist_fit'][$key],
-                $_POST['waist_loose'][$key],
-                $_POST['hip_fit'][$key],
-                $_POST['hip_loose'][$key],
-                $_POST['shoulder'][$key],
-                $_POST['sleeve_length'][$key],
-                $_POST['elbow_length'][$key],
+                $_POST['collar_design'][$key], //d
+                $_POST['collar_height'][$key], //d
+                $_POST['collar_width'][$key], //d
+                $_POST['collar_gap'][$key], //d
+                $_POST['collar_meet'][$key], //d
+                $_POST['collar_length'][$key], //d
+                $_POST['back_length'][$key], //d
+                $_POST['front_length'][$key], ///d
+                $_POST['chest_fit'][$key], //d
+                $_POST['chest_loose'][$key], //d
+                $_POST['waist_fit'][$key], //d
+                $_POST['waist_loose'][$key], //d
+                $_POST['hip_fit'][$key], //d
+                $_POST['hip_loose'][$key], //d
+                $_POST['shoulder'][$key], //d
+                $_POST['sleeve_length'][$key], //d
+                $_POST['elbow_length'][$key], //d
                 $_POST['cuff_type'][$key],
-                $_POST['cuff_length'][$key],
-                $_POST['cuff_width'][$key],
-                $_POST['armhole'][$key],
-                $_POST['erect'][$key],
-                $_POST['hunch'][$key],
+                $_POST['cuff_length'][$key], //d
+                $_POST['cuff_width'][$key], //d
+                $_POST['armhole'][$key], //d
+                $_POST['erect'][$key], //i
+                $_POST['hunch'][$key], //i
                 $_POST['shoulder_type'][$key],
-                $_POST['corpulent'][$key],
+                $_POST['corpulent'][$key], //i
                 $_POST['front_cutting'][$key],
                 $_POST['placket_type'][$key],
                 $_POST['top_initial'][$key],
