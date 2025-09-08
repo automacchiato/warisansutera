@@ -564,24 +564,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label class="fw-bold">Back Length</label>
-                                <input type="text" name="back_length[]" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Front Length</label>
-                                <input type="text" name="front_length[]" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <label class="fw-bold">Chest (Fit)</label>
-                                <input type="text" name="chest_fit[]" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Chest (Loose)</label>
-                                <input type="text" name="chest_loose[]" class="form-control">
-                            </div>
-                            <div class="col">
                                 <label class="fw-bold">Waist (Fit)</label>
                                 <input type="text" name="waist_fit[]" class="form-control">
                             </div>
@@ -596,6 +578,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Hip (Loose)</label>
                                 <input type="text" name="hip_loose[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Top Hip (Fit)</label>
+                                <input type="text" name="top_hip_fit[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Top Hip (Loose)</label>
+                                <input type="text" name="top_hip_loose[]" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-2">
