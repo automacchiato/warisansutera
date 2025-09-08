@@ -590,84 +590,110 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label class="fw-bold">Shoulder Type</label>
-                                <select name="shoulder_type[]" class="form-control">
-                                    <option value="Square">Square</option>
-                                    <option value="Drop" selected>Drop</option>
-                                </select>   
+                                <label class="fw-bold">Length</label>
+                                <input type="text" name="length[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Shoulder Length</label>
-                                <input type="text" name="shoulder[]" class="form-control">
+                                <label class="fw-bold">Thigh</label>
+                                <input type="text" name="thigh[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Sleeve Length</label>
-                                <input type="text" name="sleeve_length[]" class="form-control">
+                                <label class="fw-bold">Knee</label>
+                                <input type="text" name="knee[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Elbow</label>
-                                <input type="text" name="elbow_length[]" class="form-control">
+                                <label class="fw-bold">Bottom</label>
+                                <input type="text" name="bottom[]" class="form-control">
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Cuff Type</label>
-                                <select name="cuff_type[]" class="form-control" required>
-                                    <option value="" disabled selected>Select Cuff Type</option>
-                                    <option value="Single Cuff">Single Cuff</option>
-                                    <option value="Double Cuff">Double Cuff</option>
-                                </select>   
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Cuff Length</label>
-                                <input type="text" name="cuff_length[]" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Cuff Width</label>
-                                <input type="text" name="cuff_width[]" class="form-control">
+                                <label class="fw-bold">Crotch</label>
+                                <input type="text" name="crotch[]" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label class="fw-bold">Armhole</label>
-                                <input type="text" name="armhole[]" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Erect</label>
-                                <input type="text" name="erect[]" class="form-control" disabled>
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Hunch</label>
-                                <input type="text" name="hunch[]" class="form-control" disabled>
+                                <label class="fw-bold">Position on Waist</label>
+                                <select name="position_on_waist[]" class="form-control">
+                                    <option value="" disabled selected>Select Position</option>
+                                    <option value="Front High">Front High</option>
+                                    <option value="Front Cut Low">Front Cut Low</option>
+                                </select>   
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
                                 <select name="corpulent[]" class="form-control" disabled>
                                     <option value="" disabled selected>Have corpulent?</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="">No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
                                 </select>   
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Front Cutting</label>
-                                <select name="front_cutting[]" class="form-control" required>
-                                    <option value="" disabled selected>Select Front Cutting</option>
-                                    <option value="Straight">Straight</option>
-                                    <option value="Rounded">Rounded</option>
-                                </select>   
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Placket Type</label>
-                                <select name="placket_type[]" class="form-control" required>
-                                    <option value="" disabled selected>Select Placket Type</option>
-                                    <option value="Hidden Button">Hidden Button</option>
-                                    <option value="Live Placket">Live Placket</option>
-                                    <option value="Front Placket">Front Placket</option>
+                                <label class="fw-bold">Seating Type</label>
+                                <select name="seating_type[]" class="form-control" disabled>
+                                    <option value="" disabled selected>Select Seating Type</option>
+                                    <option value="Prom Seat (Hollow Back Waist)">Prom Seat (Hollow Back Waist)</option>
+                                    <option value="Flat Seat">Flat Seat</option>
                                 </select>   
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <label class="fw-bold">Top Initial</label>
-                                <input type="text" name="top_initial[]" class="form-control">
+                                <label class="fw-bold">Turn Up</label>
+                                <select name="turn_up[]" class="form-control" disabled>
+                                    <option value="" disabled selected>Select Option</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Turn Up Length</label>
+                                <input type="number" name="turn_up_length" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Right Pocket</label>
+                                <select name="right_pocket[]" class="form-control" disabled>
+                                    <option value="" disabled selected>Select Option</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Left Pocket</label>
+                                <select name="left_pocket[]" class="form-control" disabled>
+                                    <option value="" disabled selected>Select Option</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>   
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Inside Pocket Number</label>
+                                <input type="text" name="inside_pocket_num[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Loop Number</label>
+                                <input type="text" name="loop_num[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Loop Width</label>
+                                <input type="number" name="loop_width" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Loop Length</label>
+                                <input type="number" name="loop_length" class="form-control" step="0.01" max="999.99">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Lining Type</label>
+                                <select name="lining_type[]" class="form-control">
+                                    <option value="" disabled selected>Select Lining Type</option>
+                                    <option value="Half lined front only">Half lined front only</option>
+                                    <option value="Front Back 1/2 lining">Front Back 1/2 lining</option>
+                                    <option value="Front Full Length">Front Full Length</option>
+                                    <option value="Trousers full lined">Trousers full lined</option>
+                                </select>   
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Bottom Initial</label>
