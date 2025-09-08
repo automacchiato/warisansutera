@@ -329,59 +329,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Collar Height</label>
-                                <input type="text" name="collar_height[]" class="form-control">
+                                <input type="number" name="collar_height[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Collar Width</label>
-                                <input type="text" name="collar_width[]" class="form-control">
+                                <input type="number" name="collar_width[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Collar Gap</label>
-                                <input type="text" name="collar_gap[]" class="form-control">
+                                <input type="number" name="collar_gap[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Collar Meet</label>
-                                <input type="text" name="collar_meet[]" class="form-control">
+                                <input type="number" name="collar_meet[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Collar Length</label>
-                                <input type="text" name="collar_length[]" class="form-control">
+                                <input type="number" name="collar_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Back Length</label>
-                                <input type="text" name="back_length[]" class="form-control">
+                                <input type="number" name="back_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Front Length</label>
-                                <input type="text" name="front_length[]" class="form-control">
+                                <input type="number" name="front_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Chest (Fit)</label>
-                                <input type="text" name="chest_fit[]" class="form-control">
+                                <input type="number" name="chest_fit[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Chest (Loose)</label>
-                                <input type="text" name="chest_loose[]" class="form-control">
+                                <input type="number" name="chest_loose[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Waist (Fit)</label>
-                                <input type="text" name="waist_fit[]" class="form-control">
+                                <input type="number" name="waist_fit[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Waist (Loose)</label>
-                                <input type="text" name="waist_loose[]" class="form-control">
+                                <input type="number" name="waist_loose[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Hip (Fit)</label>
-                                <input type="text" name="hip_fit[]" class="form-control">
+                                <input type="number" name="hip_fit[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Hip (Loose)</label>
-                                <input type="text" name="hip_loose[]" class="form-control">
+                                <input type="number" name="hip_loose[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -394,15 +394,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Shoulder Length</label>
-                                <input type="text" name="shoulder[]" class="form-control">
+                                <input type="number" name="shoulder[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Sleeve Length</label>
-                                <input type="text" name="sleeve_length[]" class="form-control">
+                                <input type="number" name="sleeve_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Elbow</label>
-                                <input type="text" name="elbow_length[]" class="form-control">
+                                <input type="number" name="elbow_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Cuff Type</label>
@@ -414,25 +414,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Cuff Length</label>
-                                <input type="text" name="cuff_length[]" class="form-control">
+                                <input type="number" name="cuff_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Cuff Width</label>
-                                <input type="text" name="cuff_width[]" class="form-control">
+                                <input type="number" name="cuff_width[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Armhole</label>
-                                <input type="text" name="armhole[]" class="form-control">
+                                <input type="number" name="armhole[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Erect</label>
-                                <input type="text" name="erect[]" class="form-control" disabled>
+                                <input type="number" name="erect[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Hunch</label>
-                                <input type="text" name="hunch[]" class="form-control" disabled>
+                                <input type="number" name="hunch[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
@@ -659,7 +659,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Left Pocket</label>
-                                <select name="left_pocket[]" class="form-control">
+                                <select name="left_pocket[]" class="form-control" disabled>
                                     <option value="" disabled selected>Select Option</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
