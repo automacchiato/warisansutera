@@ -99,9 +99,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             );
             $stmt->execute();
         } elseif ($item === 'TROUSERS') {
-            // TROUSERS WORKSLIP (mapping only)
-            // INSERT INTO trousers_workslip(invoice_item_id, manufacturer, salesman_name, cutter_name, tailor_name, item, gender, ...)
-            // bind_param with trousers fields
+            $stmt = $conn->prepare("INSERT INTO workslip_trousers
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param(
+                "isssssssddddsdddddddddddsisidssddiisss",
+                $invoice_item_id, //i
+                $_POST['manufacturer'][$key],
+                $_POST['salesman_name'][$key],
+                $_POST['cutter_name'][$key],
+                $_POST['tailor_name'][$key],
+                $_POST['gender'][$key],
+                $_POST['special_instructions'][$key],
+                $_POST['previous_invoice_number'][$key],
+                $_POST['fly_hs'][$key], //d
+                $_POST['side_pocket_hs'][$key], //d
+                $_POST['side_seams_hs'][$key], //d
+                $_POST['pocket_pull'][$key], ///d
+                $_POST['pleat_num'][$key],
+                $_POST['waist_fit'][$key], //d
+                $_POST['waist_loose'][$key], //d
+                $_POST['hip_fit'][$key], //d
+                $_POST['hip_loose'][$key], //d
+                $_POST['top_hip_fit'][$key], //d
+                $_POST['top_hip_loose'][$key], //d
+                $_POST['length'][$key], //d
+                $_POST['thigh'][$key], //d
+                $_POST['knee'][$key], //d
+                $_POST['bottom'][$key], //d
+                $_POST['crotch'][$key], //d
+                $_POST['position_on_waist'][$key],
+                $_POST['corpulent'][$key], //i
+                $_POST['seating_type'][$key],
+                $_POST['turn_up'][$key], //i
+                $_POST['turn_up_length'][$key], //d
+                $_POST['inside_pocket_num'][$key],
+                $_POST['loop_num'][$key],
+                $_POST['loop_width'][$key], //d
+                $_POST['loop_length'][$key], //d
+                $_POST['right_pocket'][$key], //i
+                $_POST['left_pocket'][$key], //i
+                $_POST['lining_type'][$key],
+                $_POST['bottom_initial'][$key],
+                $_POST['cleaning_type'][$key],
+            );
+            $stmt->execute();
         } elseif ($item === 'JACKETS') {
             // JACKET WORKSLIP (mapping only)
         } elseif ($item === 'BAJU MELAYU') {
