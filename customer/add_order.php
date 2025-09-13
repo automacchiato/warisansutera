@@ -51,8 +51,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //Workslip handling
         if ($item === 'SHIRT') {
             // SHIRT WORKSLIP
+
+            $drawingFile = null; // default if no file uploaded
+            if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
+                $targetDir = "uploads/drawings/";
+                if (!file_exists($targetDir)) {
+                    mkdir($targetDir, 0777, true);
+                }
+
+                $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
+                $targetFile = $targetDir . $fileName;
+
+                if (move_uploaded_file($_FILES['drawing']['tmp_name'][$key], $targetFile)) {
+                    $drawingFile = $fileName;
+                }
+            }
+
             $stmt = $conn->prepare("INSERT INTO workslip_shirts
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, elbow_length, cuff_type, cuff_length, cuff_width, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type)
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, elbow_length, cuff_type, cuff_length, cuff_width, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type, drawing)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
                 "issssssssdddddddddddddddddsdddiisisssss",
@@ -86,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['cuff_type'][$key],
                 $_POST['cuff_length'][$key], //d
                 $_POST['cuff_width'][$key], //d
-                $_POST['armhole'][$key], //d
+                $_POST['armhole_length'][$key], //d
                 $_POST['erect'][$key], //i
                 $_POST['hunch'][$key], //i
                 $_POST['shoulder_type'][$key],
@@ -96,14 +112,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['top_initial'][$key],
                 $_POST['bottom_initial'][$key],
                 $_POST['cleaning_type'][$key],
+                $drawingFile
             );
             $stmt->execute();
         } elseif ($item === 'TROUSERS') {
+
+            $drawingFile = null; // default if no file uploaded
+            if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
+                $targetDir = "uploads/drawings/";
+                if (!file_exists($targetDir)) {
+                    mkdir($targetDir, 0777, true);
+                }
+
+                $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
+                $targetFile = $targetDir . $fileName;
+
+                if (move_uploaded_file($_FILES['drawing']['tmp_name'][$key], $targetFile)) {
+                    $drawingFile = $fileName;
+                }
+            }
+
             $stmt = $conn->prepare("INSERT INTO workslip_trousers
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type, drawing)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "isssssssddddsdddddddddddsisidssddiisss",
+                "isssssssddddsdddddddddddsisidssddiissss",
                 $invoice_item_id, //i
                 $_POST['manufacturer'][$key],
                 $_POST['salesman_name'][$key],
@@ -141,7 +174,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['left_pocket'][$key], //i
                 $_POST['lining_type'][$key],
                 $_POST['bottom_initial'][$key],
-                $_POST['cleaning_type'][$key]
+                $_POST['cleaning_type'][$key],
+                $drawingFile
             );
             $stmt->execute();
         } elseif ($item === 'JACKETS') {
@@ -317,7 +351,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="SH/S">Shirt (Short Sleeve)</option>
                                     <option value="SH/L">Shirt (Long Sleeve)</option>
                                     <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
-                                    <option value="BSH/S">Batik Shirt (Long Sleeve)</option>
+                                    <option value="BSH/L">Batik Shirt (Long Sleeve)</option>
                                 </select>
                             </div>
                             <div class="col">
@@ -462,7 +496,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Armhole</label>
-                                <input type="number" name="armhole[]" class="form-control" step="0.01" max="999.99">
+                                <input type="number" name="armhole_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Erect</label>
@@ -517,7 +551,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="form-group">
                                 <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
-                                <input type="file" name="drawing" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                                <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
                         </div>
                         `;
@@ -648,7 +682,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Crotch</label>
-                                <input type="number" name="loop_length[]" class="form-control" step="0.01" max="999.99">
+                                <input type="number" name="crotch[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -687,7 +721,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Turn Up Length</label>
-                                <input type="number" name="turn_up_length" class="form-control" step="0.01" max="999.99">
+                                <input type="number" name="turn_up_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Right Pocket</label>
@@ -750,7 +784,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="form-group">
                                 <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
-                                <input type="file" name="drawing" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                                <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
                         </div>
                         `;
