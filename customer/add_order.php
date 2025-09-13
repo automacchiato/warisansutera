@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['left_pocket'][$key], //i
                 $_POST['lining_type'][$key],
                 $_POST['bottom_initial'][$key],
-                $_POST['cleaning_type'][$key],
+                $_POST['cleaning_type'][$key]
             );
             $stmt->execute();
         } elseif ($item === 'JACKETS') {
