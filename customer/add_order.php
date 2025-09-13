@@ -219,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
                                 <option value="">Select Apparel</option>
                                 <option value="SHIRT">Shirt</option>
-                                <option value="TROUSER">Trousers</option>
+                                <option value="TROUSERS">Trousers</option>
                                 <option value="JACKET" disabled>Jacket</option>
                                 <option value="BAJU MELAYU" disabled>Baju Melayu</option>
                             </select>
@@ -522,7 +522,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         `;
                     break;
-                case "TROUSER":
+                case "TROUSERS":
                     html = `
                     <div class="row mb-2">
                             <div class="col">
