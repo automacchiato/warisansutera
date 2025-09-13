@@ -254,10 +254,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="workslip mt-2" style="display:none;">
                         <h6>Workslip</h6>
                         <div class="workslip-fields"></div>
-                        <div class="mb-2">
-                            <label class="fw-bold">Upload Drawing:</label>
-                            <input type="file" name="drawing[]" class="form-control">
-                        </div>
                     </div>
                 </div>
             </div>
