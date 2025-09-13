@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="p-4">
     <div class="container">
         <h2 class="text-center">Create Invoice</h2>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <h4>Customer Details</h4>
             <div class="mb-3">
                 <label class="fw-bold">Name</label>
@@ -515,6 +515,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
+                            <div class="form-group">
+                                <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
+                                <input type="file" name="drawing" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                            </div>
                         </div>
                         `;
                     break;
@@ -743,6 +747,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Dry Clean Only">Dry Clean Only</option>
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
+                            </div>
+                            <div class="form-group">
+                                <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
+                                <input type="file" name="drawing" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
                         </div>
                         `;
