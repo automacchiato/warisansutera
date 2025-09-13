@@ -69,9 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $stmt = $conn->prepare("INSERT INTO workslip_shirts
                 (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, elbow_length, cuff_type, cuff_length, cuff_width, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type, drawing)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "issssssssdddddddddddddddddsdddiisisssss",
+                "issssssssssddddddddddddddddsdddiisissssss",
                 $invoice_item_id,
                 $_POST['manufacturer'][$key],
                 $_POST['salesman_name'][$key],
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['special_instructions'][$key],
                 $_POST['previous_invoice_number'][$key],
                 $_POST['fabric_direction'][$key],
-                $_POST['collar_design'][$key], //d
+                $_POST['collar_design'][$key],
                 $_POST['collar_height'][$key], //d
                 $_POST['collar_width'][$key], //d
                 $_POST['collar_gap'][$key], //d
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type, drawing)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "isssssssddddsdddddddddddsisidssddiissss",
+                "isssssssiiiisdddddddddddsisidssddiissss",
                 $invoice_item_id, //i
                 $_POST['manufacturer'][$key],
                 $_POST['salesman_name'][$key],
@@ -145,10 +145,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['gender'][$key],
                 $_POST['special_instructions'][$key],
                 $_POST['previous_invoice_number'][$key],
-                $_POST['fly_hs'][$key], //d
-                $_POST['side_pocket_hs'][$key], //d
-                $_POST['side_seams_hs'][$key], //d
-                $_POST['pocket_pull'][$key], ///d
+                $_POST['fly_hs'][$key], //i
+                $_POST['side_pocket_hs'][$key], //i
+                $_POST['side_seams_hs'][$key], //i
+                $_POST['pocket_pull'][$key], ///i
                 $_POST['pleat_num'][$key],
                 $_POST['waist_fit'][$key], //d
                 $_POST['waist_loose'][$key], //d
@@ -733,7 +733,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Left Pocket</label>
-                                <select name="left_pocket[]" class="form-control" disabled>
+                                <select name="left_pocket[]" class="form-control">
                                     <option value="" disabled selected>Select Option</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
