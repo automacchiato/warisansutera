@@ -104,6 +104,24 @@ $result = $conn->query($query);
         </table>
     </div>
 
+    <!-- Workslip Modal -->
+    <div class="modal fade" id="workslipModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Workslip Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="workslipContent">
+                    <!-- Workslip details will be loaded here -->
+                    <div class="text-center p-4">
+                        <div class="spinner-border text-primary"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -140,23 +158,6 @@ $result = $conn->query($query);
         });
     </script>
 
-    <!-- Workslip Modal -->
-    <div class="modal fade" id="workslipModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Workslip Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body" id="workslipContent">
-                    <!-- Workslip details will be loaded here -->
-                    <div class="text-center p-4">
-                        <div class="spinner-border text-primary"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
