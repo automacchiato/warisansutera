@@ -68,10 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             $stmt = $conn->prepare("INSERT INTO workslip_shirts
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, elbow_length, cuff_type, cuff_length, cuff_width, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type, drawing)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, arm_length, elbow_length, cuff_type, cuff_length, cuff_width, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type, drawing)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "issssssssssddddddddddddddddsdddiisissssss",
+                "issssssssssdddddddddddddddddsdddiisissssss",
                 $invoice_item_id,
                 $_POST['manufacturer'][$key],
                 $_POST['salesman_name'][$key],
@@ -98,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['hip_loose'][$key], //d
                 $_POST['shoulder'][$key], //d
                 $_POST['sleeve_length'][$key], //d
+                $_POST['arm_length'][$key], //d
                 $_POST['elbow_length'][$key], //d
                 $_POST['cuff_type'][$key],
                 $_POST['cuff_length'][$key], //d
@@ -497,6 +498,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Sleeve Length</label>
                                 <input type="number" name="sleeve_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Arm Length</label>
+                                <input type="number" name="arm_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Elbow</label>
