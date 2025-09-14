@@ -72,6 +72,7 @@ $result = $conn->query($query);
                     <th>Total</th>
                     <th>Deposit</th>
                     <th>Balance</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -91,6 +92,12 @@ $result = $conn->query($query);
                         <td><?= number_format($row['total_amount'], 2) ?></td>
                         <td><?= number_format($row['deposit_amount'], 2) ?></td>
                         <td><?= number_format($row['balance_amount'], 2) ?></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary viewWorkslipBtn"
+                                data-invoice="<?= $row['invoice_id'] ?>">
+                                View Workslip
+                            </button>
+                        </td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
@@ -109,8 +116,47 @@ $result = $conn->query($query);
                     [0, "desc"]
                 ], // sort by invoice number by default
             });
+
+            $(".viewWorkslipBtn").on("click", function() {
+                let invoiceId = $(this).data("invoice");
+                $("#workslipContent").html('<div class="text-center p-4"><div class="spinner-border text-primary"></div></div>');
+                $("#workslipModal").modal("show");
+
+                $.ajax({
+                    url: "get_workslip.php",
+                    type: "GET",
+                    data: {
+                        invoice_id: invoiceId
+                    },
+                    success: function(data) {
+                        $("#workslipContent").html(data);
+                    },
+                    error: function() {
+                        $("#workslipContent").html("<p class='text-danger'>Failed to load workslip details.</p>");
+                    }
+                });
+            });
+
         });
     </script>
+
+    <!-- Workslip Modal -->
+    <div class="modal fade" id="workslipModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Workslip Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="workslipContent">
+                    <!-- Workslip details will be loaded here -->
+                    <div class="text-center p-4">
+                        <div class="spinner-border text-primary"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
