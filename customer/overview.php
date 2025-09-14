@@ -53,7 +53,7 @@ $result = $conn->query($query);
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         <h2 class="mb-4">Invoice Dashboard</h2>
         <table id="invoiceTable" class="table table-striped table-bordered">
             <thead>
