@@ -138,7 +138,9 @@ $result = $conn->query($query);
             $(".viewWorkslipBtn").on("click", function() {
                 let invoiceId = $(this).data("invoice");
                 $("#workslipContent").html('<div class="text-center p-4"><div class="spinner-border text-primary"></div></div>');
-                $("#workslipModal").modal("show");
+
+                let modal = new bootstrap.Modal(document.getElementById('workslipModal'));
+                modal.show();
 
                 $.ajax({
                     url: "get_workslip.php",
@@ -154,6 +156,7 @@ $result = $conn->query($query);
                     }
                 });
             });
+
 
         });
     </script>
