@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } elseif ($item === 'JACKETS') {
             // JACKET WORKSLIP (mapping only)
         } elseif ($item === 'BAJU MELAYU') {
-            // BAJU MELAYU WORKSLIP (mapping only)
+            // BAJU MELAYU WORKSLIP (mapping only) 
         }
     }
 
