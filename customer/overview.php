@@ -51,7 +51,7 @@ $result = $conn->query($query);
 </nav>
 
 <body class="p-4">
-    <div class="container">
+    <div>
         <h2 class="mb-4">Invoice Dashboard</h2>
         <table id="invoiceTable" class="table table-striped table-bordered">
             <thead>
