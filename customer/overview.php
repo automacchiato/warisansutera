@@ -52,7 +52,7 @@ $result = $conn->query($query);
         </div>
     </nav>
 
-    <div>
+    <div class="container">
         <h2 class="mb-4">Invoice Dashboard</h2>
         <table id="invoiceTable" class="table table-striped table-bordered">
             <thead>
