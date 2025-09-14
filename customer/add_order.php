@@ -251,7 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h4>Invoice Details</h4>
             <div class="mb-3">
                 <label class="fw-bold">Invoice Number</label>
-                <input type="text" name="invoice_number" class="form-control" required>
+                <input type="text" name="invoice_number" class="form-control" value="MK" required>
                 <label class="fw-bold">Invoice Description</label>
                 <input type="text" name="invoice_details" class="form-control">
             </div>
