@@ -25,7 +25,7 @@ $result = $conn->query($query);
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 
-<body class="p-4">
+<body>
 
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
