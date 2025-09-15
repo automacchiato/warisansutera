@@ -1,6 +1,11 @@
 <?php
 include 'db.php';
 
+// Check database connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 // Join customers + invoices + items
 $query = "
     SELECT 
@@ -13,20 +18,27 @@ $query = "
     JOIN invoice_items it ON i.invoice_id = it.invoice_id
     ORDER BY i.invoice_id DESC
 ";
+
 $result = $conn->query($query);
+
+// Check query execution
+if (!$result) {
+    die("Query failed: " . $conn->error);
+}
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Invoice Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body>
-
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
@@ -76,30 +88,36 @@ $result = $conn->query($query);
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
+                <?php if ($result && $result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row['invoice_number']) ?></td>
+                            <td><?= htmlspecialchars($row['customer_name']) ?></td>
+                            <td><?= htmlspecialchars($row['customer_phone']) ?></td>
+                            <td><?= htmlspecialchars($row['order_date']) ?></td>
+                            <td><?= htmlspecialchars($row['fitting_date']) ?></td>
+                            <td><?= htmlspecialchars($row['delivery_date']) ?></td>
+                            <td><?= htmlspecialchars($row['item_type']) ?></td>
+                            <td><?= htmlspecialchars($row['fabric_name']) ?></td>
+                            <td><?= htmlspecialchars($row['fabric_color']) ?></td>
+                            <td><?= htmlspecialchars($row['quantity']) ?></td>
+                            <td><?= number_format($row['amount'], 2) ?></td>
+                            <td><?= number_format($row['total_amount'], 2) ?></td>
+                            <td><?= number_format($row['deposit_amount'], 2) ?></td>
+                            <td><?= number_format($row['balance_amount'], 2) ?></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary viewWorkslipBtn"
+                                    data-invoice="<?= (int)$row['invoice_id'] ?>">
+                                    View Workslip
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
                     <tr>
-                        <td><?= htmlspecialchars($row['invoice_number']) ?></td>
-                        <td><?= htmlspecialchars($row['customer_name']) ?></td>
-                        <td><?= htmlspecialchars($row['customer_phone']) ?></td>
-                        <td><?= htmlspecialchars($row['order_date']) ?></td>
-                        <td><?= htmlspecialchars($row['fitting_date']) ?></td>
-                        <td><?= htmlspecialchars($row['delivery_date']) ?></td>
-                        <td><?= htmlspecialchars($row['item_type']) ?></td>
-                        <td><?= htmlspecialchars($row['fabric_name']) ?></td>
-                        <td><?= htmlspecialchars($row['fabric_color']) ?></td>
-                        <td><?= htmlspecialchars($row['quantity']) ?></td>
-                        <td><?= number_format($row['amount'], 2) ?></td>
-                        <td><?= number_format($row['total_amount'], 2) ?></td>
-                        <td><?= number_format($row['deposit_amount'], 2) ?></td>
-                        <td><?= number_format($row['balance_amount'], 2) ?></td>
-                        <td>
-                            <button class="btn btn-sm btn-primary viewWorkslipBtn"
-                                data-invoice="<?= $row['invoice_id'] ?>">
-                                View Workslip
-                            </button>
-                        </td>
+                        <td colspan="15" class="text-center">No invoices found</td>
                     </tr>
-                <?php endwhile; ?>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
@@ -124,6 +142,7 @@ $result = $conn->query($query);
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
@@ -133,10 +152,18 @@ $result = $conn->query($query);
                 "order": [
                     [0, "desc"]
                 ], // sort by invoice number by default
+                "responsive": true
             });
 
             $(".viewWorkslipBtn").on("click", function() {
-                let invoiceId = $(this).data("invoice");
+                let invoiceId = parseInt($(this).data("invoice"));
+
+                // Validate invoice ID
+                if (!invoiceId || invoiceId <= 0) {
+                    alert("Invalid invoice ID");
+                    return;
+                }
+
                 $("#workslipContent").html('<div class="text-center p-4"><div class="spinner-border text-primary"></div></div>');
 
                 let modal = new bootstrap.Modal(document.getElementById('workslipModal'));
@@ -151,13 +178,12 @@ $result = $conn->query($query);
                     success: function(data) {
                         $("#workslipContent").html(data);
                     },
-                    error: function() {
-                        $("#workslipContent").html("<p class='text-danger'>Failed to load workslip details.</p>");
+                    error: function(xhr, status, error) {
+                        console.error("AJAX Error:", error);
+                        $("#workslipContent").html("<p class='text-danger'>Failed to load workslip details. Please try again.</p>");
                     }
                 });
             });
-
-
         });
     </script>
 
