@@ -71,18 +71,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, arm_length, elbow_length, cuff_type, cuff_length, cuff_width, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type, drawing)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "issssssssssdddddddddddddddddsdddiisissssss",
+                "issssssssssdddddddddddddddddsdddddsdssssss",
                 $invoice_item_id,
-                $_POST['manufacturer'][$key],
-                $_POST['salesman_name'][$key],
-                $_POST['cutter_name'][$key],
-                $_POST['tailor_name'][$key],
-                $_POST['shirt_type'][$key],
-                $_POST['gender'][$key],
-                $_POST['special_instructions'][$key],
-                $_POST['previous_invoice_number'][$key],
-                $_POST['fabric_direction'][$key],
-                $_POST['collar_design'][$key],
+                $_POST['manufacturer'][$key], //s
+                $_POST['salesman_name'][$key], //s
+                $_POST['cutter_name'][$key], //s
+                $_POST['tailor_name'][$key], //s
+                $_POST['shirt_type'][$key], //s
+                $_POST['gender'][$key], //s
+                $_POST['special_instructions'][$key], //s
+                $_POST['previous_invoice_number'][$key], //s
+                $_POST['fabric_direction'][$key], //s
+                $_POST['collar_design'][$key], //s
                 $_POST['collar_height'][$key], //d
                 $_POST['collar_width'][$key], //d
                 $_POST['collar_gap'][$key], //d
@@ -100,19 +100,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['sleeve_length'][$key], //d
                 $_POST['arm_length'][$key], //d
                 $_POST['elbow_length'][$key], //d
-                $_POST['cuff_type'][$key],
+                $_POST['cuff_type'][$key], //s
                 $_POST['cuff_length'][$key], //d
                 $_POST['cuff_width'][$key], //d
                 $_POST['armhole_length'][$key], //d
-                $_POST['erect'][$key], //i
-                $_POST['hunch'][$key], //i
-                $_POST['shoulder_type'][$key],
-                $_POST['corpulent'][$key], //i
-                $_POST['front_cutting'][$key],
-                $_POST['placket_type'][$key],
-                $_POST['top_initial'][$key],
-                $_POST['bottom_initial'][$key],
-                $_POST['cleaning_type'][$key],
+                $_POST['erect'][$key], //double
+                $_POST['hunch'][$key], //double
+                $_POST['shoulder_type'][$key], //s
+                $_POST['corpulent'][$key], // double
+                $_POST['front_cutting'][$key], //s
+                $_POST['placket_type'][$key], //s
+                $_POST['top_initial'][$key], //s
+                $_POST['bottom_initial'][$key], //s
+                $_POST['cleaning_type'][$key], //s
                 $drawingFile
             );
             $stmt->execute();
@@ -137,20 +137,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type, drawing)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "isssssssiiiisdddddddddddsisidssddiissss",
+                "isssssssiiiisdddddddddddsdssdssddddssss",
                 $invoice_item_id, //i
-                $_POST['manufacturer'][$key],
-                $_POST['salesman_name'][$key],
-                $_POST['cutter_name'][$key],
-                $_POST['tailor_name'][$key],
-                $_POST['gender'][$key],
-                $_POST['special_instructions'][$key],
-                $_POST['previous_invoice_number'][$key],
-                $_POST['fly_hs'][$key], //i
-                $_POST['side_pocket_hs'][$key], //i
-                $_POST['side_seams_hs'][$key], //i
-                $_POST['pocket_pull'][$key], ///i
-                $_POST['pleat_num'][$key],
+                $_POST['manufacturer'][$key], //s
+                $_POST['salesman_name'][$key], //s
+                $_POST['cutter_name'][$key], //s
+                $_POST['tailor_name'][$key], //s
+                $_POST['gender'][$key], //s
+                $_POST['special_instructions'][$key], //s
+                $_POST['previous_invoice_number'][$key], //s
+                $_POST['fly_hs'][$key], //s
+                $_POST['side_pocket_hs'][$key], //s
+                $_POST['side_seams_hs'][$key], //s
+                $_POST['pocket_pull'][$key], ///s
+                $_POST['pleat_num'][$key], //s
                 $_POST['waist_fit'][$key], //d
                 $_POST['waist_loose'][$key], //d
                 $_POST['hip_fit'][$key], //d
@@ -162,20 +162,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['knee'][$key], //d
                 $_POST['bottom'][$key], //d
                 $_POST['crotch'][$key], //d
-                $_POST['position_on_waist'][$key],
-                $_POST['corpulent'][$key], //i
-                $_POST['seating_type'][$key],
-                $_POST['turn_up'][$key], //i
+                $_POST['position_on_waist'][$key], //s
+                $_POST['corpulent'][$key], //double
+                $_POST['seating_type'][$key], //s
+                $_POST['turn_up'][$key], //s
                 $_POST['turn_up_length'][$key], //d
-                $_POST['inside_pocket_num'][$key],
-                $_POST['loop_num'][$key],
+                $_POST['inside_pocket_num'][$key], //s
+                $_POST['loop_num'][$key], //s
                 $_POST['loop_width'][$key], //d
                 $_POST['loop_length'][$key], //d
-                $_POST['right_pocket'][$key], //i
-                $_POST['left_pocket'][$key], //i
-                $_POST['lining_type'][$key],
-                $_POST['bottom_initial'][$key],
-                $_POST['cleaning_type'][$key],
+                $_POST['right_pocket'][$key], //double
+                $_POST['left_pocket'][$key], //double
+                $_POST['lining_type'][$key], //s
+                $_POST['bottom_initial'][$key], //s
+                $_POST['cleaning_type'][$key], //s
                 $drawingFile
             );
             $stmt->execute();
@@ -402,7 +402,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Fabric Direction</label>
                                 <select name="fabric_direction[]" class="form-control">
-                                    <option value="" disabled selected>Select Fabric Direction</option>
+                                    <option value="No Direction" selected>No Direction</option>
                                     <option value="Vertical">Vertical</option>
                                     <option value="Horizontal">Horizontal</option>
                                 </select>   
@@ -539,10 +539,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
-                                <select name="corpulent[]" class="form-control">
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
-                                </select>   
+                                <input type="number" name="corpulent[]" class="form-control" step="0.01" max="999.99">  
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Front Cutting</label>
@@ -633,29 +630,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Fly Hand Stitch?</label>
                                 <select name="fly_hs[]" class="form-control" required>
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No" selected>No</option>
                                 </select>   
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Side Pocket Stitch?</label>
                                 <select name="side_pocket_hs[]" class="form-control" required>
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No" selected>No</option>
                                 </select>   
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Side Seams Stitch?</label>
                                 <select name="side_seams_hs[]" class="form-control" required>
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No" selected>No</option>
                                 </select>   
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Pocket Pull Stitch?</label>
                                 <select name="pocket_pull[]" class="form-control" required>
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No" selected>No</option>
                                 </select>   
                             </div>
                             <div class="col">
@@ -727,10 +724,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Corpulent</label>
-                                <select name="corpulent[]" class="form-control">
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
-                                </select>   
+                                <input type="number" name="corpulent[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Seating Type</label>
@@ -746,8 +740,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <label class="fw-bold">Turn Up</label>
                                 <select name="turn_up[]" class="form-control">
                                     <option value="" disabled selected>Select Option</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>   
                             </div>
                             <div class="col">
@@ -756,19 +750,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Right Pocket</label>
-                                <select name="right_pocket[]" class="form-control">
-                                    <option value="" disabled selected>Select Option</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>   
+                                <input type="number" name="right_pocket[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Left Pocket</label>
-                                <select name="left_pocket[]" class="form-control">
-                                    <option value="" disabled selected>Select Option</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>   
+                                <input type="number" name="left_pocket[]" class="form-control" step="0.01" max="999.99"> 
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -794,10 +780,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <label class="fw-bold">Lining Type</label>
                                 <select name="lining_type[]" class="form-control">
                                     <option value="" disabled selected>Select Lining Type</option>
-                                    <option value="Half lined front only">Half lined front only</option>
-                                    <option value="Front Back 1/2 lining">Front Back 1/2 lining</option>
-                                    <option value="Front Full Length">Front Full Length</option>
-                                    <option value="Trousers full lined">Trousers full lined</option>
+                                    <option value="Half Lined Front Only">Half Lined Front Only</option>
+                                    <option value="Front Back 1/2 Lining">Front Back 1/2 Lining</option>
+                                    <option value="Front Full Length Lined">Front Full Length Lined</option>
+                                    <option value="Trousers Full Lined">Trousers Full Lined</option>
                                 </select>   
                             </div>
                             <div class="col">
