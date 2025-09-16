@@ -160,17 +160,25 @@ function displayJacketMeasurements($workslip)
 function displayShirtMeasurements($workslip)
 {
     $measurements = [
-        'manufacturer' => 'Manufacturer',
-        'gender' => 'Gender',
+        'collar_design' => 'Collar Design',
+        'collar_height' => 'Collar Height',
+        'collar_width' => 'Collar Width',
+        'collar_gap' => 'Collar Gap',
+        'collar_meet' => 'Collar Meet',
+        'collar_length' => 'Collar Length',
+        'back_length' => 'Back Length',
+        'front_length' => 'Front Length',
         'chest_fit' => 'Chest (Fit)',
         'chest_loose' => 'Chest (Loose)',
-        'waist' => 'Waist',
+        'waist_fit' => 'Waist (Fit)',
+        'waist_loose' => 'Waist (Loose)',
+        'hip_fit' => 'Hip (Fit)',
+        'hip_loose' => 'Hip (Loose)',
         'shoulder' => 'Shoulder',
         'sleeve_length' => 'Sleeve Length',
-        'shirt_length' => 'Shirt Length',
-        'collar' => 'Collar',
-        'cuff' => 'Cuff',
-        'arm_hole' => 'Arm Hole'
+        'arm_length' => 'Arm Length',
+        'elbow_length' => 'Elbow Length',
+        'Cuff_length' => 'Cuff Length',
     ];
 
     displayMeasurementsTable($workslip, $measurements);
