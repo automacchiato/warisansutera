@@ -34,7 +34,7 @@ if (isset($_GET['invoice_id']) && isset($_GET['item_id']) && isset($_GET['item_t
         echo "</div>";
         echo "<div class='col-md-6'>";
         echo "<p><strong>Fabric:</strong> " . htmlspecialchars($itemInfo['fabric_name']) . " - " . htmlspecialchars($itemInfo['fabric_color']) . "</p>";
-        // echo "<p><strong>Quantity:</strong> " . htmlspecialchars($itemInfo['quantity']) . "</p>";
+        echo "<p><strong>Quantity:</strong> " . htmlspecialchars($itemInfo['quantity']) . "</p>";
         echo "</div>";
         echo "</div>";
 
@@ -160,6 +160,8 @@ function displayJacketMeasurements($workslip)
 function displayShirtMeasurements($workslip)
 {
     $measurements = [
+        'manufacturer' => 'Manufacturer',
+        'gender' => 'Gender',
         'chest_fit' => 'Chest (Fit)',
         'waist' => 'Waist',
         'shoulder' => 'Shoulder',
@@ -192,7 +194,7 @@ function displayTrouserMeasurements($workslip)
 function displayGenericMeasurements($workslip)
 {
     // Display all non-system fields
-    $skipFields = ['id', 'item_id', 'workslip_id', 'created_at', 'updated_at', 'notes', 'special_instructions'];
+    $skipFields = ['id', 'item_id', 'workslip_id', 'created_at', 'updated_at', 'notes', 'special_instructions', 'manufacturer'];
 
     echo "<div class='table-responsive'>";
     echo "<table class='table table-bordered table-sm'>";
