@@ -125,7 +125,7 @@ function displayWorkslipByType($conn, $item_id, $item_type)
 function displayBajuMelayuMeasurements($workslip)
 {
     $measurements = [
-        'chest' => 'Chest',
+        'chest_fit' => 'Chest (Fit)',
         'waist' => 'Waist',
         'shoulder' => 'Shoulder',
         'sleeve_length' => 'Sleeve Length',
@@ -143,7 +143,7 @@ function displayBajuMelayuMeasurements($workslip)
 function displayJacketMeasurements($workslip)
 {
     $measurements = [
-        'chest' => 'Chest',
+        'chest_fit' => 'Chest (Fit)',
         'waist' => 'Waist',
         'shoulder' => 'Shoulder',
         'sleeve_length' => 'Sleeve Length',
@@ -164,10 +164,10 @@ function displayShirtMeasurements($workslip)
         'gender' => 'Gender',
         'shirt_type' => 'Shirt Type',
         'fabric_direction' => 'Fabric Direction',
-        'chest' => 'Chest',
+        'chest_fit' => 'Chest (Fit)',
         'waist' => 'Waist',
         'shoulder' => 'Shoulder',
-        // 'sleeve_length' => 'Sleeve Length',
+        'sleeve_length' => 'Sleeve Length',
         'shirt_length' => 'Shirt Length',
         'collar' => 'Collar',
         'cuff' => 'Cuff',
