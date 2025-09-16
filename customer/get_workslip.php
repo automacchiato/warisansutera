@@ -13,7 +13,7 @@ if (isset($_GET['invoice_id']) && isset($_GET['item_id']) && isset($_GET['item_t
         FROM invoices i
         JOIN invoice_items it ON i.invoice_id = it.invoice_id
         JOIN customers c ON i.customer_id = c.customer_id
-        WHERE i.invoice_id = ? AND it.item_id = ?cx
+        WHERE i.invoice_id = ? AND it.item_id = ?
     ";
 
     $stmt = $conn->prepare($query);
