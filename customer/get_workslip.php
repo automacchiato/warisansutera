@@ -34,7 +34,7 @@ if (isset($_GET['invoice_id']) && isset($_GET['item_id']) && isset($_GET['item_t
         echo "</div>";
         echo "<div class='col-md-6'>";
         echo "<p><strong>Fabric:</strong> " . htmlspecialchars($itemInfo['fabric_name']) . " - " . htmlspecialchars($itemInfo['fabric_color']) . "</p>";
-        echo "<p><strong>Quantity:</strong> " . htmlspecialchars($itemInfo['quantity']) . "</p>";
+        // echo "<p><strong>Quantity:</strong> " . htmlspecialchars($itemInfo['quantity']) . "</p>";
         echo "</div>";
         echo "</div>";
 
@@ -160,10 +160,6 @@ function displayJacketMeasurements($workslip)
 function displayShirtMeasurements($workslip)
 {
     $measurements = [
-        'Manufacturer' => 'manufacturer',
-        'gender' => 'Gender',
-        'shirt_type' => 'Shirt Type',
-        'fabric_direction' => 'Fabric Direction',
         'chest_fit' => 'Chest (Fit)',
         'waist' => 'Waist',
         'shoulder' => 'Shoulder',
