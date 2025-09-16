@@ -167,7 +167,7 @@ function displayShirtMeasurements($workslip)
         'chest' => 'Chest',
         'waist' => 'Waist',
         'shoulder' => 'Shoulder',
-        'sleeve_length' => 'Sleeve Length',
+        // 'sleeve_length' => 'Sleeve Length',
         'shirt_length' => 'Shirt Length',
         'collar' => 'Collar',
         'cuff' => 'Cuff',
