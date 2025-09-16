@@ -160,7 +160,7 @@ function displayJacketMeasurements($workslip)
 function displayShirtMeasurements($workslip)
 {
     $measurements = [
-        'manufacturer' => 'Manufacturer',
+        'Manufacturer' => 'manufacturer',
         'gender' => 'Gender',
         'shirt_type' => 'Shirt Type',
         'fabric_direction' => 'Fabric Direction',
