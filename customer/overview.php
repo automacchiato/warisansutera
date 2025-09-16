@@ -12,7 +12,7 @@ $query = "
         i.invoice_id, i.invoice_number, i.order_date, i.fitting_date, i.delivery_date,
         i.total_amount, i.deposit_amount, i.balance_amount,
         c.customer_name, c.customer_phone,
-        it.item_type, it.quantity, it.fabric_name, it.fabric_color, it.amount
+        it.item_id, it.item_type, it.quantity, it.fabric_name, it.fabric_color, it.amount
     FROM invoices i
     JOIN customers c ON i.customer_id = c.customer_id
     JOIN invoice_items it ON i.invoice_id = it.invoice_id
@@ -107,7 +107,9 @@ if (!$result) {
                             <td><?= number_format($row['balance_amount'], 2) ?></td>
                             <td>
                                 <button class="btn btn-sm btn-primary viewWorkslipBtn"
-                                    data-invoice="<?= (int)$row['invoice_id'] ?>">
+                                    data-invoice="<?= (int)$row['invoice_id'] ?>"
+                                    data-item-id="<?= (int)$row['item_id'] ?>"
+                                    data-item-type="<?= htmlspecialchars($row['item_type']) ?>">
                                     View Workslip
                                 </button>
                             </td>
@@ -124,7 +126,7 @@ if (!$result) {
 
     <!-- Workslip Modal -->
     <div class="modal fade" id="workslipModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Workslip Details</h5>
@@ -157,10 +159,12 @@ if (!$result) {
 
             $(".viewWorkslipBtn").on("click", function() {
                 let invoiceId = parseInt($(this).data("invoice"));
+                let itemId = parseInt($(this).data("item-id"));
+                let itemType = $(this).data("item-type");
 
-                // Validate invoice ID
-                if (!invoiceId || invoiceId <= 0) {
-                    alert("Invalid invoice ID");
+                // Validate parameters
+                if (!invoiceId || invoiceId <= 0 || !itemId || itemId <= 0 || !itemType) {
+                    alert("Invalid parameters");
                     return;
                 }
 
@@ -173,7 +177,9 @@ if (!$result) {
                     url: "get_workslip.php",
                     type: "GET",
                     data: {
-                        invoice_id: invoiceId
+                        invoice_id: invoiceId,
+                        item_id: itemId,
+                        item_type: itemType
                     },
                     success: function(data) {
                         $("#workslipContent").html(data);
