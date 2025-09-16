@@ -233,41 +233,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="post" enctype="multipart/form-data">
             <h4>Customer Details</h4>
             <div class="mb-3">
-                <label class="fw-bold">Name</label>
-                <input type="text" name="customer_name" class="form-control" required>
+                <label class="fw-bold">Name*</label>
+                <input type="text" name="customer_name" class="form-control" autocomplete="on" required>
             </div>
             <div class="mb-3">
-                <label class="fw-bold">Address</label>
-                <textarea name="customer_address" class="form-control" required></textarea>
+                <label class="fw-bold">Address*</label>
+                <textarea name="customer_address" class="form-control" autocomplete="on" required></textarea>
             </div>
             <div class="mb-3">
                 <label class="fw-bold">Email</label>
-                <input type="text" name="customer_email" class="form-control">
+                <input type="text" name="customer_email" autocomplete="on" class="form-control">
             </div>
             <div class="mb-3">
-                <label class="fw-bold">Phone</label>
-                <input type="text" name="customer_phone" class="form-control" required>
+                <label class="fw-bold">Phone*</label>
+                <input type="text" name="customer_phone" autocomplete="on" class="form-control" required>
             </div>
 
             <h4>Invoice Details</h4>
             <div class="mb-3">
-                <label class="fw-bold">Invoice Number</label>
-                <input type="text" name="invoice_number" class="form-control" value="MK" required>
+                <label class="fw-bold">Invoice Number*</label>
+                <input type="text" name="invoice_number" class="form-control" autocomplete="on" value="MK" required>
                 <label class="fw-bold">Invoice Description</label>
                 <input type="text" name="invoice_details" class="form-control">
             </div>
             <div class="row mb-3">
                 <div class="col">
-                    <label class="fw-bold">Order Date</label>
-                    <input type="date" name="order_date" class="form-control">
+                    <label class="fw-bold">Order Date*</label>
+                    <input type="date" name="order_date" class="form-control" required>
                 </div>
                 <div class="col">
                     <label class="fw-bold">Fitting Date</label>
                     <input type="date" name="fitting_date" class="form-control">
                 </div>
                 <div class="col">
-                    <label class="fw-bold">Delivery Date</label>
-                    <input type="date" name="delivery_date" class="form-control">
+                    <label class="fw-bold">Delivery Date*</label>
+                    <input type="date" name="delivery_date" class="form-control" required>
                 </div>
             </div>
 
@@ -276,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="item-block border rounded p-2 mb-3">
                     <div class="row g-2 mb-2">
                         <div class="col">
-                            <label class="fw-bold">Apparel Type</label>
+                            <label class="fw-bold">Apparel Type*</label>
                             <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
                                 <option value="">Select Apparel</option>
                                 <option value="SHIRT">Shirt</option>
@@ -286,28 +286,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </select>
                         </div>
                         <div class="col">
-                            <label class="fw-bold">Quantity</label>
-                            <input type="number" name="quantity[]" class="form-control" required>
+                            <label class="fw-bold">Quantity*</label>
+                            <input type="number" name="quantity[]" class="form-control" autocomplete="on" required>
                         </div>
                         <div class="col">
                             <label class="fw-bold">Fabric Code</label>
-                            <input type="text" name="fabric_code[]" class="form-control">
+                            <input type="text" name="fabric_code[]" class="form-control" autocomplete="on">
                         </div>
                         <div class="col">
-                            <label class="fw-bold">Fabric Name</label>
-                            <input type="text" name="fabric_name[]" class="form-control">
+                            <label class="fw-bold">Fabric Name*</label>
+                            <input type="text" name="fabric_name[]" class="form-control" c required>
                         </div>
                         <div class="col">
                             <label class="fw-bold">Fabric Color</label>
-                            <input type="text" name="fabric_color[]" class="form-control">
+                            <input type="text" name="fabric_color[]" autocomplete="on" class="form-control">
                         </div>
                         <div class="col">
                             <label class="fw-bold">Fabric Usage</label>
-                            <input type="number" step="0.01" name="fabric_usage[]" class="form-control">
+                            <input type="number" step="0.01" name="fabric_usage[]" autocomplete="on" class="form-control">
                         </div>
                         <div class="col">
                             <label class="fw-bold">Amount</label>
-                            <input type="number" step="0.01" name="amount[]" class="form-control">
+                            <input type="number" step="0.01" name="amount[]" autocomplete="on" class="form-control">
                         </div>
                     </div>
 
@@ -322,11 +322,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <h4>Payments</h4>
             <div class="row mb-3">
-                <div class="col"><input type="number" step="0.01" name="total_amount" class="form-control" placeholder="Total Amount"></div>
-                <div class="col"><input type="number" step="0.01" name="deposit_amount" class="form-control" placeholder="Deposit"></div>
-                <div class="col"><input type="number" step="0.01" name="balance_amount" class="form-control" placeholder="Balance"></div>
-                <div class="col"><input type="number" step="0.01" name="additional_deposit" class="form-control" placeholder="Additional Deposit"></div>
-                <div class="col"><input type="number" step="0.01" name="additional_amount" class="form-control" placeholder="Additional Amount"></div>
+                <div class="col"><input type="number" step="0.01" name="total_amount" class="form-control" placeholder="Total Amount" autocomplete="on"></div>
+                <div class="col"><input type="number" step="0.01" name="deposit_amount" class="form-control" placeholder="Deposit" autocomplete="on"></div>
+                <div class="col"><input type="number" step="0.01" name="balance_amount" class="form-control" placeholder="Balance" autocomplete="on"></div>
+                <div class="col"><input type="number" step="0.01" name="additional_deposit" class="form-control" placeholder="Additional Deposit" autocomplete="on"></div>
+                <div class="col"><input type="number" step="0.01" name="additional_amount" class="form-control" placeholder="Additional Amount" autocomplete="on"></div>
             </div>
 
             <button type="submit" class="btn btn-primary">Save Invoice?</button>
