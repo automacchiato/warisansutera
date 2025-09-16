@@ -163,6 +163,7 @@ function displayShirtMeasurements($workslip)
         'manufacturer' => 'Manufacturer',
         'gender' => 'Gender',
         'shirt_type' => 'Shirt Type',
+        'fabric_direction' => 'Fabric Direction',
         'chest' => 'Chest',
         'waist' => 'Waist',
         'shoulder' => 'Shoulder',
