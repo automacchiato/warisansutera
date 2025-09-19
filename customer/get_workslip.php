@@ -269,16 +269,9 @@ function displayMeasurementsTable($workslip, $measurements)
     echo '<div class="col">';
 
     if (!empty($workslip['manufacturer'])) {
-        echo "<div class='mt-3'>";
+        // echo "<div class='mt-3'>";
         echo "<strong>Manufacturer:</strong><br>";
         echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['manufacturer'])) . "</div>";
-        echo "</div>";
-    }
-
-    if (!empty($workslip['gender'])) {
-        echo "<div class='mt-3'>";
-        echo "<strong>Gender:</strong><br>";
-        echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['gender'])) . "</div>";
         echo "</div>";
     }
 
@@ -290,7 +283,7 @@ function displayMeasurementsTable($workslip, $measurements)
     }
 
     if (!empty($workslip['fabric_direction'])) {
-        echo "<div class='mt-3'>";
+        echo "<div class='mt-3 mb-3'>";
         echo "<strong>Fabric Direction:</strong><br>";
         echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['fabric_direction'])) . "</div>";
         echo "</div>";
