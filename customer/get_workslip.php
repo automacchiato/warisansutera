@@ -271,21 +271,21 @@ function displayMeasurementsTable($workslip, $measurements)
     if (!empty($workslip['manufacturer'])) {
         echo "<div>";
         echo "<strong>Manufacturer:</strong><br>";
-        echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['manufacturer'])) . "</div>";
+        echo "<div class='p-2 bg-body-secondary bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['manufacturer'])) . "</div>";
         echo "</div>";
     }
 
     if (!empty($workslip['shirt_type'])) {
         echo "<div class='mt-3'>";
         echo "<strong>Shirt Type:</strong><br>";
-        echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['shirt_type'])) . "</div>";
+        echo "<div class='p-2 bg-body-secondary bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['shirt_type'])) . "</div>";
         echo "</div>";
     }
 
     if (!empty($workslip['fabric_direction'])) {
         echo "<div class='mt-3 mb-3'>";
         echo "<strong>Fabric Direction:</strong><br>";
-        echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['fabric_direction'])) . "</div>";
+        echo "<div class='p-2 bg-body-secondary bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['fabric_direction'])) . "</div>";
         echo "</div>";
     }
 
