@@ -178,7 +178,19 @@ function displayShirtMeasurements($workslip)
         'sleeve_length' => 'Sleeve Length',
         'arm_length' => 'Arm Length',
         'elbow_length' => 'Elbow Length',
-        'Cuff_length' => 'Cuff Length',
+        'cuff_length' => 'Cuff Length',
+        'armhole_length' => 'Armhole Length',
+        'erect' => 'Erect',
+        'hunch' => 'Hunch',
+        'shoulder_type' => 'Shoulder Type',
+        'corpulent' => 'Corpulent',
+        'cuff_type' => 'Cuff Type',
+        'cuff_width' => 'Cuff Width',
+        'front_cutting' => 'Front Cutting',
+        'placket_type' => 'Placket Type',
+        'top_initial' => 'Top Initial',
+        'bottom_initial' => 'Bottom Initial',
+        'cleaning_type' => 'Cleaning Type',
     ];
 
     displayMeasurementsTable($workslip, $measurements);
