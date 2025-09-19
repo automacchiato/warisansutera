@@ -239,6 +239,10 @@ function displayGenericMeasurements($workslip)
 
 function displayMeasurementsTable($workslip, $measurements)
 {
+    echo 'div class="container">';
+    echo '<div class="row justify-content-start">';
+    echo '<div class="col-4">';
+
     echo "<div class='table-responsive'>";
     echo "<table class='table table-bordered table-sm'>";
     echo "<thead class='table-dark'>";
@@ -258,6 +262,15 @@ function displayMeasurementsTable($workslip, $measurements)
 
     echo "</tbody></table>";
     echo "</div>";
+
+    echo '</div>';
+    echo '<div class="col-4">';
+
+    echo 'Photo here';
+
+    echo '</div>';
+    echo '</div>';
+
 
     // Display notes if available
     if (!empty($workslip['notes'])) {
