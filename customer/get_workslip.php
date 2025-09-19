@@ -277,8 +277,12 @@ function displayMeasurementsTable($workslip, $measurements)
         echo "<p class='text-muted fst-italic'>No photo available</p>";
     }
 
-    echo "<h5>Special Instructions</h5>";
-    echo "<p>" . htmlspecialchars($workslip['special_instructions']) . "</p>";
+    if (!empty($workslip['special_instructions'])) {
+        echo "<div class='mt-3'>";
+        echo "<strong>Special Instructions:</strong><br>";
+        echo "<div class='p-2 bg-warning bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['special_instructions'])) . "</div>";
+        echo "</div>";
+    }
 
     echo '</div>';
 
