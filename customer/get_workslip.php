@@ -269,7 +269,7 @@ function displayMeasurementsTable($workslip, $measurements)
     echo '<div class="col">';
 
     if (!empty($workslip['manufacturer'])) {
-        // echo "<div class='mt-3'>";
+        echo "<div>";
         echo "<strong>Manufacturer:</strong><br>";
         echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['manufacturer'])) . "</div>";
         echo "</div>";
