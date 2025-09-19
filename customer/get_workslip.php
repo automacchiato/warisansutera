@@ -241,8 +241,9 @@ function displayMeasurementsTable($workslip, $measurements)
 {
     echo '<div class="container">';
     echo '<div class="row justify-content-start">';
-    echo '<div class="col-4">';
 
+    //LEFT COLUMN: Measurements
+    echo '<div class="col-4">';
     echo "<div class='table-responsive'>";
     echo "<table class='table table-bordered table-sm'>";
     echo "<thead class='table-dark'>";
@@ -262,11 +263,20 @@ function displayMeasurementsTable($workslip, $measurements)
 
     echo "</tbody></table>";
     echo "</div>";
-
     echo '</div>';
+
+    //RIGHT COLUMN: Photo
     echo '<div class="col-4">';
 
-    echo 'Photo here';
+    if (!empty($workslip['drawing'])) {
+        // If stored as path/filename
+        echo "<img src='uploads/drawings/" . htmlspecialchars($workslip['drawing']) . "' 
+                 class='img-fluid rounded border' 
+                 alt='Workslip Photo'>";
+    } else {
+        echo "<p class='text-muted fst-italic'>No photo available</p>";
+    }
+    echo '</div>';
 
     echo '</div>';
     echo '</div>';
