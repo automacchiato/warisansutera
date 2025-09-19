@@ -28,8 +28,8 @@ if (isset($_GET['invoice_id']) && isset($_GET['item_id']) && isset($_GET['item_t
         echo "<div class='row mb-4'>";
         echo "<h3>" . htmlspecialchars($itemInfo['customer_name']) . "</h3>";
         echo "<div class='col-md-6'>";
-        echo "<p><strong>Invoice:</strong> " . htmlspecialchars($itemInfo['invoice_number']) . "</p>";
-        echo "<p><strong>Phone:</strong> " . htmlspecialchars($itemInfo['customer_phone']) . "</p>";
+        echo "<p><strong>Invoice No:</strong> " . htmlspecialchars($itemInfo['invoice_number']) . "</p>";
+        echo "<p><strong>Phone No:</strong> " . htmlspecialchars($itemInfo['customer_phone']) . "</p>";
         echo "<p><strong>Item Type:</strong> " . htmlspecialchars($itemInfo['item_type']) . "</p>";
         echo "</div>";
         echo "<div class='col-md-6'>";
@@ -276,6 +276,10 @@ function displayMeasurementsTable($workslip, $measurements)
     } else {
         echo "<p class='text-muted fst-italic'>No photo available</p>";
     }
+
+    echo "<h5>Special Instructions</h5>";
+    echo "<p>" . htmlspecialchars($workslip['special_instructions']) . "</p>";
+
     echo '</div>';
 
     echo '</div>';
