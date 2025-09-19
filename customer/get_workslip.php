@@ -26,8 +26,8 @@ if (isset($_GET['invoice_id']) && isset($_GET['item_id']) && isset($_GET['item_t
 
         // Display header info
         echo "<div class='row mb-4'>";
-        echo "<div class='col-md-6'>";
         echo "<h5>Workslip for " . htmlspecialchars($itemInfo['customer_name']) . "</h5>";
+        echo "<div class='col-md-6'>";
         echo "<p><strong>Invoice:</strong> " . htmlspecialchars($itemInfo['invoice_number']) . "</p>";
         echo "<p><strong>Phone:</strong> " . htmlspecialchars($itemInfo['customer_phone']) . "</p>";
         echo "<p><strong>Item Type:</strong> " . htmlspecialchars($itemInfo['item_type']) . "</p>";
