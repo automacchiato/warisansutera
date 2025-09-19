@@ -88,8 +88,8 @@ function displayWorkslipByType($conn, $item_id, $item_type)
     if ($result->num_rows > 0) {
         $workslip = $result->fetch_assoc();
 
-        echo "<div class='mt-4'>";
-        echo "<h6 class='mb-3 text-primary'>Measurements for " . htmlspecialchars(ucwords(str_replace('_', ' ', $item_type))) . "</h6>";
+        // echo "<div class='mt-4'>";
+        // echo "<h6 class='mb-3 text-primary'>Measurements for " . htmlspecialchars(ucwords(str_replace('_', ' ', $item_type))) . "</h6>";
 
         // Display measurements based on item type
         switch ($item_type) {
