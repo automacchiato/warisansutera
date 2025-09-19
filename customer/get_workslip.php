@@ -239,7 +239,7 @@ function displayGenericMeasurements($workslip)
 
 function displayMeasurementsTable($workslip, $measurements)
 {
-    echo 'div class="container">';
+    echo '<div class="container">';
     echo '<div class="row justify-content-start">';
     echo '<div class="col-4">';
 
