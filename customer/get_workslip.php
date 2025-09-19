@@ -288,21 +288,4 @@ function displayMeasurementsTable($workslip, $measurements)
 
     echo '</div>';
     echo '</div>';
-
-
-    // Display notes if available
-    if (!empty($workslip['notes'])) {
-        echo "<div class='mt-3'>";
-        echo "<strong>Notes:</strong><br>";
-        echo "<div class='p-2 bg-light rounded'>" . nl2br(htmlspecialchars($workslip['notes'])) . "</div>";
-        echo "</div>";
-    }
-
-    // Display special instructions if available
-    if (!empty($workslip['special_instructions'])) {
-        echo "<div class='mt-3'>";
-        echo "<strong>Special Instructions:</strong><br>";
-        echo "<div class='p-2 bg-warning bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['special_instructions'])) . "</div>";
-        echo "</div>";
-    }
 }
