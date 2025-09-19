@@ -268,6 +268,34 @@ function displayMeasurementsTable($workslip, $measurements)
     //RIGHT COLUMN: Photo
     echo '<div class="col">';
 
+    if (!empty($workslip['manufacturer'])) {
+        echo "<div class='mt-3'>";
+        echo "<strong>Manufacturer:</strong><br>";
+        echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['manufacturer'])) . "</div>";
+        echo "</div>";
+    }
+
+    if (!empty($workslip['gender'])) {
+        echo "<div class='mt-3'>";
+        echo "<strong>Gender:</strong><br>";
+        echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['gender'])) . "</div>";
+        echo "</div>";
+    }
+
+    if (!empty($workslip['shirt_type'])) {
+        echo "<div class='mt-3'>";
+        echo "<strong>Shirt Type:</strong><br>";
+        echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['shirt_type'])) . "</div>";
+        echo "</div>";
+    }
+
+    if (!empty($workslip['fabric_direction'])) {
+        echo "<div class='mt-3'>";
+        echo "<strong>Fabric Direction:</strong><br>";
+        echo "<div class='p-2 bg-primary-subtle bg-opacity-25 rounded'>" . nl2br(htmlspecialchars($workslip['fabric_direction'])) . "</div>";
+        echo "</div>";
+    }
+
     if (!empty($workslip['drawing'])) {
         // If stored as path/filename
         echo "<img src='uploads/drawings/" . htmlspecialchars($workslip['drawing']) . "' 
