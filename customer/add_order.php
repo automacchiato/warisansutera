@@ -764,6 +764,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="text" name="inside_pocket_num[]" class="form-control">
                             </div>
                             <div class="col">
+                                <label class="fw-bold">Inside Pocket Width</label>
+                                <input type="number" name="inside_pocket_width[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Inside Pocket Length</label>
+                                <input type="number" name="inside_pocket_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
                                 <label class="fw-bold">Loop Number</label>
                                 <input type="text" name="loop_num[]" class="form-control">
                             </div>
