@@ -720,7 +720,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Position on Waist</label>
                                 <select name="position_on_waist[]" class="form-control">
-                                    <option value="" disabled selected>Select Position</option>
+                                    <option value="Not Stated" disabled selected>Not Stated</option>
                                     <option value="Front High">Front High</option>
                                     <option value="Front Cut Low">Front Cut Low</option>
                                 </select>   
@@ -732,7 +732,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Seating Type</label>
                                 <select name="seating_type[]" class="form-control">
-                                    <option value="" disabled selected>Select Seating Type</option>
+                                    <option value="Not Stated" disabled selected>Not Stated</option>
                                     <option value="Prom Seat (Hollow Back Waist)">Prom Seat (Hollow Back Waist)</option>
                                     <option value="Flat Seat">Flat Seat</option>
                                 </select>   
@@ -742,9 +742,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Turn Up</label>
                                 <select name="turn_up[]" class="form-control">
-                                    <option value="" disabled selected>Select Option</option>
                                     <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="No" selected>No</option>
                                 </select>   
                             </div>
                             <div class="col">
