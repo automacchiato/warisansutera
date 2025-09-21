@@ -71,20 +71,15 @@ if (!$result) {
             <thead>
                 <tr>
                     <th>Invoice #</th>
+                    <th>Invoice Details</th>
                     <th>Customer</th>
                     <th>Phone</th>
                     <th>Order Date</th>
-                    <th>Fitting Date</th>
                     <th>Delivery Date</th>
                     <th>Item</th>
                     <th>Fabric</th>
-                    <th>Color</th>
                     <th>Qty</th>
                     <th>Amount (RM)</th>
-                    <th>Total</th>
-                    <th>Deposit</th>
-                    <th>Balance</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,19 +87,15 @@ if (!$result) {
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
                             <td><?= htmlspecialchars($row['invoice_number']) ?></td>
+                            <td><?= htmlspecialchars($row['invoice_details']) ?></td>
                             <td><?= htmlspecialchars($row['customer_name']) ?></td>
                             <td><?= htmlspecialchars($row['customer_phone']) ?></td>
                             <td><?= htmlspecialchars($row['order_date']) ?></td>
-                            <td><?= htmlspecialchars($row['fitting_date']) ?></td>
                             <td><?= htmlspecialchars($row['delivery_date']) ?></td>
                             <td><?= htmlspecialchars($row['item_type']) ?></td>
                             <td><?= htmlspecialchars($row['fabric_name']) ?></td>
-                            <td><?= htmlspecialchars($row['fabric_color']) ?></td>
                             <td><?= htmlspecialchars($row['quantity']) ?></td>
                             <td><?= number_format($row['amount'], 2) ?></td>
-                            <td><?= number_format($row['total_amount'], 2) ?></td>
-                            <td><?= number_format($row['deposit_amount'], 2) ?></td>
-                            <td><?= number_format($row['balance_amount'], 2) ?></td>
                             <td>
                                 <button class="btn btn-sm btn-primary viewWorkslipBtn"
                                     data-invoice="<?= (int)$row['invoice_id'] ?>"
