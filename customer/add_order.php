@@ -658,6 +658,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Pleat Number</label>
                                 <select name="pleat_num[]" class="form-control" required>
+                                    <option value="0" selected>0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
