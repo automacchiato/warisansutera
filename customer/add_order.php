@@ -795,7 +795,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Lining Type</label>
                                 <select name="lining_type[]" class="form-control">
-                                    <option value="" disabled selected>Select Lining Type</option>
+                                    <option value="Not Stated" disabled selected>Not Stated</option>
                                     <option value="Half Lined Front Only">Half Lined Front Only</option>
                                     <option value="Front Back 1/2 Lining">Front Back 1/2 Lining</option>
                                     <option value="Front Full Length Lined">Front Full Length Lined</option>
@@ -809,8 +809,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Cleaning Type</label>
                                 <select name="cleaning_type[]" class="form-control">
-                                    <option value="" disabled selected>Select Cleaning Type</option>
-                                    <option value="No Restriction">No Restriction</option>
+                                    <option value="No Restriction" selected>No Restriction</option>
                                     <option value="Dry Clean Only">Dry Clean Only</option>
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
