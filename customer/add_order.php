@@ -297,7 +297,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="col">
                             <label class="fw-bold">Fabric Name*</label>
-                            <input type="text" name="fabric_name[]" class="form-control" c required>
+                            <input type="text" name="fabric_name[]" class="form-control" required>
                         </div>
                         <div class="col">
                             <label class="fw-bold">Fabric Color</label>
