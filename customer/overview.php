@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 // Join customers + invoices + items
 $query = "
     SELECT 
-        i.invoice_id, i.invoice_number, i.order_date, i.fitting_date, i.delivery_date,
+        i.invoice_id, i.invoice_number, i.invoice_details, i.order_date, i.fitting_date, i.delivery_date,
         i.total_amount, i.deposit_amount, i.balance_amount,
         c.customer_name, c.customer_phone,
         it.item_id, it.item_type, it.quantity, it.fabric_name, it.fabric_color, it.amount
