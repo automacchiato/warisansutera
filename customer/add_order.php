@@ -134,10 +134,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             $stmt = $conn->prepare("INSERT INTO workslip_trousers
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type, drawing)
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, inside_pocket_width, inside_pocket_length, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type, drawing)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "isssssssiiiisdddddddddddsdssdssddddssss",
+                "isssssssiiiisdddddddddddsdssdsddsddddssss",
                 $invoice_item_id, //i
                 $_POST['manufacturer'][$key], //s
                 $_POST['salesman_name'][$key], //s
@@ -168,6 +168,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['turn_up'][$key], //s
                 $_POST['turn_up_length'][$key], //d
                 $_POST['inside_pocket_num'][$key], //s
+                $_POST['inside_pocket_width'][$key], //d
+                $_POST['inside_pocket_length'][$key], //d
                 $_POST['loop_num'][$key], //s
                 $_POST['loop_width'][$key], //d
                 $_POST['loop_length'][$key], //d
