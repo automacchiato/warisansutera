@@ -588,7 +588,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     break;
                 case "TROUSERS":
                     html = `
-                    <div class="row mb-2">
+                        <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Manufacturer</label>
                                 <select name="manufacturer[]" class="form-control" required>
@@ -823,11 +823,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     break;
                 case "JACKET":
                     html = `
+                    <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Manufacturer</label>
+                                <select name="manufacturer[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Manufacturer</option>
+                                    <option value="In-House Factory">In-House Factory</option>
+                                    <option value="Fabrica">Fabrica</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Salesman</label>
+                                <input type="text" name="salesman_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cutter Name</label>
+                                <input type="text" name="cutter_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Tailor Name</label>
+                                <input type="text" name="tailor_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Gender</label>
+                                <select name="gender[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>   
+                            </div>
+                        </div>
                         <div class="row mb-2">
-                            <div class="col"><input type="text" name="jacket_chest[]" class="form-control" placeholder="Chest"></div>
-                            <div class="col"><input type="text" name="jacket_length[]" class="form-control" placeholder="Length"></div>
-                            <div class="col"><input type="text" name="jacket_sleeve[]" class="form-control" placeholder="Sleeve"></div>
-                        </div>`;
+                            <div class="col">
+                                <label class="fw-bold">Special Instructions</label>
+                                <input type="text" name="special_instructions[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Previous Invoice No.</label>
+                                <input type="text" name="previous_invoice_number[]" class="form-control">
+                            </div>
+                        </div>
+                        `;
                     break;
                 case "BAJU MELAYU":
                     html = `
