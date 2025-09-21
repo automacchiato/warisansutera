@@ -199,14 +199,38 @@ function displayShirtMeasurements($workslip)
 function displayTrouserMeasurements($workslip)
 {
     $measurements = [
-        'waist' => 'Waist',
-        'hip' => 'Hip',
+        'fly_hs' => 'Fly Hand Stitch',
+        'side_pocket_hs' => 'Side Pocket Hand Stitch',
+        'side_seams_hs' => 'Side Seams Hand Stitch',
+        'pocket_pull' => 'Pocket Pull',
+        'pleat_num' => 'Number of Pleat',
+        'waist_fit' => 'Waist (Fit)',
+        'waist_loose' => 'Waist (Loose)',
+        'hip_fit' => 'Hip (Fit)',
+        'hip_loose' => 'Hip (Loose)',
+        'top_hip_fit' => 'Top Hip (Fit)',
+        'top_hip_loose' => 'Top Hip (Loose)',
+        'length' => 'Length',
         'thigh' => 'Thigh',
-        'inseam' => 'Inseam',
-        'outseam' => 'Outseam',
-        'bottom' => 'Bottom Opening',
-        'rise' => 'Rise',
-        'trouser_length' => 'Trouser Length'
+        'knee' => 'Knee',
+        'bottom' => 'Bottom',
+        'crotch' => 'Crotch',
+        'positon_on_waist' => 'Position on Waist',
+        'corpulent' => 'Corpulent',
+        'seating_type' => 'Seating Type',
+        'turn_up' => 'Turn Up',
+        'turn_up_length' => 'Turn Up Length',
+        'inside_pocket_num' => 'Number of Inside Pocket',
+        'inside_pocket_width' => 'Inside Pocket (Width)',
+        'inside_pocket_length' => 'Inside Pocket (Length)',
+        'loop_num' => 'Number of Loop',
+        'loop_width' => 'Loop (Width)',
+        'loop_length' => 'Loop (Length)',
+        'right_pocket' => 'Right Pocket',
+        'left_pocket' => 'Left Pocket',
+        'lining_type' => 'Lining Type',
+        'bottom_initial' => 'Bottom Initial',
+        'cleaning_type' => 'Cleaning Type'
     ];
 
     displayMeasurementsTable($workslip, $measurements);
