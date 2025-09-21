@@ -80,6 +80,7 @@ if (!$result) {
                     <th>Fabric</th>
                     <th>Qty</th>
                     <th>Amount (RM)</th>
+                    <th>Workslip</th>
                 </tr>
             </thead>
             <tbody>
