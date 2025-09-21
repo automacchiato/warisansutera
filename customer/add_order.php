@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, inside_pocket_width, inside_pocket_length, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type, drawing)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "isssssssiiiisdddddddddddsdssdsddsddssssss",
+                "issssssssssssdddddddddddsdssdsddsddssssss",
                 $invoice_item_id, //i
                 $_POST['manufacturer'][$key], //s
                 $_POST['salesman_name'][$key], //s
@@ -841,10 +841,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             fields.innerHTML = html;
         }
 
-        document.querySelectorAll('.cuff-type').forEach(function(select) {
+        document.querySelectorAll('.cuff_type').forEach(function(select) {
             select.addEventListener('change', function() {
-                const cuffLength = this.closest('.col').parentElement.querySelector('.cuff-length');
-                const cuffWidth = this.closest('.col').parentElement.querySelector('.cuff-width');
+                const cuffLength = this.closest('.col').parentElement.querySelector('.cuff_length');
+                const cuffWidth = this.closest('.col').parentElement.querySelector('.cuff_width');
                 if (this.value === 'No Cuff') {
                     cuffLength.disabled = true;
                     cuffLength.value = '';
