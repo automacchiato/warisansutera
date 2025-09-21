@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, inside_pocket_width, inside_pocket_length, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type, drawing)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "isssssssiiiisdddddddddddsdssdsddsddddssss",
+                "isssssssiiiisdddddddddddsdssdsddsddssssss",
                 $invoice_item_id, //i
                 $_POST['manufacturer'][$key], //s
                 $_POST['salesman_name'][$key], //s
@@ -173,8 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['loop_num'][$key], //s
                 $_POST['loop_width'][$key], //d
                 $_POST['loop_length'][$key], //d
-                $_POST['right_pocket'][$key], //double
-                $_POST['left_pocket'][$key], //double
+                $_POST['right_pocket'][$key], //s
+                $_POST['left_pocket'][$key], //s
                 $_POST['lining_type'][$key], //s
                 $_POST['bottom_initial'][$key], //s
                 $_POST['cleaning_type'][$key], //s
@@ -753,11 +753,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Right Pocket</label>
-                                <input type="number" name="right_pocket[]" class="form-control" step="0.01" max="999.99">
+                                <select name="right_pocket[]" class="form-control">
+                                    <option value="Yes" selected>Yes</option>
+                                    <option value="No">No</option>
+                                </select>  
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Left Pocket</label>
-                                <input type="number" name="left_pocket[]" class="form-control" step="0.01" max="999.99"> 
+                                <select name="left_pocket[]" class="form-control">
+                                    <option value="Yes" selected>Yes</option>
+                                    <option value="No">No</option>
+                                </select>  
                             </div>
                         </div>
                         <div class="row mb-2">
