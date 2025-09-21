@@ -510,7 +510,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Cuff Type</label>
                                 <select name="cuff_type[]" class="form-control" required>
-                                    <option value="" disabled selected>Select Cuff Type</option>
+                                    <option value="No Cuff" selected>No Cuff</option>
                                     <option value="Single Cuff">Single Cuff</option>
                                     <option value="Double Cuff">Double Cuff</option>
                                 </select>   
@@ -825,6 +825,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             fields.innerHTML = html;
         }
+
+        document.querySelectorAll('.cuff-type').forEach(function(select) {
+            select.addEventListener('change', function() {
+                const cuffLength = this.closest('.col').parentElement.querySelector('.cuff-length');
+                const cuffWidth = this.closest('.col').parentElement.querySelector('.cuff-width');
+                if (this.value === 'No Cuff') {
+                    cuffLength.disabled = true;
+                    cuffLength.value = '';
+                    cuffWidth.disabled = true;
+                    cuffWidth.value = '';
+                } else {
+                    cuffLength.disabled = false;
+                    cuffWidth.disabled = false;
+                }
+            });
+            // Trigger change event on page load to set initial state
+            select.dispatchEvent(new Event('change'));
+        });
     </script>
 </body>
 
