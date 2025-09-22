@@ -198,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             $stmt = $conn->prepare("INSERT INTO workslip_jacket
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, cuff_length, cross_back, cross_front, vest_length, back_neck_to_wrist, back_neck_to_front_wrist, sleeve_button, top_initial, bottom_initial, cleaning_type, drawing)
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, cuff_length, cross_back, cross_front, vest_length, back_neck_to_waist, back_neck_to_front_waist, sleeve_button, top_initial, bottom_initial, cleaning_type, drawing)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
                 "isssssssddddddddddddddddissss",
@@ -230,9 +230,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['top_initial'][$key], //s
                 $_POST['bottom_initial'][$key], //s
                 $_POST['cleaning_type'][$key], //s
-                $drawingFile
+                $drawingFile //s
             );
             $stmt->execute();
+
+            if ($stmt->execute()) {
+                echo "Insert successful!";
+            } else {
+                echo "Error: " . $stmt->error;
+            }
         } elseif ($item === 'BAJU MELAYU') {
             // BAJU MELAYU WORKSLIP (mapping only) 
         }
