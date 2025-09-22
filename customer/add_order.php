@@ -579,7 +579,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col">
                                 <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
                                 <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
@@ -852,15 +852,113 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Female">Female</option>
                                 </select>   
                             </div>
+                            <div class="col">
+                                <label class="fw-bold">Previous Invoice No.</label>
+                                <input type="text" name="previous_invoice_number[]" class="form-control">
+                            </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Special Instructions</label>
-                                <input type="text" name="special_instructions[]" class="form-control">
+                                <textarea name="special_instructions[]" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Back Length</label>
+                                <input type="number" name="back_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Previous Invoice No.</label>
-                                <input type="text" name="previous_invoice_number[]" class="form-control">
+                                <label class="fw-bold">Front Length</label>
+                                <input type="number" name="front_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Chest (Fit)</label>
+                                <input type="number" name="chest_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Chest (Loose)</label>
+                                <input type="number" name="chest_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Waist (Fit)</label>
+                                <input type="number" name="waist_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Waist (Loose)</label>
+                                <input type="number" name="waist_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Hip (Fit)</label>
+                                <input type="number" name="hip_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Hip (Loose)</label>
+                                <input type="number" name="hip_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Shoulder Length</label>
+                                <input type="number" name="shoulder[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Sleeve Length</label>
+                                <input type="number" name="sleeve_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cuff Length</label>
+                                <input type="number" name="cuff_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cross Back</label>
+                                <input type="number" name="cross_back[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cross Front</label>
+                                <input type="number" name="cross_front[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Vest/Elbow Length</label>
+                                <input type="number" name="vest_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Back Neck to Waist</label>
+                                <input type="number" name="back_neck_to_waist[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Back Neck to Front Waist</label>
+                                <input type="number" name="back_neck_to_front_waist[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Sleeve Button</label>
+                                <input type="number" name="sleeve_button[]" class="form-control" step="1" max="5">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Top Initial</label>
+                                <input type="text" name="top_initial[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Bottom Initial</label>
+                                <input type="text" name="bottom_initial[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cleaning Type</label>
+                                <select name="cleaning_type[]" class="form-control">
+                                    <option value="No Restriction" selected>No Restriction</option>
+                                    <option value="Dry Clean Only">Dry Clean Only</option>
+                                    <option value="Hand Wash Only">Hand Wash Only</option>
+                                </select>   
+                            </div>
+                            <div class="form-group col">
+                                <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
+                                <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
                         </div>
                         `;
