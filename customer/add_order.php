@@ -232,7 +232,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['cleaning_type'][$key], //s
                 $drawingFile //s
             );
-            $stmt->execute();
 
             if ($stmt->execute()) {
                 echo "Insert successful!";
