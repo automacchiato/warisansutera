@@ -50,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         //Workslip handling
         if ($item === 'SHIRT') {
-            // SHIRT WORKSLIP
 
             $drawingFile = null; // default if no file uploaded
             if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
@@ -181,8 +180,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $drawingFile
             );
             $stmt->execute();
-        } elseif ($item === 'JACKETS') {
-            // JACKET WORKSLIP (mapping only)
+        } elseif ($item === 'JACKET') {
+
+            $drawingFile = null; // default if no file uploaded
+            if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
+                $targetDir = "uploads/drawings/";
+                if (!file_exists($targetDir)) {
+                    mkdir($targetDir, 0777, true);
+                }
+
+                $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
+                $targetFile = $targetDir . $fileName;
+
+                if (move_uploaded_file($_FILES['drawing']['tmp_name'][$key], $targetFile)) {
+                    $drawingFile = $fileName;
+                }
+            }
+
+            $stmt = $conn->prepare("INSERT INTO workslip_jacket
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, cuff_length, cross_back, cross_front, vest_length, back_neck_to_wrist, back_neck_to_front_wrist, sleeve_button, top_initial, bottom_initial, cleaning_type, drawing)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param(
+                "isssssssddddddddddddddddissss",
+                $invoice_item_id, //i
+                $_POST['manufacturer'][$key], //s
+                $_POST['salesman_name'][$key], //s
+                $_POST['cutter_name'][$key], //s
+                $_POST['tailor_name'][$key], //s
+                $_POST['gender'][$key], //s
+                $_POST['special_instructions'][$key], //s
+                $_POST['previous_invoice_number'][$key], //s
+                $_POST['back_length'][$key], //d
+                $_POST['front_length'][$key], ///d
+                $_POST['chest_fit'][$key], //d
+                $_POST['chest_loose'][$key], //d
+                $_POST['waist_fit'][$key], //d
+                $_POST['waist_loose'][$key], //d
+                $_POST['hip_fit'][$key], //d
+                $_POST['hip_loose'][$key], //d
+                $_POST['shoulder'][$key], //d
+                $_POST['sleeve_length'][$key], //d
+                $_POST['cuff_length'][$key], //d
+                $_POST['cross_back'][$key], //d
+                $_POST['cross_front'][$key], //d
+                $_POST['vest_length'][$key], //d
+                $_POST['back_neck_to_waist'][$key], //d
+                $_POST['back_neck_to_front_waist'][$key], //d
+                $_POST['sleeve_button'][$key], //i
+                $_POST['top_initial'][$key], //s
+                $_POST['bottom_initial'][$key], //s
+                $_POST['cleaning_type'][$key], //s
+                $drawingFile
+            );
+            $stmt->execute();
         } elseif ($item === 'BAJU MELAYU') {
             // BAJU MELAYU WORKSLIP (mapping only) 
         }
