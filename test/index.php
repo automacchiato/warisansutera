@@ -32,7 +32,7 @@ $result = $conn->query("SELECT * FROM invoices");
             <tbody>
                 <?php while ($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?= $row['invoice_no'] ?></td>
+                        <td><?= $row['invoice_number'] ?></td>
                         <td><?= $row['customer_name'] ?></td>
                         <td><?= $row['order_date'] ?></td>
                         <td><?= $row['delivery_date'] ?></td>
