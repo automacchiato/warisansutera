@@ -106,22 +106,22 @@ $pdf->Ln(10);
 $pdf->SetX(120);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(60, 7, "Total Amount", 1);
-$pdf->Cell(10, 7, $invoice['total_amount'], 1, 1);
+$pdf->Cell(30, 7, $invoice['total_amount'], 1, 1);
 
 $pdf->SetX(120);
 $pdf->Cell(60, 7, "Deposit", 1);
-$pdf->Cell(10, 7, $invoice['deposit_amount'], 1, 1);
+$pdf->Cell(30, 7, $invoice['deposit_amount'], 1, 1);
 
 $pdf->SetX(120);
 $pdf->Cell(60, 7, "Balance", 1);
-$pdf->Cell(10, 7, $invoice['balance_amount'], 1, 1);
+$pdf->Cell(30, 7, $invoice['balance_amount'], 1, 1);
 
 $pdf->SetX(120);
 $pdf->Cell(60, 7, "Additional Deposit", 1);
-$pdf->Cell(10, 7, $invoice['additional_deposit'], 1, 1);
+$pdf->Cell(30, 7, $invoice['additional_deposit'], 1, 1);
 
 $pdf->SetX(120);
 $pdf->Cell(60, 7, "Final Balance", 1);
-$pdf->Cell(10, 7, $invoice['additional_amount'], 1, 1);
+$pdf->Cell(30, 7, $invoice['additional_amount'], 1, 1);
 
 $pdf->Output("I", "Invoice_" . $invoice['invoice_number'] . ".pdf");
