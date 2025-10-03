@@ -41,7 +41,7 @@ JOIN customers c ON i.customer_id = c.customer_id");
                         <td><?= $row['order_date'] ?></td>
                         <td><?= $row['delivery_date'] ?></td>
                         <td>
-                            <a href="generate_pdf.php?id=<?= $row['invoice_id'] ?>" class="btn btn-danger btn-sm">Download PDF</a>
+                            <a href="generate_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-danger btn-sm">Download PDF</a>
                         </td>
                     </tr>
                 <?php } ?>
