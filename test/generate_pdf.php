@@ -53,11 +53,11 @@ $pdf->SetFont('Arial', '', 10);
 // --- Invoice details (top right) ---
 $pdf->SetXY(150, 10);
 $pdf->Cell(50, 5, "Invoice No: " . $invoice['invoice_number'], 1, 1);
-$pdf->SetX(140);
+$pdf->SetX(150);
 $pdf->Cell(50, 5, "Order Date: " . $invoice['order_date'], 1, 1);
-$pdf->SetX(140);
+$pdf->SetX(150);
 $pdf->Cell(50, 5, "Fitting Date: " . $invoice['fitting_date'], 1, 1);
-$pdf->SetX(140);
+$pdf->SetX(150);
 $pdf->Cell(50, 5, "Delivery Date: " . $invoice['delivery_date'], 1, 1);
 
 $pdf->Ln(20);
