@@ -5,11 +5,11 @@ $pass = "Sutera@23";
 $dbname = "u929965336_warisansutera";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
-$result = $conn->query("SELECT i.invoice_id, i.invoice_number, i.order_date, i.delivery_date, it.item_type, it.fabric_name, it.fabric_color, it.quantity,
+$result = $conn->query("SELECT i.invoice_id, i.invoice_number, i.order_date, i.delivery_date,
 c.customer_name, c.customer_phone
 FROM invoices i
-JOIN invoice_items it ON i.invoice_id = it.invoice_id
-JOIN customers c ON i.customer_id = c.customer_id");
+JOIN customers c ON i.customer_id = c.customer_id
+");
 ?>
 <!DOCTYPE html>
 <html lang="en">
