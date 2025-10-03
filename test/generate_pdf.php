@@ -103,7 +103,7 @@ while ($row = $items->fetch_assoc()) {
 $pdf->Ln(10);
 
 // --- Totals from invoices ---
-$pdf->SetX(150);
+$pdf->SetX(100);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(60, 7, "Total Amount", 1);
 $pdf->Cell(60, 7, $invoice['total_amount'], 1, 1);
