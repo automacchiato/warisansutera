@@ -78,11 +78,11 @@ while ($row = $items->fetch_assoc()) {
     $pdf->Cell($widths[4], 7, $row['fabric_color'], 1);
     $pdf->Cell($widths[5], 7, $row['fabric_usage'], 1);
     $pdf->Cell($widths[6], 7, $row['amount'], 1);
-    $pdf->Cell($widths[7], 7, $row['total'], 1);
-    $pdf->Cell($widths[8], 7, $invoice['deposit'], 1);
-    $pdf->Cell($widths[9], 7, $row['balance'], 1);
-    $pdf->Cell($widths[10], 7, $invoice['add_deposit'], 1);
-    $pdf->Cell($widths[11], 7, $invoice['final_balance'], 1);
+    $pdf->Cell($widths[7], 7, $row['total_amount'], 1);
+    $pdf->Cell($widths[8], 7, $row['deposit_amount'], 1);
+    $pdf->Cell($widths[9], 7, $row['balance_amount'], 1);
+    $pdf->Cell($widths[10], 7, $row['additional_deposit'], 1);
+    $pdf->Cell($widths[11], 7, $row['additional_amount'], 1);
     $pdf->Ln();
 }
 
