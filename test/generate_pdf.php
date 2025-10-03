@@ -6,7 +6,7 @@ $pass = "Sutera@23";
 $dbname = "u929965336_warisansutera";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
-$id = $_GET['id'];
+$id = $_GET['invoice_id'];
 
 // Fetch invoice
 $invoice = $conn->query("SELECT * FROM invoices WHERE id=$id")->fetch_assoc();
