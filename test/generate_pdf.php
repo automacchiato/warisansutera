@@ -1,5 +1,5 @@
 <?php
-require("/Users/ramadani/Documents/warisansutera/warisansutera/test/fpdf186/fpdf.php"); // Make sure you download FPDF and place in project folder
+require("fpdf186/fpdf.php"); // Make sure you download FPDF and place in project folder
 
 $host = "127.0.0.1:3306";
 $user = "u929965336_wssb";
