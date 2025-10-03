@@ -103,20 +103,24 @@ while ($row = $items->fetch_assoc()) {
 $pdf->Ln(10);
 
 // --- Totals from invoices ---
-$pdf->SetX(100);
+$pdf->SetX(120);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(60, 7, "Total Amount", 1);
 $pdf->Cell(30, 7, $invoice['total_amount'], 1, 1);
 
+$pdf->SetX(120);
 $pdf->Cell(60, 7, "Deposit", 1);
 $pdf->Cell(30, 7, $invoice['deposit_amount'], 1, 1);
 
+$pdf->SetX(120);
 $pdf->Cell(60, 7, "Balance", 1);
 $pdf->Cell(30, 7, $invoice['balance_amount'], 1, 1);
 
+$pdf->SetX(120);
 $pdf->Cell(60, 7, "Additional Deposit", 1);
 $pdf->Cell(30, 7, $invoice['additional_deposit'], 1, 1);
 
+$pdf->SetX(120);
 $pdf->Cell(60, 7, "Final Balance", 1);
 $pdf->Cell(30, 7, $invoice['additional_amount'], 1, 1);
 
