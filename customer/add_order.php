@@ -1020,11 +1020,160 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     break;
                 case "BAJU MELAYU":
                     html = `
+                    <div class="row mb-2">
+                            <div class="col">
+                            <label class="fw-bold">Manufacturer</label>
+                            <select name="manufacturer[]" class="form-control" required>
+                                <option value="" disabled selected>Select Manufacturer</option>
+                                <option value="In-House Factory">In-House Factory</option>
+                                <option value="Fabrica">Fabrica</option>
+                            </select>
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Salesman</label>
+                                <input type="text" name="salesman_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cutter Name</label>
+                                <input type="text" name="cutter_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Tailor Name</label>
+                                <input type="text" name="tailor_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Gender</label>
+                                <select name="gender[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>   
+                            </div>
+                        </div>
                         <div class="row mb-2">
-                            <div class="col"><input type="text" name="bm_ksleeve[]" class="form-control" placeholder="Kain Sleeve"></div>
-                            <div class="col"><input type="text" name="bm_panjang[]" class="form-control" placeholder="Panjang Baju"></div>
-                            <div class="col"><input type="text" name="bm_pinggang[]" class="form-control" placeholder="Pinggang"></div>
-                        </div>`;
+                            <div class="col">
+                                <label class="fw-bold">Special Instructions</label>
+                                <input type="text" name="special_instructions[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Previous Invoice No.</label>
+                                <input type="text" name="previous_invoice_number[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Fabric Direction</label>
+                                <select name="fabric_direction[]" class="form-control">
+                                    <option value="No Direction" selected>No Direction</option>
+                                    <option value="Vertical">Vertical</option>
+                                    <option value="Horizontal">Horizontal</option>
+                                </select>   
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Collar Type</label>
+                                <select name="collar_type[]" class="form-control" required>
+                                    <option value="Teluk Belanga">Teluk Belanga</option>
+                                    <option value="Cekak Musang">Cekak Musang</option>
+                                    <option value="Mandarin">Mandarin</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Height</label>
+                                <input type="number" name="collar_height[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Width</label>
+                                <input type="number" name="collar_width[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Gap</label>
+                                <input type="number" name="collar_gap[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Meet</label>
+                                <input type="number" name="collar_meet[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Length</label>
+                                <input type="number" name="collar_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Chest (Fit)</label>
+                                <input type="number" name="chest_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Chest (Loose)</label>
+                                <input type="number" name="chest_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Waist (Fit)</label>
+                                <input type="number" name="waist_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Waist (Loose)</label>
+                                <input type="number" name="waist_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Hip (Fit)</label>
+                                <input type="number" name="hip_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Hip (Loose)</label>
+                                <input type="number" name="hip_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Shoulder Length</label>
+                                <input type="number" name="shoulder[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Sleeve Length</label>
+                                <input type="number" name="sleeve_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Arm Length</label>
+                                <input type="number" name="arm_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Armhole</label>
+                                <input type="number" name="armhole_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Erect</label>
+                                <input type="number" name="erect[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Hunch</label>
+                                <input type="number" name="hunch[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Corpulent</label>
+                                <input type="number" name="corpulent[]" class="form-control" step="0.01" max="999.99">  
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Front Cutting</label>
+                                <select name="front_cutting[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Front Cutting</option>
+                                    <option value="Straight">Straight</option>
+                                    <option value="Rounded">Rounded</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Placket Type</label>
+                                <select name="placket_type[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Placket Type</option>
+                                    <option value="Hidden Button">Hidden Button</option>
+                                    <option value="Live Placket">Live Placket</option>
+                                    <option value="Front Placket">Front Placket</option>
+                                </select>   
+                            </div>
+                        </div>
+                        `;
                     break;
             }
             fields.innerHTML = html;
