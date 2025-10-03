@@ -51,7 +51,7 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', '', 10);
 
 // --- Invoice details (top right) ---
-$pdf->SetXY(140, 10);
+$pdf->SetXY(150, 10);
 $pdf->Cell(50, 5, "Invoice No: " . $invoice['invoice_number'], 1, 1);
 $pdf->SetX(140);
 $pdf->Cell(50, 5, "Order Date: " . $invoice['order_date'], 1, 1);
@@ -64,7 +64,7 @@ $pdf->Ln(20);
 
 // --- Customer Table ---
 $pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(0, 7, "Customer Details", 1, 1, 'C');
+$pdf->Cell(0, 7, "Customer Details", 0, 1, 'L');
 
 $pdf->SetFont('Arial', '', 10);
 $pdf->Cell(50, 7, "Name", 1);
