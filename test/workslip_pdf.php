@@ -181,7 +181,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(31.7, 8, "Deliver Date", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(31.6, 8, $invoice['deliver_date'], 1, 1);
+            $pdf->Cell(31.6, 8, $invoice['delivery_date'], 1, 1);
 
 
             $pdf->Ln(5);
