@@ -129,11 +129,6 @@ $pdf->SetFont('Arial', 'B', 16);
 $pdf->Cell(0, 10, "Workslip", 0, 1, 'C');
 $pdf->Ln(5);
 
-$pdf->SetFont('Arial', '', 12);
-$pdf->Cell(0, 10, "Invoice No: " . $invoice['invoice_number'], 0, 0);
-$pdf->Cell(0, 10, "Customer: " . $invoice['customer_name'], 0, 1);
-$pdf->Ln(10);
-
 $items->data_seek(0);
 while ($row = $items->fetch_assoc()) {
     // $pdf->SetFont('Arial', 'B', 14);
@@ -148,9 +143,14 @@ while ($row = $items->fetch_assoc()) {
             $sql = "SELECT * FROM workslip_shirts WHERE item_id = $item_id";
             $work = $conn->query($sql)->fetch_assoc();
 
+            $pdf->SetFont('Arial', '', 12);
+            $pdf->Cell(0, 10, "Invoice No: " . $invoice['invoice_number'], 0, 1);
+            $pdf->Cell(0, 10, "Manufacturer: " . $work['manufacturer'], 0, 0);
+            $pdf->Ln(10);
+
             $pdf->Ln(5);
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(0, 8, "Shirt Measurements", 0, 1);
+            $pdf->Cell(0, 8, "Measurements", 0, 1);
 
             $pdf->SetFont('Arial', '', 11);
 
