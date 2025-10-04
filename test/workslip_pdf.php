@@ -128,74 +128,75 @@ $pdf->Cell(30, 7, $invoice['additional_amount'], 1, 1, "R");
 $pdf->Output("I", "Invoice_" . $invoice['invoice_number'] . ".pdf");
 
 // ---------------- Page 2: Workslip ----------------
-// $pdf->AddPage();
-// $pdf->SetFont('Arial','B',16);
-// $pdf->Cell(0,10,"Workslip",0,1,'C');
-// $pdf->Ln(5);
+$pdf->AddPage();
+$pdf->SetFont('Arial', 'B', 16);
+$pdf->Cell(0, 10, "Workslip", 0, 1, 'C');
+$pdf->Ln(5);
 
-// $pdf->SetFont('Arial','',12);
-// $pdf->Cell(0,10,"Invoice: ".$invoice['invoice_number'],0,1);
-// $pdf->Cell(0,10,"Customer: ".$invoice['customer_name'],0,1);
-// $pdf->Ln(10);
+$pdf->SetFont('Arial', '', 12);
+$pdf->Cell(0, 10, "Invoice: " . $invoice['invoice_number'], 0, 1);
+$pdf->Cell(0, 10, "Customer: " . $invoice['customer_name'], 0, 1);
+$pdf->Ln(10);
 
-// $items->data_seek(0);
-// while ($row = $items->fetch_assoc()) {
-//     $pdf->SetFont('Arial','B',14);
-//     $pdf->Cell(0,10,$row['item_type']." (x".$row['quantity'].")",0,1);
-//     $pdf->SetFont('Arial','',12);
+$items->data_seek(0);
+while ($row = $items->fetch_assoc()) {
+    $pdf->SetFont('Arial', 'B', 14);
+    $pdf->Cell(0, 10, $row['item_type'] . " (x" . $row['quantity'] . ")", 0, 1);
+    $pdf->SetFont('Arial', '', 12);
 
-//     $item_id = $row['invoice_item_id'];
+    $item_id = $row['invoice_item_id'];
 
-//     // Fetch details from correct workslip table
-//     switch (strtolower($row['item_type'])) {
-//         case 'shirt':
-//             $sql = "SELECT chest, length, sleeve, collar_type, button_type 
-//                     FROM shirt_workslip WHERE invoice_item_id = $item_id";
-//             $work = $conn->query($sql)->fetch_assoc();
+    // Fetch details from correct workslip table
+    switch (strtolower($row['item_type'])) {
+        case 'SHIRT':
+            $sql = "SELECT * FROM workslip_shirts WHERE invoice_item_id = $item_id";
+            $work = $conn->query($sql)->fetch_assoc();
 
-//             $pdf->MultiCell(0,8,
-//                 "- Chest: ".$work['chest']."\n".
-//                 "- Length: ".$work['length']."\n".
-//                 "- Sleeve: ".$work['sleeve']."\n".
-//                 "- Collar: ".$work['collar_type']."\n".
-//                 "- Buttons: ".$work['button_type']
-//             );
-//             break;
+            $pdf->MultiCell(
+                0,
+                8,
+                "- Chest: " . $work['chest_fit'] . "\n" .
+                    "- Length: " . $work['collar_length'] . "\n" .
+                    "- Sleeve: " . $work['sleeve_length'] . "\n" .
+                    "- Collar: " . $work['collar_type'] . "\n" .
+                    "- Shoulder: " . $work['shoulder_type']
+            );
+            break;
 
-//         case 'trousers':
-//             $sql = "SELECT waist, hips, inseam, pocket_style, fly_type 
-//                     FROM trousers_workslip WHERE invoice_item_id = $item_id";
-//             $work = $conn->query($sql)->fetch_assoc();
+        // case 'TROUSERS':
+        //     $sql = "SELECT waist, hips, inseam, pocket_style, fly_type 
+        //             FROM trousers_workslip WHERE invoice_item_id = $item_id";
+        //     $work = $conn->query($sql)->fetch_assoc();
 
-//             $pdf->MultiCell(0,8,
-//                 "- Waist: ".$work['waist']."\n".
-//                 "- Hips: ".$work['hips']."\n".
-//                 "- Inseam: ".$work['inseam']."\n".
-//                 "- Pocket Style: ".$work['pocket_style']."\n".
-//                 "- Fly: ".$work['fly_type']
-//             );
-//             break;
+        //     $pdf->MultiCell(0,8,
+        //         "- Waist: ".$work['waist']."\n".
+        //         "- Hips: ".$work['hips']."\n".
+        //         "- Inseam: ".$work['inseam']."\n".
+        //         "- Pocket Style: ".$work['pocket_style']."\n".
+        //         "- Fly: ".$work['fly_type']
+        //     );
+        //     break;
 
-//         case 'jacket':
-//             $sql = "SELECT shoulder, chest, sleeve, lining, vent_type 
-//                     FROM jacket_workslip WHERE invoice_item_id = $item_id";
-//             $work = $conn->query($sql)->fetch_assoc();
+        // case 'JACKET':
+        //     $sql = "SELECT shoulder, chest, sleeve, lining, vent_type 
+        //             FROM jacket_workslip WHERE invoice_item_id = $item_id";
+        //     $work = $conn->query($sql)->fetch_assoc();
 
-//             $pdf->MultiCell(0,8,
-//                 "- Shoulder: ".$work['shoulder']."\n".
-//                 "- Chest: ".$work['chest']."\n".
-//                 "- Sleeve: ".$work['sleeve']."\n".
-//                 "- Lining: ".$work['lining']."\n".
-//                 "- Vent: ".$work['vent_type']
-//             );
-//             break;
+        //     $pdf->MultiCell(0,8,
+        //         "- Shoulder: ".$work['shoulder']."\n".
+        //         "- Chest: ".$work['chest']."\n".
+        //         "- Sleeve: ".$work['sleeve']."\n".
+        //         "- Lining: ".$work['lining']."\n".
+        //         "- Vent: ".$work['vent_type']
+        //     );
+        //     break;
 
-//         default:
-//             $pdf->MultiCell(0,8,"- No specific workslip data available.");
-//             break;
-//     }
+        default:
+            $pdf->MultiCell(0, 8, "- No specific workslip data available.");
+            break;
+    }
 
-//     $pdf->Ln(5);
-// }
+    $pdf->Ln(5);
+}
 
-// $pdf->Output();
+$pdf->Output();
