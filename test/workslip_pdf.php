@@ -183,6 +183,33 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(31.6, 8, $invoice['delivery_date'], 1, 1);
 
+            //Line 4
+            // Save X and Y before printing
+            $x = $pdf->GetX();
+            $y = $pdf->GetY();
+
+            // Left big cell (Gender, spanning 2 rows = height 16 if each row 8)
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->MultiCell(31.7, 16, "Gender\n" . $work['gender'], 1, 'C');
+
+            // Move cursor to the right of the big cell
+            $pdf->SetXY($x + 31.7, $y);
+
+            // Top-right cell (Fitting Date)
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(31.7, 8, "Fitting Date", 1, 0, 'C');
+            $pdf->SetFont('Arial', '', 12);
+            $pdf->Cell(31.7, 8, $invoice['fitting_date'], 1, 1, 'C');
+
+            // Move cursor to the right of big cell again
+            $pdf->SetXY($x + 31.7, $y + 8);
+
+            // Bottom-right cell (Delivery Date)
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(31.7, 8, "Deliver Date", 1, 0, 'C');
+            $pdf->SetFont('Arial', '', 12);
+            $pdf->Cell(31.7, 8, $invoice['delivery_date'], 1, 1, 'C');
+
 
             $pdf->Ln(5);
 
