@@ -153,7 +153,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(38, 10, "Manufacturer", 1);
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(38, 10, $work['manufacturer'], 1);
-            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->SetFont('Arial', 'B', 14);
             $pdf->Cell(38, 10, "MUST", 1, 1, "C");
 
             //Line 2
