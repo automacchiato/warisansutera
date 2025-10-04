@@ -264,7 +264,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Shoulder", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['shoulder_length'], 1);
+            $pdf->Cell(60, 8, $work['shoulder'], 1);
 
             //Line 12
             $pdf->SetFont('Arial', 'B', 12);
