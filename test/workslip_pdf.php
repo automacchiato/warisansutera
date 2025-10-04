@@ -338,7 +338,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(80, 10, "Bottom Initial", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(110, 10, $work['bottom_initial'], 1, 1);
-            $pdf->Ln(10);
+            $pdf->Ln(5);
 
             //Line 21
             $pdf->SetFont('Arial', 'B', 11);
