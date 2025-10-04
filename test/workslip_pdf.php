@@ -143,6 +143,7 @@ while ($row = $items->fetch_assoc()) {
             $sql = "SELECT * FROM workslip_shirts WHERE item_id = $item_id";
             $work = $conn->query($sql)->fetch_assoc();
 
+            //Line 1
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(38, 8, "Invoice No.", 1);
             $pdf->SetFont('Arial', '', 12);
@@ -153,6 +154,8 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(38, 8, $work['manufacturer'], 1);
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(38, 8, "MUST", 1, 1, "C");
+
+            //Line 2
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(31.7, 8, "Salesman", 1);
             $pdf->SetFont('Arial', '', 12);
@@ -165,6 +168,22 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(31.7, 8, "Tailor", 1);
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(31.6, 8, $work['tailor_name'], 1, 1);
+
+            //Line 3
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(31.7, 8, "Gender", 1);
+            $pdf->SetFont('Arial', '', 12);
+            $pdf->Cell(31.7, 8, $work['gender'], 1);
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(31.7, 8, "Fitting Date", 1);
+            $pdf->SetFont('Arial', '', 12);
+            $pdf->Cell(31.7, 8, $work['fitting_date'], 1);
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(31.7, 8, "Deliver Date", 1);
+            $pdf->SetFont('Arial', '', 12);
+            $pdf->Cell(31.6, 8, $work['deliver_date'], 1, 1);
+
+
             $pdf->Ln(5);
 
             $pdf->Ln(5);
