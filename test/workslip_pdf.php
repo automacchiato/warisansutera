@@ -128,7 +128,7 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 16);
 $pdf->SetXY(-50, 10); // 50 is an offset from right edge
 $pdf->Cell(40, 10, "Workslip", 0, 0, 'R');
-$pdf->Ln(10);
+$pdf->Ln(50);
 
 $items->data_seek(0);
 while ($row = $items->fetch_assoc()) {
