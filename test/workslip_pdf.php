@@ -191,13 +191,13 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 5
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(47.5, 8, "Collar", 1);
+            $pdf->Cell(30, 8, "Collar", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $work['collar_length'], 1);
+            $pdf->Cell(50, 8, $work['collar_length'], 1);
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(47.5, 8, "Top Initial", 1);
+            $pdf->Cell(40.5, 8, "Top Initial", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $work['top_initial'], 1, 1);
+            $pdf->Cell(70, 8, $work['top_initial'], 1, 1);
 
 
             $pdf->Ln(5);
