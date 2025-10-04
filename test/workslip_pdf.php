@@ -171,17 +171,17 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(40, 8, $work['collar_width'], 1, 1);
 
             $pdf->Cell(50, 8, "Armhole", 1);
-            $pdf->Cell(50, 8, $work['armhole'], 1);
+            $pdf->Cell(50, 8, $work['armhole_length'], 1);
             $pdf->Cell(50, 8, "Collar Spec (Height)", 1);
             $pdf->Cell(40, 8, $work['collar_height'], 1, 1);
 
             $pdf->Cell(50, 8, "Waist", 1);
-            $pdf->Cell(50, 8, $work['waist'], 1);
+            $pdf->Cell(50, 8, $work['waist_fit'], 1);
             $pdf->Cell(50, 8, "Collar Spec (Gap)", 1);
             $pdf->Cell(40, 8, $work['collar_gap'], 1, 1);
 
             $pdf->Cell(50, 8, "Hip", 1);
-            $pdf->Cell(50, 8, $work['hip'], 1);
+            $pdf->Cell(50, 8, $work['hip_fit'], 1);
             $pdf->Cell(50, 8, "Collar Spec (Meet)", 1);
             $pdf->Cell(40, 8, $work['collar_meet'], 1, 1);
 
