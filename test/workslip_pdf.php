@@ -156,87 +156,87 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(38, 10, "MUST", 1, 1, "C");
 
             //Line 2
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(31.7, 8, "Salesman", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(31.7, 8, $work['salesman_name'], 1);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(31.7, 8, "Cutter", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(31.7, 8, $work['cutter_name'], 1);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(31.7, 8, "Tailor", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(31.6, 8, $work['tailor_name'], 1, 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Salesman", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.7, 10, $work['salesman_name'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Cutter", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.7, 10, $work['cutter_name'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Tailor", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.6, 10, $work['tailor_name'], 1, 1);
 
             //Line 3
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(47.5, 8, "Fitting Date", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $invoice['fitting_date'], 1);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(47.5, 8, "Deliver Date", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $invoice['delivery_date'], 1, 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(47.5, 10, "Fitting Date", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(47.5, 10, $invoice['fitting_date'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(47.5, 10, "Deliver Date", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(47.5, 10, $invoice['delivery_date'], 1, 1);
 
             //Line 4
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(47.5, 8, "Gender", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $work['gender'], 1);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(47.5, 8, "Fabric Direction", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $work['fabric_direction'], 1, 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(47.5, 10, "Gender", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(47.5, 10, $work['gender'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(47.5, 10, "Fabric Direction", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(47.5, 10, $work['fabric_direction'], 1, 1);
 
             //Line 5
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(30, 8, "Collar", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['collar_length'], 1);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(30, 8, "Top Initial", 1, 0, "C");
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(70, 8, $work['top_initial'], 1, 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Collar", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['collar_length'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Top Initial", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(70, 10, $work['top_initial'], 1, 1);
 
             //Line 6
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(30, 8, "Back", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['back_length'], 1);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(30, 8, "Collar Design", 1, 0, "C");
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(70, 8, "Collar Specification", 1, 1, "C");
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Back", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['back_length'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Collar Design", 1, 0, "C");
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(70, 10, "Collar Specification", 1, 1, "C");
 
             //Line 7
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(30, 8, "Front", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['front_length'], 1);
-            $pdf->Cell(30, 8, $work['collar_design'], 1, 0, "C");
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(17.5, 8, "Width", 1, 0, "C");
-            $pdf->Cell(17.5, 8, "Height", 1, 0, "C");
-            $pdf->Cell(17.5, 8, "Gap", 1, 0, "C");
-            $pdf->Cell(17.5, 8, "Meet", 1, 1, "C");
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Front", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['front_length'], 1);
+            $pdf->Cell(30, 10, $work['collar_design'], 1, 0, "C");
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(17.5, 10, "Width", 1, 0, "C");
+            $pdf->Cell(17.5, 10, "Height", 1, 0, "C");
+            $pdf->Cell(17.5, 10, "Gap", 1, 0, "C");
+            $pdf->Cell(17.5, 10, "Meet", 1, 1, "C");
 
             //Line 8
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(30, 8, "Chest", 1);
-            $pdf->Cell(15, 8, "Fit", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(15, 8, $work['chest_fit'], 1);
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(15, 8, "Loose", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(15, 8, $work['chest_loose'], 1);
-            $pdf->Cell(30, 8, "", 1, 0, "C");
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(17.5, 8, $work['collar_width'], 1, 0, "C");
-            $pdf->Cell(17.5, 8, $work['collar_height'], 1, 0, "C");
-            $pdf->Cell(17.5, 8, $work['collar_gap'], 1, 0, "C");
-            $pdf->Cell(17.5, 8, $work['collar_meet'], 1, 1, "C");
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Chest", 1);
+            $pdf->Cell(15, 10, "Fit", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(15, 10, $work['chest_fit'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(15, 10, "Loose", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(15, 10, $work['chest_loose'], 1);
+            $pdf->Cell(30, 10, "", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(17.5, 10, $work['collar_width'], 1, 0, "C");
+            $pdf->Cell(17.5, 10, $work['collar_height'], 1, 0, "C");
+            $pdf->Cell(17.5, 10, $work['collar_gap'], 1, 0, "C");
+            $pdf->Cell(17.5, 10, $work['collar_meet'], 1, 1, "C");
 
             //Line 9
             $pdf->SetFont('Arial', 'B', 12);
