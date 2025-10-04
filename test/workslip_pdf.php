@@ -342,18 +342,19 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(35, 10, "Cleaning Type", 1, 1, "C");
 
             //Line 21
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(80, 10, "Bottom Initial", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(110, 10, $work['bottom_initial'], 1, 1);
+            $pdf->Ln(10);
+
+            //Line 22
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(30, 10, $row['fabric_code'], 1, 0, "C");
             $pdf->Cell(60, 10, $row['fabric_name'], 1, 0, "C");
             $pdf->Cell(30, 10, $row['fabric_color'], 1, 0, "C");
             $pdf->Cell(35, 10, $row['fabric_usage'], 1, 0, "C");
             $pdf->Cell(35, 10, $work['cleaning_type'], 1, 1, "C");
-
-            //Line 22
-            $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(80, 10, "Bottom Initial", 1, 0, "C");
-            $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(110, 10, $work['bottom_initial'], 1, 1);
 
             $pdf->Ln(5);
 
