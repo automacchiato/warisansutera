@@ -125,9 +125,9 @@ $pdf->Cell(30, 7, $invoice['additional_amount'], 1, 1, "R");
 
 // ---------------- Page 2: Workslip ----------------
 $pdf->AddPage();
-$pdf->SetFont('Arial', 'B', 16);
-$pdf->Cell(0, 10, "Workslip", 0, 1, 'C');
-$pdf->Ln(5);
+// $pdf->SetFont('Arial', 'B', 16);
+// $pdf->Cell(0, 10, "Workslip", 0, 1, 'C');
+// $pdf->Ln(5);
 
 $items->data_seek(0);
 while ($row = $items->fetch_assoc()) {
