@@ -229,7 +229,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(12.5, 8, $work['chest_fit'], 1);
             $pdf->Cell(12.5, 8, "Loose", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(12.5, 8, $work['loose_fit'], 1);
+            $pdf->Cell(12.5, 8, $work['chest_loose'], 1);
             $pdf->Cell(40, 8, "", 1, 0, "C");
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(17.5, 8, $work['collar_width'], 1, 0, "C");
