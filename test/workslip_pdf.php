@@ -154,7 +154,7 @@ while ($row = $items->fetch_assoc()) {
                 "- Chest: " . $work['chest_fit'] . "\n" .
                     "- Length: " . $work['collar_length'] . "\n" .
                     "- Sleeve: " . $work['sleeve_length'] . "\n" .
-                    "- Collar: " . $work['collar_type'] . "\n" .
+                    "- Collar: " . $work['collar_design'] . "\n" .
                     "- Shoulder: " . $work['shoulder_type']
             );
             break;
