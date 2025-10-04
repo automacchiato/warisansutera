@@ -171,10 +171,6 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 3
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(31.7, 8, "Gender", 1);
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(31.7, 8, $work['gender'], 1);
-            $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(31.7, 8, "Fitting Date", 1);
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(31.7, 8, $invoice['fitting_date'], 1);
@@ -185,13 +181,13 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 4
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(47.5, 8, "Special Instruction", 1);
+            $pdf->Cell(50, 8, "Gender", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $work['special_instructions'], 1);
+            $pdf->Cell(50, 8, $work['gender'], 1);
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(47.5, 8, "Fabric Direction", 1, "C");
+            $pdf->Cell(50, 8, "Fabric Direction", 1, "C");
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $work['fabric_direction'], 1);
+            $pdf->Cell(40, 8, $work['fabric_direction'], 1);
 
             $pdf->Ln(5);
 
