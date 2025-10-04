@@ -9,11 +9,12 @@ $pass = "Sutera@23";
 $dbname = "u929965336_warisansutera";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
+
 $result = $conn->query("SELECT i.invoice_id, i.invoice_number, i.order_date, i.delivery_date,
 c.customer_name, c.customer_phone
 FROM invoices i
 JOIN customers c ON i.customer_id = c.customer_id
-");
+ORDER BY i.invoice_id DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +46,8 @@ JOIN customers c ON i.customer_id = c.customer_id
                         <td><?= $row['order_date'] ?></td>
                         <td><?= $row['delivery_date'] ?></td>
                         <td>
-                            <a href="generate_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-danger btn-sm">Invoice</a>
-                            <a href="generate_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-danger btn-sm">Workslip</a>
+                            <a href="generate_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm">Invoice</a>
+                            <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-warning btn-sm">Workslip</a>
                         </td>
                     </tr>
                 <?php } ?>

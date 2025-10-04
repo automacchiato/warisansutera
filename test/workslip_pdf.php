@@ -1,0 +1,197 @@
+<?php
+require('fpdf/fpdf.php');
+
+$host = "127.0.0.1:3306";
+$user = "u929965336_wssb";
+$pass = "Sutera@23";
+$dbname = "u929965336_warisansutera";
+
+$conn = new mysqli($host, $user, $pass, $dbname);
+
+$invoice_id = intval($_GET['invoice_id']);
+
+// Fetch invoice + customer
+$invoice_sql = "
+    SELECT i.*, c.*
+    FROM invoices i
+    JOIN customers c ON i.customer_id = c.customer_id
+    WHERE i.invoice_id = $invoice_id;
+";
+$invoice = $conn->query($invoice_sql)->fetch_assoc();
+
+// Fetch items
+$item_sql = "
+    SELECT it.item_id, it.item_type, it.quantity, it.fabric_code, it.fabric_name, it.fabric_color, it.fabric_usage 
+    FROM invoice_items it
+    WHERE it.invoice_id = $invoice_id
+";
+$items = $conn->query($item_sql);
+
+$pdf = new FPDF();
+
+// ---------------- Page 1: Invoice ----------------
+class PDF extends FPDF
+{
+    function Header()
+    {
+        // Company Logo
+        $this->Image('logo.jpg', 10, 10, 30);
+        $this->SetFont('Arial', 'B', 12);
+        $this->SetXY(45, 10);
+        $this->MultiCell(80, 5, "Lot C31, Aras 2, Majma Mall,\nKuching, Sarawak", 0, 'L');
+        $this->Ln(10);
+    }
+}
+
+$pdf = new PDF();
+$pdf->AddPage();
+$pdf->SetFont('Arial', '', 10);
+
+// --- Invoice details (top right) ---
+$pdf->SetXY(150, 10);
+$pdf->Cell(50, 5, "Invoice No: " . $invoice['invoice_number'], 0, 1, "R");
+$pdf->Ln();
+$pdf->SetX(150);
+$pdf->Cell(50, 5, "Order Date: " . $invoice['order_date'], 1, 1, "R");
+$pdf->SetX(150);
+$pdf->Cell(50, 5, "Fitting Date: " . $invoice['fitting_date'], 1, 1, "R");
+$pdf->SetX(150);
+$pdf->Cell(50, 5, "Delivery Date: " . $invoice['delivery_date'], 1, 1, "R");
+
+$pdf->Ln(20);
+
+// --- Customer Table ---
+$pdf->SetFont('Arial', 'B', 11);
+$pdf->Cell(0, 7, "Customer Details", 0, 1, 'L');
+
+$pdf->SetFont('Arial', '', 10);
+$pdf->Cell(50, 7, "Name", 1);
+$pdf->Cell(140, 7, $invoice['customer_name'], 1, 1);
+
+$pdf->Cell(50, 7, "Address", 1);
+$pdf->Cell(140, 7, $invoice['customer_address'], 1, 1);
+
+$pdf->Cell(50, 7, "Telephone", 1);
+$pdf->Cell(140, 7, $invoice['customer_phone'], 1, 1);
+
+$pdf->Ln(10);
+
+// --- Items Table ---
+$pdf->SetFont('Arial', 'B', 10);
+$headers = ["Qty", "Item Type", "Fabric Code", "Fabric Name", "Fabric Color", "Usage (m)"];
+$widths  = [15, 30, 25, 35, 35, 25];
+
+foreach ($headers as $i => $col) {
+    $pdf->Cell($widths[$i], 7, $col, 1, 0, 'C');
+}
+$pdf->Ln();
+
+$pdf->SetFont('Arial', '', 9);
+while ($row = $items->fetch_assoc()) {
+    $pdf->Cell($widths[0], 7, $row['quantity'], 1);
+    $pdf->Cell($widths[1], 7, $row['item_type'], 1);
+    $pdf->Cell($widths[2], 7, $row['fabric_code'], 1);
+    $pdf->Cell($widths[3], 7, $row['fabric_name'], 1);
+    $pdf->Cell($widths[4], 7, $row['fabric_color'], 1);
+    $pdf->Cell($widths[5], 7, $row['fabric_usage'], 1);
+    $pdf->Ln();
+}
+
+$pdf->Ln(10);
+
+// --- Totals from invoices ---
+$pdf->SetX(110);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(60, 7, "Total Amount", 1);
+$pdf->Cell(30, 7, $invoice['total_amount'], 1, 1, "R");
+
+$pdf->SetX(110);
+$pdf->Cell(60, 7, "Deposit", 1);
+$pdf->Cell(30, 7, $invoice['deposit_amount'], 1, 1, "R");
+
+$pdf->SetX(110);
+$pdf->Cell(60, 7, "Balance", 1);
+$pdf->Cell(30, 7, $invoice['balance_amount'], 1, 1, "R");
+
+$pdf->SetX(110);
+$pdf->Cell(60, 7, "Additional Deposit", 1);
+$pdf->Cell(30, 7, $invoice['additional_deposit'], 1, 1, "R");
+
+$pdf->SetX(110);
+$pdf->Cell(60, 7, "Final Balance", 1);
+$pdf->Cell(30, 7, $invoice['additional_amount'], 1, 1, "R");
+
+$pdf->Output("I", "Invoice_" . $invoice['invoice_number'] . ".pdf");
+
+// ---------------- Page 2: Workslip ----------------
+// $pdf->AddPage();
+// $pdf->SetFont('Arial','B',16);
+// $pdf->Cell(0,10,"Workslip",0,1,'C');
+// $pdf->Ln(5);
+
+// $pdf->SetFont('Arial','',12);
+// $pdf->Cell(0,10,"Invoice: ".$invoice['invoice_number'],0,1);
+// $pdf->Cell(0,10,"Customer: ".$invoice['customer_name'],0,1);
+// $pdf->Ln(10);
+
+// $items->data_seek(0);
+// while ($row = $items->fetch_assoc()) {
+//     $pdf->SetFont('Arial','B',14);
+//     $pdf->Cell(0,10,$row['item_type']." (x".$row['quantity'].")",0,1);
+//     $pdf->SetFont('Arial','',12);
+
+//     $item_id = $row['invoice_item_id'];
+
+//     // Fetch details from correct workslip table
+//     switch (strtolower($row['item_type'])) {
+//         case 'shirt':
+//             $sql = "SELECT chest, length, sleeve, collar_type, button_type 
+//                     FROM shirt_workslip WHERE invoice_item_id = $item_id";
+//             $work = $conn->query($sql)->fetch_assoc();
+
+//             $pdf->MultiCell(0,8,
+//                 "- Chest: ".$work['chest']."\n".
+//                 "- Length: ".$work['length']."\n".
+//                 "- Sleeve: ".$work['sleeve']."\n".
+//                 "- Collar: ".$work['collar_type']."\n".
+//                 "- Buttons: ".$work['button_type']
+//             );
+//             break;
+
+//         case 'trousers':
+//             $sql = "SELECT waist, hips, inseam, pocket_style, fly_type 
+//                     FROM trousers_workslip WHERE invoice_item_id = $item_id";
+//             $work = $conn->query($sql)->fetch_assoc();
+
+//             $pdf->MultiCell(0,8,
+//                 "- Waist: ".$work['waist']."\n".
+//                 "- Hips: ".$work['hips']."\n".
+//                 "- Inseam: ".$work['inseam']."\n".
+//                 "- Pocket Style: ".$work['pocket_style']."\n".
+//                 "- Fly: ".$work['fly_type']
+//             );
+//             break;
+
+//         case 'jacket':
+//             $sql = "SELECT shoulder, chest, sleeve, lining, vent_type 
+//                     FROM jacket_workslip WHERE invoice_item_id = $item_id";
+//             $work = $conn->query($sql)->fetch_assoc();
+
+//             $pdf->MultiCell(0,8,
+//                 "- Shoulder: ".$work['shoulder']."\n".
+//                 "- Chest: ".$work['chest']."\n".
+//                 "- Sleeve: ".$work['sleeve']."\n".
+//                 "- Lining: ".$work['lining']."\n".
+//                 "- Vent: ".$work['vent_type']
+//             );
+//             break;
+
+//         default:
+//             $pdf->MultiCell(0,8,"- No specific workslip data available.");
+//             break;
+//     }
+
+//     $pdf->Ln(5);
+// }
+
+// $pdf->Output();
