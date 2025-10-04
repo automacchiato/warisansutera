@@ -195,9 +195,20 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(50, 8, $work['collar_length'], 1);
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(40.5, 8, "Top Initial", 1);
+            $pdf->Cell(40, 8, "Top Initial", 1);
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(70, 8, $work['top_initial'], 1, 1);
+
+            //Line 5
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(30, 8, "Back", 1);
+            $pdf->SetFont('Arial', '', 12);
+            $pdf->Cell(50, 8, $work['back_length'], 1);
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(30, 8, "Collar Design", 1);
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(80, 8, "Collar Specification", 1, 1);
+
 
 
             $pdf->Ln(5);
