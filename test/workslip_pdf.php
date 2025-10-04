@@ -131,7 +131,7 @@ $pdf->Ln(5);
 
 $pdf->SetFont('Arial', '', 12);
 $pdf->Cell(0, 10, "Invoice: " . $invoice['invoice_number'], 0, 1);
-$pdf->Cell(0, 10, "Customer: " . $invoice['customer_name'], 0, 1);
+$pdf->Cell(0, 10, "Customer: " . $invoice['customer_name'], 0, 0);
 $pdf->Ln(10);
 
 $items->data_seek(0);
