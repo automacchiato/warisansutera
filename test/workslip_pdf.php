@@ -191,7 +191,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(47.5, 8, "Fabric Direction", 1, "C");
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(47.5, 8, $invoice['fabric_direction'], 1);
+            $pdf->Cell(47.5, 8, $work['fabric_direction'], 1);
 
             $pdf->Ln(5);
 
