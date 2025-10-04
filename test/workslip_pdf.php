@@ -171,13 +171,13 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 3
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(31.7, 8, "Fitting Date", 1);
+            $pdf->Cell(38, 8, "Fitting Date", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(31.7, 8, $invoice['fitting_date'], 1);
+            $pdf->Cell(38, 8, $invoice['fitting_date'], 1);
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(31.7, 8, "Deliver Date", 1);
+            $pdf->Cell(38, 8, "Deliver Date", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(31.6, 8, $invoice['delivery_date'], 1, 1);
+            $pdf->Cell(38, 8, $invoice['delivery_date'], 1, 1);
 
             //Line 4
             $pdf->SetFont('Arial', 'B', 12);
