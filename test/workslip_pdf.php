@@ -21,12 +21,7 @@ $invoice_sql = "
     JOIN customers c ON i.customer_id = c.customer_id
     WHERE i.invoice_id = $invoice_id;
 ";
-$invoice = $conn->query($invoice_sql);
-if ((!$res || $res->num_rows = 0)) {
-    die("Invoice not found.");
-}
-
-$invoice = $res->fetch_assoc();
+$invoice = $conn->query($invoice_sql)->fetch_assoc();
 
 // Fetch items
 $item_sql = "
