@@ -136,8 +136,8 @@ $pdf->Ln(10);
 
 $items->data_seek(0);
 while ($row = $items->fetch_assoc()) {
-    $pdf->SetFont('Arial', 'B', 14);
-    $pdf->Cell(0, 10, $row['item_type'] . " (x" . $row['quantity'] . ")", 0, 1);
+    // $pdf->SetFont('Arial', 'B', 14);
+    // $pdf->Cell(0, 10, $row['item_type'] . " (x" . $row['quantity'] . ")", 0, 1);
     $pdf->SetFont('Arial', '', 12);
 
     $item_id = $row['item_id'];
