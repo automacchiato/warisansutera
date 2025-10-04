@@ -247,7 +247,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(15, 8, "Loose", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(15, 8, $work['waist_loose'], 1);
+            $pdf->Cell(15, 8, $work['waist_loose'], 1, 1);
 
             //Line 10
             $pdf->SetFont('Arial', 'B', 12);
@@ -258,55 +258,55 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(15, 8, "Loose", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(15, 8, $work['hip_loose'], 1);
+            $pdf->Cell(15, 8, $work['hip_loose'], 1, 1);
 
             //Line 11
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Shoulder", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['shoulder'], 1);
+            $pdf->Cell(60, 8, $work['shoulder'], 1, 1);
 
             //Line 12
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Sleeve", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['sleeve_length'], 1);
+            $pdf->Cell(60, 8, $work['sleeve_length'], 1, 1);
 
             //Line 13
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Arm", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['arm_length'], 1);
+            $pdf->Cell(60, 8, $work['arm_length'], 1, 1);
 
             //Line 14
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Elbow", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['elbow_length'], 1);
+            $pdf->Cell(60, 8, $work['elbow_length'], 1, 1);
 
             //Line 15
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Cuff", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['cuff_length'], 1);
+            $pdf->Cell(60, 8, $work['cuff_length'], 1, 1);
 
             //Line 16
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Armhole", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['armhole_length'], 1);
+            $pdf->Cell(60, 8, $work['armhole_length'], 1, 1);
 
             //Line 17
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Erect", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['erect'], 1);
+            $pdf->Cell(60, 8, $work['erect'], 1, 1);
 
             //Line 18
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(30, 8, "Hunch", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(60, 8, $work['hunch'], 1);
+            $pdf->Cell(60, 8, $work['hunch'], 1, 1);
 
             //Line 18
             $pdf->SetFont('Arial', 'B', 12);
@@ -320,7 +320,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(12.5, 8, "Cuff Type", 1, 0, "C");
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(12.5, 8, $work['cuff_type'], 1, 0, "C");
+            $pdf->Cell(12.5, 8, $work['cuff_type'], 1, 1, "C");
 
             //Line 19
             $pdf->SetFont('Arial', 'B', 12);
@@ -338,13 +338,13 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(60, 8, "Fabric Name", 1, 0, "C");
             $pdf->Cell(30, 8, "Fabric Color", 1, 0, "C");
             $pdf->Cell(35, 8, "Fabric Usage (m)", 1, 0, "C");
-            $pdf->Cell(35, 8, "Cleaning Type", 1, 0, "C");
+            $pdf->Cell(35, 8, "Cleaning Type", 1, 1, "C");
 
             //Line 21
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(80, 8, "Bottom Initial", 1, 0, "C");
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(110, 8, $work['bottom_initial'], 1);
+            $pdf->Cell(110, 8, $work['bottom_initial'], 1, 1);
 
             $pdf->Ln(5);
 
