@@ -144,12 +144,11 @@ while ($row = $items->fetch_assoc()) {
             $work = $conn->query($sql)->fetch_assoc();
 
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(31, 8, "Invoice No.", 1);
-            $pdf->Cell(31, 8, $invoice['invoice_number'], 1);
-            $pdf->Cell(31, 8, "Manufacturer", 1);
-            $pdf->Cell(31, 8, $work['manufacturer'], 1);
-            $pdf->Cell(31, 8, "Manufacturer", 1);
-            $pdf->Cell(31, 8, $work['manufacturer'], 1, 1);
+            $pdf->Cell(38, 8, "Invoice No.", 1);
+            $pdf->Cell(38, 8, $invoice['invoice_number'], 1);
+            $pdf->Cell(38, 8, "Manufacturer", 1);
+            $pdf->Cell(38, 8, $work['manufacturer'], 1);
+            $pdf->Cell(38, 8, "MUST", 1, 1);
             $pdf->Ln(10);
 
             $pdf->Ln(5);
