@@ -224,13 +224,13 @@ while ($row = $items->fetch_assoc()) {
             //Line 8
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(30, 10, "Chest", 1);
-            $pdf->Cell(15, 10, "Fit", 1, "C");
+            $pdf->Cell(15, 10, "Fit", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(15, 10, $work['chest_fit'], 1, "C");
+            $pdf->Cell(15, 10, $work['chest_fit'], 1, 0, "C");
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(15, 10, "Loose", 1, "C");
+            $pdf->Cell(15, 10, "Loose", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(15, 10, $work['chest_loose'], 1, "C");
+            $pdf->Cell(15, 10, $work['chest_loose'], 1, 0, "C");
             $pdf->Cell(30, 10, "", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(17.5, 10, $work['collar_width'], 1, 0, "C");
@@ -241,22 +241,22 @@ while ($row = $items->fetch_assoc()) {
             //Line 9
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(30, 10, "Waist", 1);
-            $pdf->Cell(15, 10, "Fit", 1, "C");
+            $pdf->Cell(15, 10, "Fit", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(15, 10, $work['waist_fit'], 1, "C");
+            $pdf->Cell(15, 10, $work['waist_fit'], 1, 0, "C");
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(15, 10, "Loose", 1, "C");
+            $pdf->Cell(15, 10, "Loose", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(15, 10, $work['waist_loose'], 1, 1, "C");
 
             //Line 10
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(30, 10, "Hip", 1);
-            $pdf->Cell(15, 10, "Fit", 1, "C");
+            $pdf->Cell(15, 10, "Fit", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(15, 10, $work['hip_fit'], 1, "C");
+            $pdf->Cell(15, 10, $work['hip_fit'], 1, 0, "C");
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(15, 10, "Loose", 1, "C");
+            $pdf->Cell(15, 10, "Loose", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(15, 10, $work['hip_loose'], 1, 1, "C");
 
