@@ -130,7 +130,7 @@ $pdf->Cell(0, 10, "Workslip", 0, 1, 'C');
 $pdf->Ln(5);
 
 $pdf->SetFont('Arial', '', 12);
-$pdf->Cell(0, 10, "Invoice: " . $invoice['invoice_number'], 0, 0);
+$pdf->Cell(0, 10, "Invoice No: " . $invoice['invoice_number'], 0, 0);
 $pdf->Cell(0, 10, "Customer: " . $invoice['customer_name'], 0, 1);
 $pdf->Ln(10);
 
@@ -148,16 +148,69 @@ while ($row = $items->fetch_assoc()) {
             $sql = "SELECT * FROM workslip_shirts WHERE item_id = $item_id";
             $work = $conn->query($sql)->fetch_assoc();
 
-            $pdf->MultiCell(
-                0,
-                8,
-                "- Chest: " . $work['chest_fit'] . "\n" .
-                    "- Length: " . $work['collar_length'] . "\n" .
-                    "- Sleeve: " . $work['sleeve_length'] . "\n" .
-                    "- Collar: " . $work['collar_design'] . "\n" .
-                    "- Shoulder: " . $work['shoulder_type']
-            );
+            $pdf->Ln(5);
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(0, 8, "Shirt Measurements", 0, 1);
+
+            $pdf->SetFont('Arial', '', 11);
+
+            // Left column
+            $pdf->Cell(50, 8, "Chest", 1);
+            $pdf->Cell(50, 8, $work['chest_fit'], 1);
+            $pdf->Cell(50, 8, "Length", 1);
+            $pdf->Cell(40, 8, $work['collar_length'], 1, 1);
+
+            $pdf->Cell(50, 8, "Sleeve", 1);
+            $pdf->Cell(50, 8, $work['sleeve_length'], 1);
+            $pdf->Cell(50, 8, "Collar Design", 1);
+            $pdf->Cell(40, 8, $work['collar_design'], 1, 1);
+
+            $pdf->Cell(50, 8, "Shoulder Type", 1);
+            $pdf->Cell(50, 8, $work['shoulder_type'], 1);
+            $pdf->Cell(50, 8, "Collar Spec (Width)", 1);
+            $pdf->Cell(40, 8, $work['collar_width'], 1, 1);
+
+            $pdf->Cell(50, 8, "Armhole", 1);
+            $pdf->Cell(50, 8, $work['armhole'], 1);
+            $pdf->Cell(50, 8, "Collar Spec (Height)", 1);
+            $pdf->Cell(40, 8, $work['collar_height'], 1, 1);
+
+            $pdf->Cell(50, 8, "Waist", 1);
+            $pdf->Cell(50, 8, $work['waist'], 1);
+            $pdf->Cell(50, 8, "Collar Spec (Gap)", 1);
+            $pdf->Cell(40, 8, $work['collar_gap'], 1, 1);
+
+            $pdf->Cell(50, 8, "Hip", 1);
+            $pdf->Cell(50, 8, $work['hip'], 1);
+            $pdf->Cell(50, 8, "Collar Spec (Meet)", 1);
+            $pdf->Cell(40, 8, $work['collar_meet'], 1, 1);
+
+            $pdf->Ln(5);
+
+            // Fabric Info
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(0, 8, "Fabric Details", 0, 1);
+
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(40, 8, "Fabric Code", 1);
+            $pdf->Cell(40, 8, $row['fabric_code'], 1);
+            $pdf->Cell(40, 8, "Fabric Name", 1);
+            $pdf->Cell(70, 8, $row['fabric_name'], 1, 1);
+
+            $pdf->Cell(40, 8, "Fabric Color", 1);
+            $pdf->Cell(40, 8, $row['fabric_color'], 1);
+            $pdf->Cell(40, 8, "Fabric Usage (m)", 1);
+            $pdf->Cell(70, 8, $row['fabric_usage'], 1, 1);
+
+            $pdf->Ln(8);
+
+            // Extra notes / signatures
+            $pdf->Cell(0, 8, "Special Instructions: " . ($work['special_instructions'] ?? ""), 0, 1);
+            $pdf->Ln(10);
+            $pdf->Cell(90, 8, "Tailor Signature: ___________________", 0, 0, 'L');
+            $pdf->Cell(90, 8, "Customer Signature: _______________", 0, 1, 'R');
             break;
+
 
         // case 'TROUSERS':
         //     $sql = "SELECT waist, hips, inseam, pocket_style, fly_type 
