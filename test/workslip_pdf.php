@@ -143,12 +143,16 @@ while ($row = $items->fetch_assoc()) {
             $sql = "SELECT * FROM workslip_shirts WHERE item_id = $item_id";
             $work = $conn->query($sql)->fetch_assoc();
 
-            $pdf->SetFont('Arial', '', 12);
+            $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(38, 8, "Invoice No.", 1);
+            $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(38, 8, $invoice['invoice_number'], 1);
+            $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(38, 8, "Manufacturer", 1);
+            $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(38, 8, $work['manufacturer'], 1);
-            $pdf->Cell(38, 8, "MUST", 1, 1);
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(38, 8, "MUST", 1, 1, "C");
             $pdf->Ln(10);
 
             $pdf->Ln(5);
