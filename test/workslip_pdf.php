@@ -144,12 +144,12 @@ while ($row = $items->fetch_assoc()) {
     $pdf->Cell(0, 10, $row['item_type'] . " (x" . $row['quantity'] . ")", 0, 1);
     $pdf->SetFont('Arial', '', 12);
 
-    $item_id = $row['invoice_item_id'];
+    $item_id = $row['item_id'];
 
     // Fetch details from correct workslip table
     switch (strtolower($row['item_type'])) {
         case 'SHIRT':
-            $sql = "SELECT * FROM workslip_shirts WHERE invoice_item_id = $item_id";
+            $sql = "SELECT * FROM workslip_shirts WHERE item_id = $item_id";
             $work = $conn->query($sql)->fetch_assoc();
 
             $pdf->MultiCell(
