@@ -357,7 +357,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(35, 10, $work['cleaning_type'], 1, 1, "C");
 
             //Drawing
-            $pdf->Image($work['drawing'], 0, 0, 0, 0);
+            $pdf->Image('./customer/uploads/drawings/' . $work['drawing'], 140, 45, 50, 60);
 
             $pdf->Ln(5);
 
