@@ -41,7 +41,7 @@ class PDF extends FPDF
         $this->SetFont('Arial', 'B', 12);
         $this->SetXY(45, 10);
         $this->MultiCell(80, 5, "Lot C31, Aras 2, Majma Mall,\nKuching, Sarawak", 0, 'L');
-        $this->Ln(10);
+        $this->Ln(5);
     }
 }
 
