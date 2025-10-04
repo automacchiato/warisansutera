@@ -21,7 +21,12 @@ $invoice_sql = "
     JOIN customers c ON i.customer_id = c.customer_id
     WHERE i.invoice_id = $invoice_id;
 ";
-$invoice = $conn->query($invoice_sql)->fetch_assoc();
+$invoice = $conn->query($invoice_sql);
+if ((!$res || $res->num_rows = 0)) {
+    die("Invoice not found.");
+}
+
+$invoice = $res->fetch_assoc();
 
 // Fetch items
 $item_sql = "
@@ -30,8 +35,6 @@ $item_sql = "
     WHERE it.invoice_id = $invoice_id
 ";
 $items = $conn->query($item_sql);
-
-$pdf = new FPDF();
 
 // ---------------- Page 1: Invoice ----------------
 class PDF extends FPDF
@@ -125,8 +128,6 @@ $pdf->SetX(110);
 $pdf->Cell(60, 7, "Final Balance", 1);
 $pdf->Cell(30, 7, $invoice['additional_amount'], 1, 1, "R");
 
-$pdf->Output("I", "Invoice_" . $invoice['invoice_number'] . ".pdf");
-
 // ---------------- Page 2: Workslip ----------------
 $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 16);
@@ -147,7 +148,7 @@ while ($row = $items->fetch_assoc()) {
     $item_id = $row['item_id'];
 
     // Fetch details from correct workslip table
-    switch (strtolower($row['item_type'])) {
+    switch (strtoupper($row['item_type'])) {
         case 'SHIRT':
             $sql = "SELECT * FROM workslip_shirts WHERE item_id = $item_id";
             $work = $conn->query($sql)->fetch_assoc();
