@@ -314,13 +314,13 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(60, 8, $work['shoulder_type'], 1);
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(12.5, 8, "Placket Type", 1, 0, "C");
+            $pdf->Cell(25, 8, "Placket Type", 1, 0, "C");
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(12.5, 8, $work['placket_type'], 1, 0, "C");
+            $pdf->Cell(25, 8, $work['placket_type'], 1, 0, "C");
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(12.5, 8, "Cuff Type", 1, 0, "C");
+            $pdf->Cell(25, 8, "Cuff Type", 1, 0, "C");
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(12.5, 8, $work['cuff_type'], 1, 1, "C");
+            $pdf->Cell(25, 8, $work['cuff_type'], 1, 1, "C");
 
             //Line 19
             $pdf->SetFont('Arial', 'B', 12);
