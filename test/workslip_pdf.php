@@ -148,6 +148,8 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(50, 8, $invoice['invoice_number'], 1);
             $pdf->Cell(50, 8, "Manufacturer", 1);
             $pdf->Cell(40, 8, $work['manufacturer'], 1, 1);
+            $pdf->Cell(50, 8, "Manufacturer", 1);
+            $pdf->Cell(40, 8, $work['manufacturer'], 1, 1);
             $pdf->Ln(10);
 
             $pdf->Ln(5);
