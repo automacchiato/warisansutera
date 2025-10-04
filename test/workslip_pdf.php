@@ -145,15 +145,15 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 1
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(38, 8, "Invoice No.", 1);
+            $pdf->Cell(38, 10, "Invoice No.", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(38, 8, $invoice['invoice_number'], 1);
+            $pdf->Cell(38, 10, $invoice['invoice_number'], 1);
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(38, 8, "Manufacturer", 1);
+            $pdf->Cell(38, 10, "Manufacturer", 1);
             $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(38, 8, $work['manufacturer'], 1);
+            $pdf->Cell(38, 10, $work['manufacturer'], 1);
             $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Cell(38, 8, "MUST", 1, 1, "C");
+            $pdf->Cell(38, 10, "MUST", 1, 1, "C");
 
             //Line 2
             $pdf->SetFont('Arial', 'B', 12);
