@@ -342,6 +342,14 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 21
             $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(30, 8, $invoice['fabric_code'], 1, 0, "C");
+            $pdf->Cell(60, 8, $invoice['fabric_name'], 1, 0, "C");
+            $pdf->Cell(30, 8, $invoice['fabric_color'], 1, 0, "C");
+            $pdf->Cell(35, 8, $invoice['fabric_usage'], 1, 0, "C");
+            $pdf->Cell(35, 8, $work['cleaning_type'], 1, 1, "C");
+
+            //Line 22
+            $pdf->SetFont('Arial', 'B', 12);
             $pdf->Cell(80, 8, "Bottom Initial", 1, 0, "C");
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(110, 8, $work['bottom_initial'], 1, 1);
