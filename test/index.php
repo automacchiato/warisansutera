@@ -37,10 +37,6 @@ $result = $conn->query("
         th.sort-desc::after {
             content: " 🔽";
         }
-
-        .pagination {
-            justify-content: center;
-        }
     </style>
 </head>
 
@@ -53,124 +49,57 @@ $result = $conn->query("
             <input type="text" id="searchInput" class="form-control" placeholder="Search invoices...">
         </div>
 
-        <div class="table-responsive">
-            <table id="invoiceTable" class="table table-bordered table-striped align-middle">
-                <thead class="table-dark">
+        <table id="invoiceTable" class="table table-bordered table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th data-column="invoice_number">Invoice No</th>
+                    <th data-column="customer_name">Customer</th>
+                    <th data-column="order_date">Order Date</th>
+                    <th data-column="delivery_date">Delivery Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <th data-column="invoice_number">Invoice No</th>
-                        <th data-column="customer_name">Customer</th>
-                        <th data-column="order_date">Order Date</th>
-                        <th data-column="delivery_date">Delivery Date</th>
-                        <th>Action</th>
+                        <td><?= htmlspecialchars($row['invoice_number']) ?></td>
+                        <td><?= htmlspecialchars($row['customer_name']) ?></td>
+                        <td><?= htmlspecialchars($row['order_date']) ?></td>
+                        <td><?= htmlspecialchars($row['delivery_date']) ?></td>
+                        <td>
+                            <a href="generate_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm">Invoice</a>
+                            <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-warning btn-sm">Workslip</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()) { ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row['invoice_number']) ?></td>
-                            <td><?= htmlspecialchars($row['customer_name']) ?></td>
-                            <td><?= htmlspecialchars($row['order_date']) ?></td>
-                            <td><?= htmlspecialchars($row['delivery_date']) ?></td>
-                            <td>
-                                <a href="generate_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm">Invoice</a>
-                                <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-warning btn-sm">Workslip</a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Pagination -->
-        <nav>
-            <ul id="pagination" class="pagination"></ul>
-        </nav>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 
     <script>
-        const rowsPerPage = 10;
-        let currentPage = 1;
-
-        const table = document.getElementById('invoiceTable');
-        const tbody = table.querySelector('tbody');
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        const pagination = document.getElementById('pagination');
-        const searchInput = document.getElementById('searchInput');
-
-        // ---- Pagination Function ----
-        function displayTable() {
-            const filteredRows = rows.filter(row => row.style.display !== 'none');
-            const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
-            const start = (currentPage - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-
-            // Hide all rows
-            rows.forEach(row => row.style.display = 'none');
-
-            // Show current page rows
-            filteredRows.slice(start, end).forEach(row => row.style.display = '');
-
-            // Update pagination
-            pagination.innerHTML = '';
-            if (totalPages > 1) {
-                const createPageItem = (page) => {
-                    const li = document.createElement('li');
-                    li.classList.add('page-item', page === currentPage ? 'active' : '');
-                    li.innerHTML = `<a class="page-link" href="#">${page}</a>`;
-                    li.addEventListener('click', e => {
-                        e.preventDefault();
-                        currentPage = page;
-                        displayTable();
-                    });
-                    return li;
-                };
-
-                // Prev Button
-                const prev = document.createElement('li');
-                prev.classList.add('page-item', currentPage === 1 ? 'disabled' : '');
-                prev.innerHTML = `<a class="page-link" href="#">Previous</a>`;
-                prev.addEventListener('click', e => {
-                    e.preventDefault();
-                    if (currentPage > 1) currentPage--;
-                    displayTable();
-                });
-                pagination.appendChild(prev);
-
-                for (let i = 1; i <= totalPages; i++) {
-                    pagination.appendChild(createPageItem(i));
-                }
-
-                // Next Button
-                const next = document.createElement('li');
-                next.classList.add('page-item', currentPage === totalPages ? 'disabled' : '');
-                next.innerHTML = `<a class="page-link" href="#">Next</a>`;
-                next.addEventListener('click', e => {
-                    e.preventDefault();
-                    if (currentPage < totalPages) currentPage++;
-                    displayTable();
-                });
-                pagination.appendChild(next);
-            }
-        }
-
-        // ---- Search Function ----
-        searchInput.addEventListener('keyup', function() {
+        // --- SEARCH FUNCTION ---
+        document.getElementById('searchInput').addEventListener('keyup', function() {
             let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#invoiceTable tbody tr');
+
             rows.forEach(row => {
                 let text = row.textContent.toLowerCase();
                 row.style.display = text.includes(filter) ? '' : 'none';
             });
-            currentPage = 1;
-            displayTable();
         });
 
-        // ---- Sort Function ----
+        // --- SORT FUNCTION ---
         document.querySelectorAll('#invoiceTable th[data-column]').forEach(th => {
             th.addEventListener('click', function() {
+                let table = th.closest('table');
+                let tbody = table.querySelector('tbody');
+                let rows = Array.from(tbody.querySelectorAll('tr'));
                 let index = Array.from(th.parentNode.children).indexOf(th);
                 let ascending = !th.classList.contains('sort-asc');
 
+                // Reset other column classes
                 table.querySelectorAll('th').forEach(header => header.classList.remove('sort-asc', 'sort-desc'));
+
                 th.classList.toggle('sort-asc', ascending);
                 th.classList.toggle('sort-desc', !ascending);
 
@@ -186,13 +115,8 @@ $result = $conn->query("
                 });
 
                 rows.forEach(row => tbody.appendChild(row));
-                currentPage = 1;
-                displayTable();
             });
         });
-
-        // Initial display
-        displayTable();
     </script>
 </body>
 
