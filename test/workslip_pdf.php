@@ -360,6 +360,12 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Image(__DIR__ . "/../customer/uploads/drawings/" . $work['drawing'], 110, 125, 80, 80);
 
             $pdf->Ln(5);
+
+            // Extra notes / signatures
+            $pdf->Cell(0, 8, "Special Instructions: " . ($work['special_instructions'] ?? ""), 0, 1);
+            $pdf->Ln(10);
+            $pdf->Cell(90, 8, "Tailor Signature: ___________________", 0, 0, 'L');
+            $pdf->Cell(90, 8, "Customer Signature: _______________", 0, 1, 'R');
             break;
 
 
