@@ -426,12 +426,14 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(15, 10, "Side Pocket", 1);
             $pdf->Cell(15, 10, "Side Seams", 1, 0, "C");
             $pdf->Cell(15, 10, "Pocket Pull", 1, 0, "C");
-            $pdf->Cell(47.5, 10, $work['pleat_num'], 1);
-            $pdf->Cell(15.8, 10, "No.", 1, 1, "C");
-            $pdf->Cell(15.8, 10, "Width", 1, 1, "C");
-            $pdf->Cell(15.8, 10, "Length", 1, 1, "C");
-            $pdf->Cell(15.8, 10, "No.", 1, 1, "C");
-            $pdf->Cell(15.8, 10, "Width", 1, 1, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(35, 10, $work['pleat_num'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(15.8, 10, "No.", 1, 0, "C");
+            $pdf->Cell(15.8, 10, "Width", 1, 0, "C");
+            $pdf->Cell(15.8, 10, "Length", 1, 0, "C");
+            $pdf->Cell(15.8, 10, "No.", 1, 0, "C");
+            $pdf->Cell(15.8, 10, "Width", 1, 0, "C");
             $pdf->Cell(15.8, 10, "Length", 1, 1, "C");
 
             //Line 7
