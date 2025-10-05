@@ -415,17 +415,17 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 5
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(47.5, 8, "Hand Stitch", 1, 0, "C");
-            $pdf->Cell(47.5, 8, "Pleats", 1, 0, "C");
+            $pdf->Cell(60, 8, "Hand Stitch", 1, 0, "C");
+            $pdf->Cell(35, 8, "Pleats", 1, 0, "C");
             $pdf->Cell(47.5, 8, "Inside Pocket", 1, 0, "C");
             $pdf->Cell(47.5, 8, "Loop", 1, 1, "C");
 
             //Line 6
             $pdf->SetFont('Arial', 'B', 6);
-            $pdf->Cell(11.9, 10, "Fly", 1);
-            $pdf->Cell(11.9, 10, "Side Pocket", 1);
-            $pdf->Cell(11.9, 10, "Side Seams", 1, 0, "C");
-            $pdf->Cell(11.9, 10, "Pocket Pull", 1, 1, "C");
+            $pdf->Cell(15, 10, "Fly", 1);
+            $pdf->Cell(15, 10, "Side Pocket", 1);
+            $pdf->Cell(15, 10, "Side Seams", 1, 0, "C");
+            $pdf->Cell(15, 10, "Pocket Pull", 1, 0, "C");
             $pdf->Cell(47.5, 10, $work['pleat_num'], 1);
             $pdf->Cell(15.8, 10, "No.", 1, 1, "C");
             $pdf->Cell(15.8, 10, "Width", 1, 1, "C");
@@ -436,10 +436,10 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 7
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(11.9, 10, $work['fly_hs'], 1);
-            $pdf->Cell(11.9, 10, $work['side_pocket_hs'], 1);
-            $pdf->Cell(11.9, 10, $work['side_seams_hs'], 1, 0, "C");
-            $pdf->Cell(11.9, 10, $work['pocket_pull'], 1, 0, "C");
+            $pdf->Cell(15, 10, $work['fly_hs'], 1);
+            $pdf->Cell(15, 10, $work['side_pocket_hs'], 1);
+            $pdf->Cell(15, 10, $work['side_seams_hs'], 1, 0, "C");
+            $pdf->Cell(15, 10, $work['pocket_pull'], 1, 0, "C");
             $pdf->Cell(47.5, 10, "", 1, 0, "C");
             $pdf->Cell(15.8, 10, $work['inside_pocket_num'], 1, 0, "C");
             $pdf->Cell(15.8, 10, $work['inside_pocket_width'], 1, 0, "C");
