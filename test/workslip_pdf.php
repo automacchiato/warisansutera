@@ -369,84 +369,84 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 1
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(38, 10, "Invoice No.", 1);
+            $pdf->Cell(38, 8, "Invoice No.", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(38, 10, $invoice['invoice_number'], 1);
+            $pdf->Cell(38, 8, $invoice['invoice_number'], 1);
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(38, 10, "Manufacturer", 1);
+            $pdf->Cell(38, 8, "Manufacturer", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(38, 10, $work['manufacturer'], 1);
+            $pdf->Cell(38, 8, $work['manufacturer'], 1);
             $pdf->SetFont('Arial', 'B', 14);
-            $pdf->Cell(38, 10, "MUST", 1, 1, "C");
+            $pdf->Cell(38, 8, "MUST", 1, 1, "C");
 
             //Line 2
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(31.7, 10, "Salesman", 1);
+            $pdf->Cell(31.7, 8, "Salesman", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(31.7, 10, $work['salesman_name'], 1);
+            $pdf->Cell(31.7, 8, $work['salesman_name'], 1);
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(31.7, 10, "Cutter", 1);
+            $pdf->Cell(31.7, 8, "Cutter", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(31.7, 10, $work['cutter_name'], 1);
+            $pdf->Cell(31.7, 8, $work['cutter_name'], 1);
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(31.7, 10, "Tailor", 1);
+            $pdf->Cell(31.7, 8, "Tailor", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(31.6, 10, $work['tailor_name'], 1, 1);
+            $pdf->Cell(31.6, 8, $work['tailor_name'], 1, 1);
 
             //Line 3
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(47.5, 10, "Fitting Date", 1);
+            $pdf->Cell(47.5, 8, "Fitting Date", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(47.5, 10, $invoice['fitting_date'], 1);
+            $pdf->Cell(47.5, 8, $invoice['fitting_date'], 1);
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(47.5, 10, "Deliver Date", 1);
+            $pdf->Cell(47.5, 8, "Deliver Date", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(47.5, 10, $invoice['delivery_date'], 1, 1);
+            $pdf->Cell(47.5, 8, $invoice['delivery_date'], 1, 1);
 
             //Line 4
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(47.5, 10, "Gender", 1);
+            $pdf->Cell(47.5, 8, "Gender", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(47.5, 10, $work['gender'], 1);
+            $pdf->Cell(47.5, 8, $work['gender'], 1);
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(47.5, 10, "", 1);
+            $pdf->Cell(47.5, 8, "", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(47.5, 10, "", 1, 1);
+            $pdf->Cell(47.5, 8, "", 1, 1);
 
             //Line 5
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(47.5, 10, "Hand Stitch", 1);
-            $pdf->Cell(47.5, 10, "Pleats", 1);
-            $pdf->Cell(47.5, 10, "Inside Pocket", 1, 0, "C");
-            $pdf->Cell(47.5, 10, "Loop", 1, 1);
+            $pdf->Cell(47.5, 8, "Hand Stitch", 1, 0, "C");
+            $pdf->Cell(47.5, 8, "Pleats", 1, 0, "C");
+            $pdf->Cell(47.5, 8, "Inside Pocket", 1, 0, "C");
+            $pdf->Cell(47.5, 8, "Loop", 1, 1, "C");
 
             //Line 6
-            $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(30, 10, "Fly", 1);
-            $pdf->Cell(60, 10, "Side Pocket", 1);
-            $pdf->Cell(30, 10, "Side Seams", 1, 0, "C");
-            $pdf->Cell(70, 10, "Pocket Pull", 1, 1, "C");
+            $pdf->SetFont('Arial', 'B', 6);
+            $pdf->Cell(11.9, 10, "Fly", 1);
+            $pdf->Cell(11.9, 10, "Side Pocket", 1);
+            $pdf->Cell(11.9, 10, "Side Seams", 1, 0, "C");
+            $pdf->Cell(11.9, 10, "Pocket Pull", 1, 1, "C");
             $pdf->Cell(47.5, 10, $work['pleat_num'], 1);
-            $pdf->Cell(70, 10, "No.", 1, 1, "C");
-            $pdf->Cell(70, 10, "Width", 1, 1, "C");
-            $pdf->Cell(70, 10, "Length", 1, 1, "C");
-            $pdf->Cell(70, 10, "No.", 1, 1, "C");
-            $pdf->Cell(70, 10, "Width", 1, 1, "C");
-            $pdf->Cell(70, 10, "Length", 1, 1, "C");
+            $pdf->Cell(15.8, 10, "No.", 1, 1, "C");
+            $pdf->Cell(15.8, 10, "Width", 1, 1, "C");
+            $pdf->Cell(15.8, 10, "Length", 1, 1, "C");
+            $pdf->Cell(15.8, 10, "No.", 1, 1, "C");
+            $pdf->Cell(15.8, 10, "Width", 1, 1, "C");
+            $pdf->Cell(15.8, 10, "Length", 1, 1, "C");
 
             //Line 7
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(47.5, 10, $work['fly_hs'], 1);
-            $pdf->Cell(60, 10, $work['side_pocket_hs'], 1);
-            $pdf->Cell(30, 10, $work['side_seams_hs'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['pocket_pull'], 1, 0, "C");
-            $pdf->Cell(30, 10, "", 1, 0, "C");
-            $pdf->Cell(30, 10, $work['inside_pocket_num'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['inside_pocket_width'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['inside_pocket_length'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['loop_num'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['loop_width'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['loop_length'], 1, 0, "C");
+            $pdf->Cell(11.9, 10, $work['fly_hs'], 1);
+            $pdf->Cell(11.9, 10, $work['side_pocket_hs'], 1);
+            $pdf->Cell(11.9, 10, $work['side_seams_hs'], 1, 0, "C");
+            $pdf->Cell(11.9, 10, $work['pocket_pull'], 1, 0, "C");
+            $pdf->Cell(47.5, 10, "", 1, 0, "C");
+            $pdf->Cell(15.8, 10, $work['inside_pocket_num'], 1, 0, "C");
+            $pdf->Cell(15.8, 10, $work['inside_pocket_width'], 1, 0, "C");
+            $pdf->Cell(15.8, 10, $work['inside_pocket_length'], 1, 0, "C");
+            $pdf->Cell(15.8, 10, $work['loop_num'], 1, 0, "C");
+            $pdf->Cell(15.8, 10, $work['loop_width'], 1, 0, "C");
+            $pdf->Cell(15.8, 10, $work['loop_length'], 1, 1, "C");
 
             //Line 8
             $pdf->SetFont('Arial', 'B', 11);
@@ -458,7 +458,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(15, 10, "Loose", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(15, 10, $work['waist_loose'], 1, 0, "C");
-            $pdf->Cell(30, 10, "", 1, 0, "C");
+            $pdf->Cell(30, 10, "", 1, 1, "C");
 
             //Line 9
             $pdf->SetFont('Arial', 'B', 11);
