@@ -10,11 +10,13 @@ $dbname = "u929965336_warisansutera";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 
-$result = $conn->query("SELECT i.invoice_id, i.invoice_number, i.order_date, i.delivery_date,
-c.customer_name, c.customer_phone
-FROM invoices i
-JOIN customers c ON i.customer_id = c.customer_id
-ORDER BY i.invoice_id DESC");
+$result = $conn->query("
+    SELECT i.invoice_id, i.invoice_number, i.order_date, i.delivery_date,
+           c.customer_name, c.customer_phone
+    FROM invoices i
+    JOIN customers c ON i.customer_id = c.customer_id
+    ORDER BY i.invoice_id DESC
+");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,28 +25,47 @@ ORDER BY i.invoice_id DESC");
     <meta charset="UTF-8">
     <title>Invoice List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        th {
+            cursor: pointer;
+        }
+
+        th.sort-asc::after {
+            content: " 🔼";
+        }
+
+        th.sort-desc::after {
+            content: " 🔽";
+        }
+    </style>
 </head>
 
 <body class="p-4">
     <div class="container">
         <h2 class="mb-4">Invoices</h2>
-        <table class="table table-bordered table-striped">
+
+        <!-- Search Box -->
+        <div class="mb-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search invoices...">
+        </div>
+
+        <table id="invoiceTable" class="table table-bordered table-striped align-middle">
             <thead class="table-dark">
                 <tr>
-                    <th>Invoice No</th>
-                    <th>Customer</th>
-                    <th>Order Date</th>
-                    <th>Delivery Date</th>
+                    <th data-column="invoice_number">Invoice No</th>
+                    <th data-column="customer_name">Customer</th>
+                    <th data-column="order_date">Order Date</th>
+                    <th data-column="delivery_date">Delivery Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?= $row['invoice_number'] ?></td>
-                        <td><?= $row['customer_name'] ?></td>
-                        <td><?= $row['order_date'] ?></td>
-                        <td><?= $row['delivery_date'] ?></td>
+                        <td><?= htmlspecialchars($row['invoice_number']) ?></td>
+                        <td><?= htmlspecialchars($row['customer_name']) ?></td>
+                        <td><?= htmlspecialchars($row['order_date']) ?></td>
+                        <td><?= htmlspecialchars($row['delivery_date']) ?></td>
                         <td>
                             <a href="generate_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm">Invoice</a>
                             <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-warning btn-sm">Workslip</a>
@@ -54,6 +75,49 @@ ORDER BY i.invoice_id DESC");
             </tbody>
         </table>
     </div>
+
+    <script>
+        // --- SEARCH FUNCTION ---
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#invoiceTable tbody tr');
+
+            rows.forEach(row => {
+                let text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+
+        // --- SORT FUNCTION ---
+        document.querySelectorAll('#invoiceTable th[data-column]').forEach(th => {
+            th.addEventListener('click', function() {
+                let table = th.closest('table');
+                let tbody = table.querySelector('tbody');
+                let rows = Array.from(tbody.querySelectorAll('tr'));
+                let index = Array.from(th.parentNode.children).indexOf(th);
+                let ascending = !th.classList.contains('sort-asc');
+
+                // Reset other column classes
+                table.querySelectorAll('th').forEach(header => header.classList.remove('sort-asc', 'sort-desc'));
+
+                th.classList.toggle('sort-asc', ascending);
+                th.classList.toggle('sort-desc', !ascending);
+
+                rows.sort((a, b) => {
+                    let cellA = a.children[index].innerText.trim().toLowerCase();
+                    let cellB = b.children[index].innerText.trim().toLowerCase();
+
+                    if (!isNaN(Date.parse(cellA)) && !isNaN(Date.parse(cellB))) {
+                        return ascending ? new Date(cellA) - new Date(cellB) : new Date(cellB) - new Date(cellA);
+                    }
+
+                    return ascending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+                });
+
+                rows.forEach(row => tbody.appendChild(row));
+            });
+        });
+    </script>
 </body>
 
 </html>
