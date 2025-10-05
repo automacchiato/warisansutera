@@ -444,9 +444,9 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(30, 10, $work['inside_pocket_num'], 1, 0, "C");
             $pdf->Cell(30, 10, $work['inside_pocket_width'], 1, 0, "C");
             $pdf->Cell(30, 10, $work['inside_pocket_length'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['loop_pocket_num'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['loop_pocket_width'], 1, 0, "C");
-            $pdf->Cell(30, 10, $work['loop_pocket_length'], 1, 0, "C");
+            $pdf->Cell(30, 10, $work['loop_num'], 1, 0, "C");
+            $pdf->Cell(30, 10, $work['loop_width'], 1, 0, "C");
+            $pdf->Cell(30, 10, $work['loop_length'], 1, 0, "C");
 
             //Line 8
             $pdf->SetFont('Arial', 'B', 11);
