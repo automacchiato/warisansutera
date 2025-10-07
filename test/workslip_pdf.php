@@ -37,7 +37,7 @@ class PDF extends FPDF
     function Header()
     {
         // Company Logo
-        $this->Image('logo.jpg', 10, 10, 30); // x, y, width
+        $this->Image('logo2.png', 10, 10, 30); // x, y, width
         $this->SetFont('Arial', 'B', 12);
 
         // Move below the image (e.g., y = 45)
