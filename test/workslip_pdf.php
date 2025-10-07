@@ -49,7 +49,7 @@ class PDF extends FPDF
         $this->SetX(10);
         $this->MultiCell(
             0,
-            5,
+            3,
             "LOT C31, ARAS 2, MAJMA' TUANKU ABDUL HALIM,\n" .
                 "MU'AZAM SHAH, LORONG P.RAMLEE 5,\n" .
                 "93400 KUCHING, SARAWAK.\n" .
