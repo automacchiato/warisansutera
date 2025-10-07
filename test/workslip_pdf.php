@@ -42,6 +42,7 @@ class PDF extends FPDF
 
         // Move below the image (e.g., y = 45)
         $this->SetXY(10, 25);
+        $this->Cell(50, 5, "Lot C31, Aras 2, Majma Mall,\nKuching, Sarawak", 0, 1, "L");
         $this->MultiCell(100, 5, "Lot C31, Aras 2, Majma Mall,\nKuching, Sarawak", 0, 'L');
     }
 }
