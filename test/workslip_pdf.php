@@ -63,7 +63,7 @@ class PDF extends FPDF
 
 $pdf = new PDF();
 $pdf->AddPage();
-$pdf->SetFont('Arial', 'B', 20);
+$pdf->SetFont('Arial', 'B', 15);
 
 // --- Invoice details (top right) ---
 $pdf->SetXY(150, 10);
