@@ -39,11 +39,11 @@ class PDF extends FPDF
         // Company Logo
         $this->Image('logo2.png', 10, 10, 30); // x, y, width
 
-        $this->SetFont('Arial', 'I', 9);
+        $this->SetFont('Arial', 'I', 8);
         $this->SetXY(10, 25);
         $this->Cell(50, 5, "[Dimiliki oleh Malmo Clothier (K) Sdn Bhd - 1364467-K]", 0, 1, "L");
 
-        $this->SetFont('Arial', '', 9);
+        $this->SetFont('Arial', '', 8);
 
         // Address (using MultiCell)
         $this->SetX(10);
