@@ -63,12 +63,13 @@ class PDF extends FPDF
 
 $pdf = new PDF();
 $pdf->AddPage();
-$pdf->SetFont('Arial', '', 10);
+$pdf->SetFont('Arial', 'B', 20);
 
 // --- Invoice details (top right) ---
 $pdf->SetXY(150, 10);
 $pdf->Cell(50, 5, "Invoice No: " . $invoice['invoice_number'], 0, 1, "R");
 $pdf->Ln();
+$pdf->SetFont('Arial', '', 10);
 $pdf->SetX(150);
 $pdf->Cell(50, 5, "Order Date: " . $invoice['order_date'], 1, 1, "R");
 $pdf->SetX(150);
