@@ -37,11 +37,12 @@ class PDF extends FPDF
     function Header()
     {
         // Company Logo
-        $this->Image('logo.jpg', 10, 10, 30);
+        $this->Image('logo.jpg', 10, 10, 30); // x, y, width
         $this->SetFont('Arial', 'B', 12);
-        $this->SetXY(45, 10);
-        $this->MultiCell(80, 5, "Lot C31, Aras 2, Majma Mall,\nKuching, Sarawak", 0, 'L');
-        $this->Ln(10);
+
+        // Move below the image (e.g., y = 45)
+        $this->SetXY(10, 45);
+        $this->MultiCell(100, 5, "Lot C31, Aras 2, Majma Mall,\nKuching, Sarawak", 0, 'L');
     }
 }
 
