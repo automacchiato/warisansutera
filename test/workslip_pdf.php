@@ -38,7 +38,6 @@ class PDF extends FPDF
     {
         // Company Logo
         $this->Image('logo.jpg', 10, 10, 30);
-        $this->Ln(10);
         $this->SetFont('Arial', 'B', 12);
         $this->SetXY(45, 10);
         $this->MultiCell(80, 5, "Lot C31, Aras 2, Majma Mall,\nKuching, Sarawak", 0, 'L');
