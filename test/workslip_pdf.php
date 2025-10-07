@@ -560,7 +560,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(80, 8, "Bottom Initial", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(110, 8, $work['bottom_initial'], 1, 1);
+            $pdf->Cell(110, 8, $work['bottom_initial'], 1, 1, "C");
             $pdf->Ln(5);
 
             //Line 21
