@@ -514,7 +514,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(60, 8, $work['crotch'], 1, 1);
 
             //Line 16
-            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->SetFont('Arial', 'B', 9);
             $pdf->Cell(30, 8, "Position on Waist", 1);
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(60, 8, $work['position_on_waist'], 1, 1);
@@ -537,7 +537,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(60, 8, $work['turn_up'], 1, 1);
 
             //Line 19
-            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->SetFont('Arial', 'B', 9);
             $pdf->Cell(30, 8, "Turn Up Length", 1);
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(60, 8, $work['turn_up_length'], 1, 1);
