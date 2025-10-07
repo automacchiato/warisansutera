@@ -459,7 +459,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(15, 8, "Loose", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(15, 8, $work['waist_loose'], 1, 0, "C");
+            $pdf->Cell(15, 8, $work['waist_loose'], 1, 1, "C");
 
             //Line 9
             $pdf->SetFont('Arial', 'B', 11);
