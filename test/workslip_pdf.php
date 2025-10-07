@@ -42,8 +42,11 @@ class PDF extends FPDF
         $this->SetXY(10, 25);
         $this->Cell(50, 5, "(Dimiliki oleh Malmo Clothier (K) Sdn Bhd - 1364467-K", 0, 1, "L");
         $this->SetFont('Arial', '', 9);
-        $this->Cell(50, 5, "LOT C31, ARAS 2, MAJMA' TUANKU ABDUL HALIM", 0, 1, "L");
-        $this->Ln(100);
+        $this->Cell(50, 5, "LOT C31, ARAS 2, MAJMA' TUANKU ABDUL HALIM,", 0, 1, "L");
+        $this->Cell(50, 5, "MU'AZAM SHAH, LORONG P.RAMLEE 5,", 0, 1, "L");
+        $this->Cell(50, 5, "93400 KUCHING, SARAWAK.", 0, 1, "L");
+        $this->Cell(50, 5, "TEL: 082-239278 | H/P: 017-8203560 / 012-8079091", 0, 1, "L");
+        $this->Cell(50, 5, "Email: malmo6870k@gmail.com", 0, 1, "L");
     }
 }
 
