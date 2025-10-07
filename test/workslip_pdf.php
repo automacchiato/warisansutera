@@ -44,7 +44,7 @@ class PDF extends FPDF
         $this->SetFont('Arial', '', 9);
         $this->MultiCell(50, 5, "LOT C31, ARAS 2, MAJMA' TUANKU ABDUL HALIM,\n
         MU'AZAM SHAH, LORONG P.RAMLEE 5,\n93400 KUCHING, SARAWAK.\n
-        TEL: 082-239278 | H/P: 017-8203560 / 012-8079091\nEmail: malmo6870k@gmail.com", 0, 1, "L", 0, 1, "L");
+        TEL: 082-239278 | H/P: 017-8203560 / 012-8079091\nEmail: malmo6870k@gmail.com", 0, "L");
         // $this->Cell(50, 5, "LOT C31, ARAS 2, MAJMA' TUANKU ABDUL HALIM,", 0, 1, "L");
         // $this->Cell(50, 5, "MU'AZAM SHAH, LORONG P.RAMLEE 5,", 0, 1, "L");
         // $this->Cell(50, 5, "93400 KUCHING, SARAWAK.", 0, 1, "L");
