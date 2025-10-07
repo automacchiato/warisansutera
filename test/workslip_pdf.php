@@ -415,17 +415,17 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 5
             $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(60, 8, "Hand Stitch", 1, 0, "C");
-            $pdf->Cell(35, 8, "Pleats", 1, 0, "C");
+            $pdf->Cell(70, 8, "Hand Stitch", 1, 0, "C");
+            $pdf->Cell(25, 8, "Pleats", 1, 0, "C");
             $pdf->Cell(47.5, 8, "Inside Pocket", 1, 0, "C");
             $pdf->Cell(47.5, 8, "Loop", 1, 1, "C");
 
             //Line 6
             $pdf->SetFont('Arial', 'B', 6);
-            $pdf->Cell(15, 8, "Fly", 1);
-            $pdf->Cell(15, 8, "Side Pocket", 1);
-            $pdf->Cell(15, 8, "Side Seams", 1, 0, "C");
-            $pdf->Cell(15, 8, "Pocket Pull", 1, 0, "C");
+            $pdf->Cell(17.5, 8, "Fly", 1);
+            $pdf->Cell(17.5, 8, "Side Pocket", 1);
+            $pdf->Cell(17.5, 8, "Side Seams", 1, 0, "C");
+            $pdf->Cell(17.5, 8, "Pocket Pull", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(35, 8, $work['pleat_num'], 1);
             $pdf->SetFont('Arial', 'B', 11);
