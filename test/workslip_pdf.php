@@ -40,7 +40,7 @@ class PDF extends FPDF
         $this->Image('logo2.png', 10, 10, 30); // x, y, width
         $this->SetFont('Arial', 'I', 10);
         $this->SetXY(10, 25);
-        $this->Cell(50, 5, "(Dimiliki oleh Malmo Clothier (K) Sdn Bhd - 1364467-K", 0, 0, "L");
+        $this->Cell(50, 5, "(Dimiliki oleh Malmo Clothier (K) Sdn Bhd - 1364467-K", 0, 1, "L");
         $this->SetFont('Arial', '', 10);
         $this->Cell(50, 5, "LOT C31, ARAS 2, MAJMA' TUANKU ABDUL HALIM", 0, 1, "L");
     }
