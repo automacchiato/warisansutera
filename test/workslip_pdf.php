@@ -534,13 +534,13 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(30, 8, "Turn Up", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(60, 8, $work['turn_up'], 1);
+            $pdf->Cell(60, 8, $work['turn_up'], 1, 1);
 
             //Line 19
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(30, 8, "Turn Up Length", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(60, 8, $work['turn_up_length'], 1);
+            $pdf->Cell(60, 8, $work['turn_up_length'], 1, 1);
 
             //Line 20
             $pdf->SetFont('Arial', 'B', 11);
