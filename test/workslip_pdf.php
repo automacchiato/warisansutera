@@ -547,11 +547,11 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(30, 8, "Lining Type", 1);
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(60, 8, $work['lining_type'], 1);
-            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(25, 8, "Right Pocket", 1, 0, "C");
             $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(25, 8, $work['right_pocket'], 1, 0, "C");
-            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(25, 8, "Left Pocket", 1, 0, "C");
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(25, 8, $work['left_pocket'], 1, 1, "C");
