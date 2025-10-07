@@ -421,7 +421,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(47.5, 8, "Loop", 1, 1, "C");
 
             //Line 6
-            $pdf->SetFont('Arial', 'B', 7);
+            $pdf->SetFont('Arial', 'B', 8);
             $pdf->Cell(17.5, 8, "Fly", 1, 0, "C");
             $pdf->Cell(17.5, 8, "Side Pocket", 1, 0, "C");
             $pdf->Cell(17.5, 8, "Side Seams", 1, 0, "C");
@@ -438,8 +438,8 @@ while ($row = $items->fetch_assoc()) {
 
             //Line 7
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(17.5, 8, $work['fly_hs'], 1);
-            $pdf->Cell(17.5, 8, $work['side_pocket_hs'], 1);
+            $pdf->Cell(17.5, 8, $work['fly_hs'], 1, 0, "C");
+            $pdf->Cell(17.5, 8, $work['side_pocket_hs'], 1, 0, "C");
             $pdf->Cell(17.5, 8, $work['side_seams_hs'], 1, 0, "C");
             $pdf->Cell(17.5, 8, $work['pocket_pull'], 1, 0, "C");
             $pdf->Cell(25, 8, "", 1, 0, "C");
