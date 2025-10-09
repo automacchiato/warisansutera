@@ -425,14 +425,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 case "SHIRT":
                     html = `
                         <div class="row mb-2">
-                            <div class="col input-group mb-3">
+                            <span class="col input-group mb-3">
                                 <label class="input_group_text fw-bold">Manufacturer</label>
                                 <select name="manufacturer[]" class="form-control" required>
                                     <option value="" disabled selected>Select Manufacturer</option>
                                     <option value="In-House Factory">In-House Factory</option>
                                     <option value="Fabrica">Fabrica</option>
                                 </select>
-                            </div>
+                            </span>
                             <div class="col">
                                 <label class="fw-bold">Salesman</label>
                                 <input type="text" name="salesman_name[]" class="form-control">
