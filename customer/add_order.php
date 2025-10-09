@@ -379,7 +379,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <h4>Payments</h4>
             <div class="row mb-3">
-                <div class="col"><input type="number" step="0.01" name="total_amount" class="form-control" placeholder="Total Amount" autocomplete="on"></div>
+                <div class="col"><input type="number" step="0.01" id="total_amount" name="total_amount" class="form-control" placeholder="Total Amount" autocomplete="on"></div>
                 <div class="col"><input type="number" step="0.01" name="deposit_amount" class="form-control" placeholder="Deposit" autocomplete="on"></div>
                 <div class="col"><input type="number" step="0.01" name="balance_amount" class="form-control" placeholder="Balance" autocomplete="on"></div>
                 <div class="col"><input type="number" step="0.01" name="additional_deposit" class="form-control" placeholder="Additional Deposit" autocomplete="on"></div>
@@ -391,11 +391,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
+        //Add item
         function addItem() {
             let template = document.querySelector(".item-block").outerHTML;
             document.getElementById("items").insertAdjacentHTML("beforeend", template);
         }
 
+        //Show workslip
         function showWorkslip(select) {
             let workslip = select.closest(".item-block").querySelector(".workslip");
             let fields = workslip.querySelector(".workslip-fields");
@@ -1179,6 +1181,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             fields.innerHTML = html;
         }
 
+        //Cuff Type
         document.querySelectorAll('.cuff_type').forEach(function(select) {
             select.addEventListener('change', function() {
                 const cuffLength = this.closest('.col').parentElement.querySelector('.cuff_length');
@@ -1196,6 +1199,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Trigger change event on page load to set initial state
             select.dispatchEvent(new Event('change'));
         });
+
+        //Calculate total
+        function calculateTotal() {
+            let total = 0;
+            document.querySelectorAll('input[name="amount[]"]').forEach(input => {
+                const value = parseFloat(input.value) || 0;
+                total += value;
+            });
+            document.getElementById('total_amount').value = total.toFixed(2);
+        }
     </script>
 </body>
 
