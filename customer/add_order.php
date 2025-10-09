@@ -656,6 +656,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Drawing Option:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="drawing_option" id="use_default" value="default" checked>
+                                        <label class="form-check-label" for="use_default">Use Default Drawing</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="drawing_option" id="upload_own" value="upload">
+                                        <label class="form-check-label" for="upload_own">Upload Own Drawing</label>
+                                    </div>
+                                </div>
+
+                                <!-- Default Drawing Preview -->
+                                <div id="default_preview" class="mb-3" style="display:block;">
+                                    <label class="fw-bold d-block">Default Drawing Preview:</label>
+                                    <img id="default_image" src="" alt="Default Drawing" class="img-fluid border rounded" style="max-width:250px;">
+                                </div>
+
+                                <!-- Upload Section -->
+                                <div class="form-group" id="upload_section" style="display:none;">
+                                    <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
+                                    <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                                </div>
+                            </div>
+                        </div>
+
                         `;
                     break;
                 case "TROUSERS":
