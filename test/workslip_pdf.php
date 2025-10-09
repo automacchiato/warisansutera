@@ -107,13 +107,13 @@ $pdf->Ln();
 
 $pdf->SetFont('Arial', '', 9);
 while ($row = $items->fetch_assoc()) {
-    $pdf->Cell($widths[0], 7, $row['quantity'], 1);
-    $pdf->Cell($widths[1], 7, $row['item_type'], 1);
-    $pdf->Cell($widths[2], 7, $row['fabric_code'], 1);
+    $pdf->Cell($widths[0], 7, $row['quantity'], 1, 0, "C");
+    $pdf->Cell($widths[1], 7, $row['item_type'], 1, 0, "C");
+    $pdf->Cell($widths[2], 7, $row['fabric_code'], 1, 0, "C");
     $pdf->Cell($widths[3], 7, $row['fabric_name'], 1);
-    $pdf->Cell($widths[4], 7, $row['fabric_color'], 1);
-    $pdf->Cell($widths[5], 7, $row['fabric_usage'], 1);
-    $pdf->Cell($widths[6], 7, $invoice['total_amount'], 1);
+    $pdf->Cell($widths[4], 7, $row['fabric_color'], 1, 0, "C");
+    $pdf->Cell($widths[5], 7, $row['fabric_usage'], 1, 0, "C");
+    $pdf->Cell($widths[6], 7, $invoice['total_amount'], 1, 0, "R");
     $pdf->Ln();
 }
 
