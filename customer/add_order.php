@@ -1252,6 +1252,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         });
 
+        //Calculate total
         function calculateTotals() {
             // --- 1. Calculate total amount ---
             let total = 0;
@@ -1270,6 +1271,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const additionalAmount = balance - additionalDeposit;
             document.getElementById('additional_amount').value = additionalAmount.toFixed(2);
         }
+
+        //Upload handle
+        document.addEventListener('DOMContentLoaded', function() {
+            const itemType = document.getElementById('item_type');
+            const shirtType = document.getElementById('shirt_type');
+            const defaultImg = document.getElementById('default_image');
+            const useDefault = document.getElementById('use_default');
+            const uploadOwn = document.getElementById('upload_own');
+            const defaultPreview = document.getElementById('default_preview');
+            const uploadSection = document.getElementById('upload_section');
+
+            function updateDefaultImage() {
+                const type = itemType.value;
+                const shirtVariant = shirtType.value;
+                let imgSrc = '';
+
+                if (type === 'SHIRT') {
+                    shirtSection.style.display = 'block';
+                    if (shirtVariant === 'SHORT SLEEVE') imgSrc = 'defaults/drawing_long_sleeve.jpg';
+                    // else if (shirtVariant === 'LONG SLEEVE') imgSrc = 'defaults/shirt_long_sleeve.jpg';
+                    // else if (shirtVariant === 'MANDARIN COLLAR') imgSrc = 'defaults/shirt_mandarin_collar.jpg';
+                    else imgSrc = 'defaults/drawing_short_sleeve.jpg';
+                } else {
+                    shirtSection.style.display = 'none';
+                    if (type === 'TROUSERS') imgSrc = 'defaults/trousers.jpg';
+                    else if (type === 'JACKET') imgSrc = 'defaults/jacket.jpg';
+                    else if (type === 'BAJU MELAYU') imgSrc = 'defaults/bajumelayu.jpg';
+                    else imgSrc = '';
+                }
+
+                defaultImg.src = imgSrc;
+                defaultPreview.style.display = imgSrc ? 'block' : 'none';
+            }
+
+            function toggleUpload() {
+                if (uploadOwn.checked) {
+                    uploadSection.style.display = 'block';
+                    defaultPreview.style.display = 'none';
+                } else {
+                    uploadSection.style.display = 'none';
+                    updateDefaultImage();
+                }
+            }
+
+            itemType.addEventListener('change', updateDefaultImage);
+            shirtType.addEventListener('change', updateDefaultImage);
+            useDefault.addEventListener('change', toggleUpload);
+            uploadOwn.addEventListener('change', toggleUpload);
+        });
     </script>
 </body>
 
