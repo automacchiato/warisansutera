@@ -1201,6 +1201,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
 
         //Calculate total
+        document.addEventListener('input', function(e) {
+            if (e.target && e.target.name === 'amount[]') {
+                calculateTotal();
+            }
+        });
+
         function calculateTotal() {
             let total = 0;
             document.querySelectorAll('input[name="amount[]"]').forEach(input => {
