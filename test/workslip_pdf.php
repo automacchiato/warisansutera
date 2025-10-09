@@ -97,8 +97,8 @@ $pdf->Ln(10);
 
 // --- Items Table ---
 $pdf->SetFont('Arial', 'B', 10);
-$headers = ["Qty", "Item Type", "Fabric Code", "Fabric Name", "Fabric Color", "Usage (m)"];
-$widths  = [10, 20, 25, 35, 25, 20];
+$headers = ["Qty", "Item Type", "Fabric Code", "Fabric Name", "Fabric Color", "Usage (m)", "Amount"];
+$widths  = [10, 20, 25, 35, 25, 20, 40];
 
 foreach ($headers as $i => $col) {
     $pdf->Cell($widths[$i], 7, $col, 1, 0, 'C');
@@ -113,6 +113,7 @@ while ($row = $items->fetch_assoc()) {
     $pdf->Cell($widths[3], 7, $row['fabric_name'], 1);
     $pdf->Cell($widths[4], 7, $row['fabric_color'], 1);
     $pdf->Cell($widths[5], 7, $row['fabric_usage'], 1);
+    $pdf->Cell($widths[6], 7, $invoice['amount'], 1);
     $pdf->Ln();
 }
 
