@@ -128,25 +128,25 @@ for ($i = 0; $i < $emptyRows; $i++) {
 
 // --- Totals from invoices ---
 $pdf->SetX(110);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(60, 7, "Total Amount", 1);
-$pdf->Cell(30, 7, $invoice['total_amount'], 1, 1, "R");
+$pdf->SetFont('Arial', 'B', 12);
+$pdf->Cell(60, 10, "Total Amount", 1);
+$pdf->Cell(30, 10, $invoice['total_amount'], 1, 1, "R");
 
 $pdf->SetX(110);
-$pdf->Cell(60, 7, "Deposit", 1);
-$pdf->Cell(30, 7, $invoice['deposit_amount'], 1, 1, "R");
+$pdf->Cell(60, 10, "Deposit", 1);
+$pdf->Cell(30, 10, $invoice['deposit_amount'], 1, 1, "R");
 
 $pdf->SetX(110);
-$pdf->Cell(60, 7, "Balance", 1);
-$pdf->Cell(30, 7, $invoice['balance_amount'], 1, 1, "R");
+$pdf->Cell(60, 10, "Balance", 1);
+$pdf->Cell(30, 10, $invoice['balance_amount'], 1, 1, "R");
 
 $pdf->SetX(110);
-$pdf->Cell(60, 7, "Additional Deposit", 1);
-$pdf->Cell(30, 7, $invoice['additional_deposit'], 1, 1, "R");
+$pdf->Cell(60, 10, "Additional Deposit", 1);
+$pdf->Cell(30, 10, $invoice['additional_deposit'], 1, 1, "R");
 
 $pdf->SetX(110);
-$pdf->Cell(60, 7, "Final Balance", 1);
-$pdf->Cell(30, 7, $invoice['additional_amount'], 1, 1, "R");
+$pdf->Cell(60, 10, "Final Balance", 1);
+$pdf->Cell(30, 10, $invoice['additional_amount'], 1, 1, "R");
 
 // ---------------- Page 2: Workslip ----------------
 $pdf->AddPage();
