@@ -117,6 +117,15 @@ while ($row = $items->fetch_assoc()) {
     $pdf->Ln();
 }
 
+$emptyRows = 5;
+for ($i = 0; $i < $emptyRows; $i++) {
+    foreach ($widths as $w) {
+        $pdf->Cell($w, 7, "", 1, 0);
+    }
+
+    $pdf->Ln();
+}
+
 $pdf->Ln(10);
 
 // --- Totals from invoices ---
