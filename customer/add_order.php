@@ -383,7 +383,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col"><input type="number" step="0.01" name="deposit_amount" class="form-control" placeholder="Deposit" autocomplete="on"></div>
                 <div class="col"><input type="number" step="0.01" name="balance_amount" class="form-control" placeholder="Balance" autocomplete="on"></div>
                 <div class="col"><input type="number" step="0.01" name="additional_deposit" class="form-control" placeholder="Additional Deposit" autocomplete="on"></div>
-                <div class="col"><input type="number" step="0.01" name="additional_amount" class="form-control" placeholder="Additional Amount" autocomplete="on"></div>
+                <div class="col"><input type="number" step="0.01" name="additional_balance" class="form-control" placeholder="Additional Balance" autocomplete="on"></div>
             </div>
 
             <button type="submit" class="btn btn-primary">Save Invoice?</button>
