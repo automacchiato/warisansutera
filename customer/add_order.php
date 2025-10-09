@@ -285,7 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container bg-light">
         <h2 class="text-center mt-2">Create Invoice</h2>
         <form method="post" enctype="multipart/form-data">
             <h4>Customer Details</h4>
