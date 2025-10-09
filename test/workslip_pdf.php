@@ -113,7 +113,7 @@ while ($row = $items->fetch_assoc()) {
     $pdf->Cell($widths[3], 10, $row['fabric_name'], 1);
     $pdf->Cell($widths[4], 10, $row['fabric_color'], 1, 0, "C");
     $pdf->Cell($widths[5], 10, $row['fabric_usage'], 1, 0, "C");
-    $pdf->Cell($widths[6], 10, $items['amount'], 1, 0, "R");
+    $pdf->Cell($widths[6], 10, $row['amount'], 1, 0, "R");
     $pdf->Ln();
 }
 
