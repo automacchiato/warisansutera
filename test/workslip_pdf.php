@@ -126,8 +126,6 @@ for ($i = 0; $i < $emptyRows; $i++) {
     $pdf->Ln();
 }
 
-$pdf->Ln(10);
-
 // --- Totals from invoices ---
 $pdf->SetX(110);
 $pdf->SetFont('Arial', 'B', 10);
