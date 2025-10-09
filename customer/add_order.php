@@ -437,14 +437,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <label class="input_group_text fw-bold">Salesman</label>
                                 <input type="text" name="salesman_name[]" class="form-control">
                             </span>
-                            <div class="col input-group">
+                            <span class="col input-group">
                                 <label class="input_group_text fw-bold">Cutter Name</label>
                                 <input type="text" name="cutter_name[]" class="form-control">
-                            </div>
-                            <div class="col input-group">
+                            </span>
+                            <span class="col input-group">
                                 <label class="input_group_text fw-bold">Tailor Name</label>
                                 <input type="text" name="tailor_name[]" class="form-control">
-                            </div>
+                            </soan>
                         </div>
                         <div class="row mb-2">
                         <div class="col">
