@@ -81,21 +81,24 @@ $pdf->SetFont('Arial', 'B', 11);
 $pdf->Cell(0, 7, "Customer Details", 0, 1, 'L');
 
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(50, 7, "Name", 1);
-$pdf->Cell(140, 7, $invoice['customer_name'], 1, 1);
+$pdf->Cell(30, 7, "Name", 1);
+$pdf->Cell(160, 7, $invoice['customer_name'], 1, 1);
 
-$pdf->Cell(50, 7, "Address", 1);
-$pdf->Cell(140, 7, $invoice['customer_address'], 1, 1);
+$pdf->Cell(30, 7, "Address", 1);
+$pdf->Cell(160, 7, $invoice['customer_address'], 1, 1);
 
-$pdf->Cell(50, 7, "Telephone", 1);
-$pdf->Cell(140, 7, $invoice['customer_phone'], 1, 1);
+$pdf->Cell(30, 7, "Email", 1);
+$pdf->Cell(160, 7, $invoice['customer_email'], 1, 1);
+
+$pdf->Cell(30, 7, "Telephone", 1);
+$pdf->Cell(160, 7, $invoice['customer_phone'], 1, 1);
 
 $pdf->Ln(10);
 
 // --- Items Table ---
 $pdf->SetFont('Arial', 'B', 10);
 $headers = ["Qty", "Item Type", "Fabric Code", "Fabric Name", "Fabric Color", "Usage (m)"];
-$widths  = [15, 30, 25, 35, 35, 25];
+$widths  = [10, 20, 25, 35, 25, 20];
 
 foreach ($headers as $i => $col) {
     $pdf->Cell($widths[$i], 7, $col, 1, 0, 'C');
