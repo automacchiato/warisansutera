@@ -122,6 +122,6 @@ $pdf->Cell(30, 7, $invoice['additional_deposit'], 1, 1, "R");
 
 $pdf->SetX(110);
 $pdf->Cell(60, 7, "Final Balance", 1);
-$pdf->Cell(30, 7, $invoice['additional_amount'], 1, 1, "R");
+$pdf->Cell(30, 7, $invoice['additional_balance'], 1, 1, "R");
 
 $pdf->Output("I", "Invoice_" . $invoice['invoice_number'] . ".pdf");

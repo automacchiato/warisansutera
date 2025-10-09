@@ -146,7 +146,7 @@ $pdf->Cell(30, 10, $invoice['additional_deposit'], 1, 1, "R");
 
 $pdf->SetX(110);
 $pdf->Cell(60, 10, "Final Balance", 1);
-$pdf->Cell(30, 10, $invoice['additional_amount'], 1, 1, "R");
+$pdf->Cell(30, 10, $invoice['additional_balance'], 1, 1, "R");
 
 // ---------------- Page 2: Workslip ----------------
 $pdf->AddPage();
