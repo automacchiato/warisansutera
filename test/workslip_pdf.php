@@ -25,7 +25,7 @@ $invoice = $conn->query($invoice_sql)->fetch_assoc();
 
 // Fetch items
 $item_sql = "
-    SELECT it.item_id, it.item_type, it.quantity, it.fabric_code, it.fabric_name, it.fabric_color, it.fabric_usage 
+    SELECT it.item_id, it.item_type, it.quantity, it.fabric_code, it.fabric_name, it.fabric_color, it.fabric_usage, it.amount 
     FROM invoice_items it
     WHERE it.invoice_id = $invoice_id
 ";
