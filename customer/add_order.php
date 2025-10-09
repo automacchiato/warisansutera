@@ -427,7 +427,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row mb-2">
                             <div class="col input-group">
                                 <span class="input_group_text fw-bold">Manufacturer</span>
-                                <select name="manufacturer[]" class="form-control" required>
+                                <select name="manufacturer[]" class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
                                     <option value="" disabled selected>Select Manufacturer</option>
                                     <option value="In-House Factory">In-House Factory</option>
                                     <option value="Fabrica">Fabrica</option>
