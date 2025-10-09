@@ -105,7 +105,7 @@ foreach ($headers as $i => $col) {
 }
 $pdf->Ln();
 
-$pdf->SetFont('Arial', '', 11);
+$pdf->SetFont('Arial', '', 12);
 while ($row = $items->fetch_assoc()) {
     $pdf->Cell($widths[0], 10, $row['quantity'], 1, 0, "C");
     $pdf->Cell($widths[1], 10, $row['item_type'], 1, 0, "C");
