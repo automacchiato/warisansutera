@@ -433,19 +433,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Fabrica">Fabrica</option>
                                 </select>
                             </span>
-                            <div class="col">
-                                <label class="fw-bold">Salesman</label>
+                            <span class="col input-group mb-3">
+                                <label class="input_group_text fw-bold">Salesman</label>
                                 <input type="text" name="salesman_name[]" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label class="fw-bold">Cutter Name</label>
+                            </span>
+                            <div class="col input-group mb-3">
+                                <label class="input_group_text fw-bold">Cutter Name</label>
                                 <input type="text" name="cutter_name[]" class="form-control">
                             </div>
-                            <div class="col">
-                                <label class="fw-bold">Tailor Name</label>
+                            <div class="col input-group mb-3">
+                                <label class="input_group_text fw-bold">Tailor Name</label>
                                 <input type="text" name="tailor_name[]" class="form-control">
                             </div>
-                            <div class="col">
+                        </div>
+                        <div class="row mb-2">
+                        <div class="col">
                                 <label class="fw-bold">Shirt Type</label>
                                 <select name="shirt_type[]" class="form-control" required>
                                     <option value="" disabled selected >Select Shirt Type</option>
@@ -463,8 +465,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Female">Female</option>
                                 </select>   
                             </div>
-                        </div>
-                        <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Special Instructions</label>
                                 <input type="text" name="special_instructions[]" class="form-control">
