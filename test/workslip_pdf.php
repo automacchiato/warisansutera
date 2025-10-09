@@ -38,31 +38,28 @@ class PDF extends FPDF
     {
         // Company Logo
         $this->Image('logo2.png', 10, 10, 30); // x, y, width
-
-        $this->SetFont('Arial', 'I', 8);
-        $this->SetXY(10, 25);
-        $this->Cell(50, 5, "[Dimiliki oleh Malmo Clothier (K) Sdn Bhd - 1364467-K]", 0, 1, "L");
-
-        $this->SetFont('Arial', '', 8);
-
-        // Address (using MultiCell)
-        $this->SetX(10);
-        $this->MultiCell(
-            0,
-            3.5,
-            "LOT C31, ARAS 2, MAJMA' TUANKU ABDUL HALIM,\n" .
-                "MU'AZAM SHAH, LORONG P.RAMLEE 5,\n" .
-                "93400 KUCHING, SARAWAK.\n" .
-                "TEL: 082-239278 | H/P: 017-8203560 / 012-8079091\n" .
-                "Email: malmo6870k@gmail.com",
-            0,
-            'L'
-        );
     }
 }
 
 $pdf = new PDF();
 $pdf->AddPage();
+$pdf->SetFont('Arial', 'I', 8);
+$pdf->SetXY(10, 25);
+$pdf->Cell(50, 5, "[Dimiliki oleh Malmo Clothier (K) Sdn Bhd - 1364467-K]", 0, 1, "L");
+$pdf->SetFont('Arial', '', 8);
+// Address (using MultiCell)
+$pdf->SetX(10);
+$pdf->MultiCell(
+    0,
+    3.5,
+    "LOT C31, ARAS 2, MAJMA' TUANKU ABDUL HALIM,\n" .
+        "MU'AZAM SHAH, LORONG P.RAMLEE 5,\n" .
+        "93400 KUCHING, SARAWAK.\n" .
+        "TEL: 082-239278 | H/P: 017-8203560 / 012-8079091\n" .
+        "Email: malmo6870k@gmail.com",
+    0,
+    'L'
+);
 $pdf->SetFont('Arial', 'B', 15);
 
 // --- Invoice details (top right) ---
