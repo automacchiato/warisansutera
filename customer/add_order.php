@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert invoice
     $stmt = $conn->prepare("INSERT INTO invoices 
-        (invoice_number, invoice_details, customer_id, order_date, fitting_date, delivery_date, total_amount, deposit_amount, balance_amount, additional_deposit, additional_amount)
+        (invoice_number, invoice_details, customer_id, order_date, fitting_date, delivery_date, total_amount, deposit_amount, balance_amount, additional_deposit, additional_balance)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param(
         "ssisssddddd",
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST['deposit_amount'],
         $_POST['balance_amount'],
         $_POST['additional_deposit'],
-        $_POST['additional_amount']
+        $_POST['additional_balance']
     );
     $stmt->execute();
     $invoice_id = $stmt->insert_id;
