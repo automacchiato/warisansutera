@@ -425,26 +425,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 case "SHIRT":
                     html = `
                         <div class="row mb-2">
-                            <span class="col input-group">
-                                <label class="input_group_text fw-bold">Manufacturer</label>
+                            <div class="col input-group">
+                                <span class="input_group_text fw-bold">Manufacturer</span>
                                 <select name="manufacturer[]" class="form-control" required>
                                     <option value="" disabled selected>Select Manufacturer</option>
                                     <option value="In-House Factory">In-House Factory</option>
                                     <option value="Fabrica">Fabrica</option>
                                 </select>
-                            </span>
-                            <span class="col input-group">
-                                <label class="input_group_text fw-bold">Salesman</label>
+                            </div>
+                            <div class="col input-group">
+                                <span class="input_group_text fw-bold">Salesman</span>
                                 <input type="text" name="salesman_name[]" class="form-control">
-                            </span>
-                            <span class="col input-group">
-                                <label class="input_group_text fw-bold">Cutter Name</label>
+                            </div>
+                            <div class="col input-group">
+                                <span class="input_group_text fw-bold">Cutter Name</span>
                                 <input type="text" name="cutter_name[]" class="form-control">
-                            </span>
-                            <span class="col input-group">
-                                <label class="input_group_text fw-bold">Tailor Name</label>
+                            </div>
+                            <div class="col input-group">
+                                <span class="input_group_text fw-bold">Tailor Name</span>
                                 <input type="text" name="tailor_name[]" class="form-control">
-                            </span>
+                            </div>
                         </div>
                         <div class="row mb-2">
                         <div class="col">
