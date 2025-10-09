@@ -258,7 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
-<body class="bg-light">
+<body>
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
@@ -425,7 +425,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 case "SHIRT":
                     html = `
                         <div class="row mb-2">
-                            <span class="col input-group mb-3">
+                            <span class="col input-group">
                                 <label class="input_group_text fw-bold">Manufacturer</label>
                                 <select name="manufacturer[]" class="form-control" required>
                                     <option value="" disabled selected>Select Manufacturer</option>
@@ -433,15 +433,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Fabrica">Fabrica</option>
                                 </select>
                             </span>
-                            <span class="col input-group mb-3">
+                            <span class="col input-group">
                                 <label class="input_group_text fw-bold">Salesman</label>
                                 <input type="text" name="salesman_name[]" class="form-control">
                             </span>
-                            <div class="col input-group mb-3">
+                            <div class="col input-group">
                                 <label class="input_group_text fw-bold">Cutter Name</label>
                                 <input type="text" name="cutter_name[]" class="form-control">
                             </div>
-                            <div class="col input-group mb-3">
+                            <div class="col input-group">
                                 <label class="input_group_text fw-bold">Tailor Name</label>
                                 <input type="text" name="tailor_name[]" class="form-control">
                             </div>
