@@ -77,10 +77,10 @@ $pdf->Cell(50, 5, "Delivery Date: " . $invoice['delivery_date'], 1, 1, "R");
 $pdf->Ln(20);
 
 // --- Customer Table ---
-$pdf->SetFont('Arial', 'B', 12);
+$pdf->SetFont('Arial', 'B', 14);
 $pdf->Cell(0, 10, "Customer Details", 0, 1, 'L');
 
-$pdf->SetFont('Arial', '', 10);
+$pdf->SetFont('Arial', '', 11);
 $pdf->Cell(30, 10, "Name", 1);
 $pdf->Cell(160, 10, $invoice['customer_name'], 1, 1);
 
@@ -96,7 +96,7 @@ $pdf->Cell(160, 10, $invoice['customer_phone'], 1, 1);
 $pdf->Ln(10);
 
 // --- Items Table ---
-$pdf->SetFont('Arial', 'B', 12);
+$pdf->SetFont('Arial', 'B', 11);
 $headers = ["Qty", "Item Type", "Fabric Code", "Fabric Name", "Fabric Color", "Usage (m)", "Amount"];
 $widths  = [10, 20, 25, 55, 25, 25, 30];
 
