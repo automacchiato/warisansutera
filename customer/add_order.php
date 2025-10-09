@@ -444,7 +444,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <span class="col input-group">
                                 <label class="input_group_text fw-bold">Tailor Name</label>
                                 <input type="text" name="tailor_name[]" class="form-control">
-                            </soan>
+                            </span>
                         </div>
                         <div class="row mb-2">
                         <div class="col">
