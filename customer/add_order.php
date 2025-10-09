@@ -258,7 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
-<body>
+<body class="bg-light">
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
@@ -425,29 +425,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 case "SHIRT":
                     html = `
                         <div class="row mb-2">
-                            <div class="col input-group">
-                                <span class="input_group_text fw-bold">Manufacturer</span>
-                                <select name="manufacturer[]" class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
+                            <div class="col">
+                                <label class="fw-bold">Manufacturer</label>
+                                <select name="manufacturer[]" class="form-control" required>
                                     <option value="" disabled selected>Select Manufacturer</option>
                                     <option value="In-House Factory">In-House Factory</option>
                                     <option value="Fabrica">Fabrica</option>
                                 </select>
                             </div>
-                            <div class="col input-group">
-                                <span class="input_group_text fw-bold">Salesman</span>
+                            <div class="col">
+                                <label class="fw-bold">Salesman</label>
                                 <input type="text" name="salesman_name[]" class="form-control">
                             </div>
-                            <div class="col input-group">
-                                <span class="input_group_text fw-bold">Cutter Name</span>
+                            <div class="col">
+                                <label class="fw-bold">Cutter Name</label>
                                 <input type="text" name="cutter_name[]" class="form-control">
                             </div>
-                            <div class="col input-group">
-                                <span class="input_group_text fw-bold">Tailor Name</span>
+                            <div class="col">
+                                <label class="fw-bold">Tailor Name</label>
                                 <input type="text" name="tailor_name[]" class="form-control">
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                        <div class="col">
+                            <div class="col">
                                 <label class="fw-bold">Shirt Type</label>
                                 <select name="shirt_type[]" class="form-control" required>
                                     <option value="" disabled selected >Select Shirt Type</option>
@@ -465,6 +463,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Female">Female</option>
                                 </select>   
                             </div>
+                        </div>
+                        <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Special Instructions</label>
                                 <input type="text" name="special_instructions[]" class="form-control">
