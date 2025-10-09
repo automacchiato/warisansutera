@@ -98,7 +98,7 @@ $pdf->Ln(10);
 // --- Items Table ---
 $pdf->SetFont('Arial', 'B', 10);
 $headers = ["Qty", "Item Type", "Fabric Code", "Fabric Name", "Fabric Color", "Usage (m)", "Amount"];
-$widths  = [10, 20, 25, 35, 35, 35, 30];
+$widths  = [10, 20, 25, 55, 25, 25, 30];
 
 foreach ($headers as $i => $col) {
     $pdf->Cell($widths[$i], 7, $col, 1, 0, 'C');
