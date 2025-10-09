@@ -379,11 +379,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <h4>Payments</h4>
             <div class="row mb-3">
-                <div class="col"><input type="number" step="0.01" id="total_amount" name="total_amount" class="form-control" placeholder="Total Amount" autocomplete="on" value="0"></div>
-                <div class="col"><input type="number" step="0.01" id="deposit_amount" name="deposit_amount" class="form-control" placeholder="Deposit" autocomplete="on" value="0"></div>
-                <div class="col"><input type="number" step="0.01" id="balance_amount" name="balance_amount" class="form-control" placeholder="Balance" autocomplete="on" value="0"></div>
-                <div class="col"><input type="number" step="0.01" id="additional_deposit" name="additional_deposit" class="form-control" placeholder="Additional Deposit" autocomplete="on" value="0"></div>
-                <div class="col"><input type="number" step="0.01" id="additional_balance" name="additional_balance" class="form-control" placeholder="Additional Balance" autocomplete="on" value="0"></div>
+                <div class="col">
+                    <label class="fw-bold">Total</label>
+                    <input type="number" step="0.01" id="total_amount" name="total_amount" class="form-control" placeholder="Total Amount" autocomplete="on" value="0.00">
+                </div>
+                <div class="col">
+                    <label class="fw-bold">Deposit</label>
+                    <input type="number" step="0.01" id="deposit_amount" name="deposit_amount" class="form-control" placeholder="Deposit" autocomplete="on" value="0.00">
+                </div>
+                <div class="col">
+                    <label class="fw-bold">Balance</label>
+                    <input type="number" step="0.01" id="balance_amount" name="balance_amount" class="form-control" placeholder="Balance" autocomplete="on" value="0.00">
+                </div>
+                <div class="col">
+                    <label class="fw-bold">Additional Deposit</label>
+                    <input type="number" step="0.01" id="additional_deposit" name="additional_deposit" class="form-control" placeholder="Additional Deposit" autocomplete="on" value="0.00">
+                </div>
+                <div class="col">
+                    <label class="fw-bold">Final Balance</label>
+                    <input type="number" step="0.01" id="additional_balance" name="additional_balance" class="form-control" placeholder="Additional Balance" autocomplete="on" value="0.00">
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Save Invoice?</button>
