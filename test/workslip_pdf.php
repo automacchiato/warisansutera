@@ -101,26 +101,26 @@ $headers = ["Qty", "Item Type", "Fabric Code", "Fabric Name", "Fabric Color", "U
 $widths  = [10, 20, 25, 55, 25, 25, 30];
 
 foreach ($headers as $i => $col) {
-    $pdf->Cell($widths[$i], 7, $col, 1, 0, 'C');
+    $pdf->Cell($widths[$i], 10, $col, 1, 0, 'C');
 }
 $pdf->Ln();
 
 $pdf->SetFont('Arial', '', 9);
 while ($row = $items->fetch_assoc()) {
-    $pdf->Cell($widths[0], 7, $row['quantity'], 1, 0, "C");
-    $pdf->Cell($widths[1], 7, $row['item_type'], 1, 0, "C");
-    $pdf->Cell($widths[2], 7, $row['fabric_code'], 1, 0, "C");
-    $pdf->Cell($widths[3], 7, $row['fabric_name'], 1);
-    $pdf->Cell($widths[4], 7, $row['fabric_color'], 1, 0, "C");
-    $pdf->Cell($widths[5], 7, $row['fabric_usage'], 1, 0, "C");
-    $pdf->Cell($widths[6], 7, $invoice['total_amount'], 1, 0, "R");
+    $pdf->Cell($widths[0], 10, $row['quantity'], 1, 0, "C");
+    $pdf->Cell($widths[1], 10, $row['item_type'], 1, 0, "C");
+    $pdf->Cell($widths[2], 10, $row['fabric_code'], 1, 0, "C");
+    $pdf->Cell($widths[3], 10, $row['fabric_name'], 1);
+    $pdf->Cell($widths[4], 10, $row['fabric_color'], 1, 0, "C");
+    $pdf->Cell($widths[5], 10, $row['fabric_usage'], 1, 0, "C");
+    $pdf->Cell($widths[6], 10, $invoice['total_amount'], 1, 0, "R");
     $pdf->Ln();
 }
 
 $emptyRows = 5;
 for ($i = 0; $i < $emptyRows; $i++) {
     foreach ($widths as $w) {
-        $pdf->Cell($w, 7, "", 1, 0);
+        $pdf->Cell($w, 10, "", 1, 0);
     }
 
     $pdf->Ln();
