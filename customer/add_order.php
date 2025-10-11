@@ -674,6 +674,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Design Option</label>
+                                <select name="design_option[]" class="form-control design-option" required>
+                                    <option value="" disabled selected>Select Design Option</option>
+                                    <option value="default">Use Default Design</option>
+                                    <option value="upload">Upload Own Design</option>
+                                </select>
+                            </div>
+                            <div class="col upload-design d-none">
+                                <label class="fw-bold">Upload Design (PDF/JPG/PNG)</label>
+                                <input type="file" name="drawing[]" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                            </div>
+                        </div>
+
+                        <!-- Default design preview -->
+                        <div class="row mb-3 default-design-preview d-none">
+                            <div class="col">
+                                <label class="fw-bold">Default Design Preview</label>
+                                <div class="border rounded p-2 text-center bg-light">
+                                    <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
+                                </div>
+                            </div>
+                        </div>
                         </div>
                         `;
                     break;
@@ -1262,6 +1286,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const additionalAmount = balance - additionalDeposit;
             document.getElementById('additional_amount').value = additionalAmount.toFixed(2);
         }
+
+        //Drawing
+        document.addEventListener('DOMContentLoaded', function() {
+            const defaultDesignPaths = {
+                SHIRT: {
+                    'SH/S': 'defaults/default_shirt_short.png',
+                    'SH/L': 'defaults/default_shirt_long.png',
+                    'BSH/S': 'defaults/default_batik_short.png',
+                    'BSH/L': 'defaults/default_batik_long.png',
+                },
+                TROUSERS: 'defaults/default_trousers.png',
+                JACKET: 'defaults/default_jacket.png',
+                'BAJU MELAYU': 'defaults/default_bajumelayu.png'
+            };
+
+            document.querySelectorAll('.design-option').forEach(select => {
+                select.addEventListener('change', function() {
+                    const row = this.closest('.row');
+                    const uploadCol = row.querySelector('.upload-design');
+                    const previewRow = row.nextElementSibling; // next row = preview
+                    const previewImg = previewRow.querySelector('.default-design-img');
+
+                    // Hide all by default
+                    uploadCol.classList.add('d-none');
+                    uploadCol.querySelector('input').removeAttribute('required');
+                    previewRow.classList.add('d-none');
+                    previewImg.src = '';
+
+                    if (this.value === 'upload') {
+                        uploadCol.classList.remove('d-none');
+                        uploadCol.querySelector('input').setAttribute('required', 'required');
+                    } else if (this.value === 'default') {
+                        const apparelType = document.querySelector('[name="item_type[]"]').value; // get current apparel
+                        let imagePath = '';
+
+                        if (apparelType === 'SHIRT') {
+                            const shirtType = document.querySelector('[name="shirt_type[]"]').value;
+                            imagePath = defaultDesignPaths.SHIRT[shirtType] || '';
+                        } else {
+                            imagePath = defaultDesignPaths[apparelType] || '';
+                        }
+
+                        if (imagePath) {
+                            previewImg.src = imagePath;
+                            previewRow.classList.remove('d-none');
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 
