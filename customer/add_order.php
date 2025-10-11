@@ -485,7 +485,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Collar Design</label>
-                                <select name="collar_design[]" class="form-control" required>
+                                <select name="collar_design[]" class="form-control">
                                     <option value="" disabled selected>Select Collar Design</option>
                                     <option value="Button Down (C1)">Button Down (C1)</option>
                                     <option value="Classic (C2)">Classic (C2)</option>
@@ -617,7 +617,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Front Cutting</label>
-                                <select name="front_cutting[]" class="form-control" required>
+                                <select name="front_cutting[]" class="form-control">
                                     <option value="" disabled selected>Select Front Cutting</option>
                                     <option value="Straight">Straight</option>
                                     <option value="Rounded">Rounded</option>
@@ -625,7 +625,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Placket Type</label>
-                                <select name="placket_type[]" class="form-control" required>
+                                <select name="placket_type[]" class="form-control">
                                     <option value="" disabled selected>Select Placket Type</option>
                                     <option value="Hidden Button">Hidden Button</option>
                                     <option value="Live Placket">Live Placket</option>
