@@ -256,6 +256,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <title>Create Invoice</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .canvas-container {
+            position: relative;
+            display: inline-block;
+            border: 1px solid #ccc;
+        }
+
+        #baseImage {
+            display: block;
+            max-width: 100%;
+        }
+
+        #designCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: crosshair;
+        }
+
+        .controls {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
