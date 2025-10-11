@@ -674,6 +674,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label class="fw-bold">Upload Reference Image</label>
+                                    <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
+                                    <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
+                                </div>
+                            </div>
                         </div>    
                         `;
                     break;
