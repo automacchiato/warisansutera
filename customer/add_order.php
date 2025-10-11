@@ -429,64 +429,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
-        //Drawing
-        document.addEventListener('DOMContentLoaded', function() {
-
-            const defaultDesignPaths = {
-                SHIRT: {
-                    'SH/S': 'defaults/default_shirt_short.png',
-                    'SH/L': 'defaults/default_shirt_long.png',
-                    'BSH/S': 'defaults/default_batik_short.png',
-                    'BSH/L': 'defaults/default_batik_long.png',
-                },
-                TROUSERS: 'defaults/default_trousers.png',
-                JACKET: 'defaults/default_jacket.png',
-                'BAJU MELAYU': 'defaults/default_bajumelayu.png'
-            };
-
-            const designSelect = document.querySelector('.design-option');
-            const uploadCol = document.querySelector('.upload-design');
-            const previewRow = document.querySelector('.default-design-preview');
-            const previewImg = document.querySelector('.default-design-img');
-            const apparelSelect = document.querySelector('[name="item_type[]"]');
-            const shirtSelect = document.querySelector('[name="shirt_type[]"]');
-
-            function updateDesignPreview() {
-                const designOption = designSelect.value;
-                const apparelType = apparelSelect ? apparelSelect.value : '';
-                const shirtType = shirtSelect ? shirtSelect.value : '';
-
-                // Reset
-                uploadCol.classList.add('d-none');
-                uploadCol.querySelector('input').removeAttribute('required');
-                previewRow.classList.add('d-none');
-                previewImg.src = '';
-
-                if (designOption === 'upload') {
-                    uploadCol.classList.remove('d-none');
-                    uploadCol.querySelector('input').setAttribute('required', 'required');
-                } else if (designOption === 'default') {
-                    let imagePath = '';
-
-                    if (apparelType === 'SHIRT') {
-                        imagePath = defaultDesignPaths.SHIRT[shirtType] || '';
-                    } else {
-                        imagePath = defaultDesignPaths[apparelType] || '';
-                    }
-
-                    if (imagePath) {
-                        previewImg.src = imagePath;
-                        previewRow.classList.remove('d-none');
-                    }
-                }
-            }
-
-            // Event listeners
-            designSelect.addEventListener('change', updateDesignPreview);
-            apparelSelect.addEventListener('change', updateDesignPreview);
-            shirtSelect.addEventListener('change', updateDesignPreview);
-        });
-
         //Add item
         function addItem() {
             let template = document.querySelector(".item-block").outerHTML;
@@ -1295,6 +1237,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             fields.innerHTML = html;
         }
+
+        //Drawing
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const defaultDesignPaths = {
+                SHIRT: {
+                    'SH/S': 'defaults/default_shirt_short.png',
+                    'SH/L': 'defaults/default_shirt_long.png',
+                    'BSH/S': 'defaults/default_batik_short.png',
+                    'BSH/L': 'defaults/default_batik_long.png',
+                },
+                TROUSERS: 'defaults/default_trousers.png',
+                JACKET: 'defaults/default_jacket.png',
+                'BAJU MELAYU': 'defaults/default_bajumelayu.png'
+            };
+
+            const designSelect = document.querySelector('.design-option');
+            const uploadCol = document.querySelector('.upload-design');
+            const previewRow = document.querySelector('.default-design-preview');
+            const previewImg = document.querySelector('.default-design-img');
+            const apparelSelect = document.querySelector('[name="item_type[]"]');
+            const shirtSelect = document.querySelector('[name="shirt_type[]"]');
+
+            function updateDesignPreview() {
+                const designOption = designSelect.value;
+                const apparelType = apparelSelect ? apparelSelect.value : '';
+                const shirtType = shirtSelect ? shirtSelect.value : '';
+
+                // Reset
+                uploadCol.classList.add('d-none');
+                uploadCol.querySelector('input').removeAttribute('required');
+                previewRow.classList.add('d-none');
+                previewImg.src = '';
+
+                if (designOption === 'upload') {
+                    uploadCol.classList.remove('d-none');
+                    uploadCol.querySelector('input').setAttribute('required', 'required');
+                } else if (designOption === 'default') {
+                    let imagePath = '';
+
+                    if (apparelType === 'SHIRT') {
+                        imagePath = defaultDesignPaths.SHIRT[shirtType] || '';
+                    } else {
+                        imagePath = defaultDesignPaths[apparelType] || '';
+                    }
+
+                    if (imagePath) {
+                        previewImg.src = imagePath;
+                        previewRow.classList.remove('d-none');
+                    }
+                }
+            }
+
+            // Event listeners
+            designSelect.addEventListener('change', updateDesignPreview);
+            apparelSelect.addEventListener('change', updateDesignPreview);
+            shirtSelect.addEventListener('change', updateDesignPreview);
+        });
 
         //Cuff Type
         document.querySelectorAll('.cuff_type').forEach(function(select) {
