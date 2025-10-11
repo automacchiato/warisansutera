@@ -1288,52 +1288,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         //Drawing
         document.addEventListener('DOMContentLoaded', function() {
+
             const defaultDesignPaths = {
                 SHIRT: {
-                    'SH/S': 'defaults/default_shirt_short.png',
-                    'SH/L': 'defaults/default_shirt_long.png',
-                    'BSH/S': 'defaults/default_batik_short.png',
-                    'BSH/L': 'defaults/default_batik_long.png',
+                    'SH/S': 'images/default_shirt_short.png',
+                    'SH/L': 'images/default_shirt_long.png',
+                    'BSH/S': 'images/default_batik_short.png',
+                    'BSH/L': 'images/default_batik_long.png',
                 },
-                TROUSERS: 'defaults/default_trousers.png',
-                JACKET: 'defaults/default_jacket.png',
-                'BAJU MELAYU': 'defaults/default_bajumelayu.png'
+                TROUSERS: 'images/default_trousers.png',
+                JACKET: 'images/default_jacket.png',
+                'BAJU MELAYU': 'images/default_bajumelayu.png'
             };
 
-            document.querySelectorAll('.design-option').forEach(select => {
-                select.addEventListener('change', function() {
-                    const row = this.closest('.row');
-                    const uploadCol = row.querySelector('.upload-design');
-                    const previewRow = row.nextElementSibling; // next row = preview
-                    const previewImg = previewRow.querySelector('.default-design-img');
+            const designSelect = document.querySelector('.design-option');
+            const uploadCol = document.querySelector('.upload-design');
+            const previewRow = document.querySelector('.default-design-preview');
+            const previewImg = document.querySelector('.default-design-img');
+            const apparelSelect = document.querySelector('[name="item_type[]"]');
+            const shirtSelect = document.querySelector('[name="shirt_type[]"]');
 
-                    // Hide all by default
-                    uploadCol.classList.add('d-none');
-                    uploadCol.querySelector('input').removeAttribute('required');
-                    previewRow.classList.add('d-none');
-                    previewImg.src = '';
+            function updateDesignPreview() {
+                const designOption = designSelect.value;
+                const apparelType = apparelSelect ? apparelSelect.value : '';
+                const shirtType = shirtSelect ? shirtSelect.value : '';
 
-                    if (this.value === 'upload') {
-                        uploadCol.classList.remove('d-none');
-                        uploadCol.querySelector('input').setAttribute('required', 'required');
-                    } else if (this.value === 'default') {
-                        const apparelType = document.querySelector('[name="item_type[]"]').value; // get current apparel
-                        let imagePath = '';
+                // Reset
+                uploadCol.classList.add('d-none');
+                uploadCol.querySelector('input').removeAttribute('required');
+                previewRow.classList.add('d-none');
+                previewImg.src = '';
 
-                        if (apparelType === 'SHIRT') {
-                            const shirtType = document.querySelector('[name="shirt_type[]"]').value;
-                            imagePath = defaultDesignPaths.SHIRT[shirtType] || '';
-                        } else {
-                            imagePath = defaultDesignPaths[apparelType] || '';
-                        }
+                if (designOption === 'upload') {
+                    uploadCol.classList.remove('d-none');
+                    uploadCol.querySelector('input').setAttribute('required', 'required');
+                } else if (designOption === 'default') {
+                    let imagePath = '';
 
-                        if (imagePath) {
-                            previewImg.src = imagePath;
-                            previewRow.classList.remove('d-none');
-                        }
+                    if (apparelType === 'SHIRT') {
+                        imagePath = defaultDesignPaths.SHIRT[shirtType] || '';
+                    } else {
+                        imagePath = defaultDesignPaths[apparelType] || '';
                     }
-                });
-            });
+
+                    if (imagePath) {
+                        previewImg.src = imagePath;
+                        previewRow.classList.remove('d-none');
+                    }
+                }
+            }
+
+            // Event listeners
+            designSelect.addEventListener('change', updateDesignPreview);
+            apparelSelect.addEventListener('change', updateDesignPreview);
+            shirtSelect.addEventListener('change', updateDesignPreview);
         });
     </script>
 </body>
