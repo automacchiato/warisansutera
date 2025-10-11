@@ -680,6 +680,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="form-group" id="upload_section" style="display:none;">
                                     <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
                                     <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                                    <p>3</p>
                                 </div>
                             </div>
                         </div>
