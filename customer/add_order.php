@@ -674,50 +674,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
-                            <div class="form-group col">
-  <label class="fw-bold">Design</label>
-  <div class="input-group">
-    <select class="form-select" id="designOption">
-      <option value="upload" selected>Upload Design</option>
-      <option value="draw">Draw Design</option>
-    </select>
-  </div>
-
-  <!-- Upload Field -->
-  <div id="uploadSection" class="mt-2">
-    <input type="file" name="drawing[]" id="drawingUpload" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-  </div>
-
-  <!-- Draw Button -->
-  <div id="drawSection" class="mt-2 d-none">
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#drawModal">
-      Open Drawing Canvas
-    </button>
-    <input type="hidden" name="drawing_data[]" id="drawingData">
-  </div>
-</div>
-
-<!-- Drawing Modal -->
-<div class="modal fade" id="drawModal" tabindex="-1" aria-labelledby="drawModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="drawModalLabel">Draw Shirt Design</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <div class="canvas-container" style="position:relative; display:inline-block;">
-          <img id="baseImage" src="shirt_sleeve.png" style="max-width:100%; display:block;">
-          <canvas id="designCanvas" style="position:absolute; top:0; left:0; cursor:crosshair;"></canvas>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="clearCanvas" class="btn btn-secondary">Clear</button>
-        <button type="button" id="saveCanvas" class="btn btn-primary" data-bs-dismiss="modal">Save Design</button>
-      </div>
-    </div>
-  </div>
-</div>
                         </div>
                         `;
                     break;
@@ -1306,75 +1262,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const additionalAmount = balance - additionalDeposit;
             document.getElementById('additional_amount').value = additionalAmount.toFixed(2);
         }
-
-        //draw and upload
-        const optionSelect = document.getElementById('designOption');
-        const uploadSection = document.getElementById('uploadSection');
-        const drawSection = document.getElementById('drawSection');
-        const baseImage = document.getElementById('baseImage');
-        const canvas = document.getElementById('designCanvas');
-        const ctx = canvas.getContext('2d');
-        const drawingDataInput = document.getElementById('drawingData');
-
-        // Toggle between upload/draw
-        optionSelect.addEventListener('change', function() {
-            if (this.value === 'draw') {
-                uploadSection.classList.add('d-none');
-                drawSection.classList.remove('d-none');
-            } else {
-                uploadSection.classList.remove('d-none');
-                drawSection.classList.add('d-none');
-            }
-        });
-
-        // Setup canvas size once image loads
-        baseImage.onload = function() {
-            canvas.width = baseImage.width;
-            canvas.height = baseImage.height;
-        };
-
-        let drawing = false;
-
-        canvas.addEventListener('mousedown', () => {
-            drawing = true;
-        });
-        canvas.addEventListener('mouseup', () => {
-            drawing = false;
-            ctx.beginPath();
-        });
-        canvas.addEventListener('mousemove', draw);
-
-        function draw(e) {
-            if (!drawing) return;
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = '#000';
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-        }
-
-        // Clear drawing
-        document.getElementById('clearCanvas').onclick = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        };
-
-        // Save canvas as base64 image
-        document.getElementById('saveCanvas').onclick = () => {
-            const mergedCanvas = document.createElement('canvas');
-            mergedCanvas.width = canvas.width;
-            mergedCanvas.height = canvas.height;
-            const mergedCtx = mergedCanvas.getContext('2d');
-            mergedCtx.drawImage(baseImage, 0, 0);
-            mergedCtx.drawImage(canvas, 0, 0);
-            const imageData = mergedCanvas.toDataURL('image/png');
-            drawingDataInput.value = imageData;
-            alert('Design saved and ready for upload!');
-        };
     </script>
 </body>
 
