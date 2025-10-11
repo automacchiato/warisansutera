@@ -652,9 +652,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </select>   
                             </div>
                             <div class="form-group col">
-                                <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
-                                <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-                            </div>
+  <label class="fw-bold">Design</label>
+  <div class="input-group">
+    <select class="form-select" id="designOption">
+      <option value="upload" selected>Upload Design</option>
+      <option value="draw">Draw Design</option>
+    </select>
+  </div>
+
+  <!-- Upload Field -->
+  <div id="uploadSection" class="mt-2">
+    <input type="file" name="drawing[]" id="drawingUpload" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+  </div>
+
+  <!-- Draw Button -->
+  <div id="drawSection" class="mt-2 d-none">
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#drawModal">
+      Open Drawing Canvas
+    </button>
+    <input type="hidden" name="drawing_data[]" id="drawingData">
+  </div>
+</div>
+
+<!-- Drawing Modal -->
+<div class="modal fade" id="drawModal" tabindex="-1" aria-labelledby="drawModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="drawModalLabel">Draw Shirt Design</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="canvas-container" style="position:relative; display:inline-block;">
+          <img id="baseImage" src="shirt_base.png" style="max-width:100%; display:block;">
+          <canvas id="designCanvas" style="position:absolute; top:0; left:0; cursor:crosshair;"></canvas>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="clearCanvas" class="btn btn-secondary">Clear</button>
+        <button type="button" id="saveCanvas" class="btn btn-primary" data-bs-dismiss="modal">Save Design</button>
+      </div>
+    </div>
+  </div>
+</div>
                         </div>
                         `;
                     break;
