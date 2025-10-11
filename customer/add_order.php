@@ -323,8 +323,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="date" name="fitting_date" class="form-control">
                 </div>
                 <div class="col">
-                    <label class="fw-bold">Delivery Date*</label>
-                    <input type="date" name="delivery_date" class="form-control" required>
+                    <label class="fw-bold">Delivery Date</label>
+                    <input type="date" name="delivery_date" class="form-control">
                 </div>
             </div>
 
@@ -1292,7 +1292,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if (shirtVariant === 'SH/S' || 'BSH/S') imgSrc = 'defaults/drawing_short_sleeve.jpg';
                     // else if (shirtVariant === 'LONG SLEEVE') imgSrc = 'defaults/shirt_long_sleeve.jpg';
                     // else if (shirtVariant === 'MANDARIN COLLAR') imgSrc = 'defaults/shirt_mandarin_collar.jpg';
-                    else imgSrc = 'defaults/drawing_short_sleeveß.jpg';
+                    else imgSrc = 'defaults/drawing_long_sleeve.jpg';
                 } else {
                     shirtSection.style.display = 'none';
                     if (type === 'TROUSERS') imgSrc = 'defaults/trousers.jpg';
