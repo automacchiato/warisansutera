@@ -684,7 +684,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
       <div class="modal-body text-center">
         <div class="canvas-container" style="position:relative; display:inline-block;">
-          <img id="baseImage" src="shirt_base.png" style="max-width:100%; display:block;">
+          <img id="baseImage" src="shirt_sleeve.png" style="max-width:100%; display:block;">
           <canvas id="designCanvas" style="position:absolute; top:0; left:0; cursor:crosshair;"></canvas>
         </div>
       </div>
