@@ -698,7 +698,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             </div>
                         </div>
-                        </div>
                         `;
                     break;
                 case "TROUSERS":
