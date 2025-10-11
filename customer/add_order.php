@@ -680,7 +680,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="form-group" id="upload_section" style="display:none;">
                                     <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
                                     <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-                                    <p>3</p>
                                 </div>
                             </div>
                         </div>
@@ -1290,10 +1289,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 if (type === 'SHIRT') {
                     shirtSection.style.display = 'block';
-                    if (shirtVariant === 'SHORT SLEEVE') imgSrc = 'defaults/drawing_long_sleeve.jpg';
+                    if (shirtVariant === 'SH/S' || 'BSH/S') imgSrc = 'defaults/drawing_short_sleeve.jpg';
                     // else if (shirtVariant === 'LONG SLEEVE') imgSrc = 'defaults/shirt_long_sleeve.jpg';
                     // else if (shirtVariant === 'MANDARIN COLLAR') imgSrc = 'defaults/shirt_mandarin_collar.jpg';
-                    else imgSrc = 'defaults/drawing_short_sleeve.jpg';
+                    else imgSrc = 'defaults/drawing_short_sleeveß.jpg';
                 } else {
                     shirtSection.style.display = 'none';
                     if (type === 'TROUSERS') imgSrc = 'defaults/trousers.jpg';
