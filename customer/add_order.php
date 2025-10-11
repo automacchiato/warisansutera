@@ -1290,10 +1290,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
 
-            // Event listeners
-            designSelect.addEventListener('change', updateDesignPreview);
-            apparelSelect.addEventListener('change', updateDesignPreview);
-            shirtSelect.addEventListener('change', updateDesignPreview);
+            // // Event listeners
+            // designSelect.addEventListener('change', updateDesignPreview);
+            // apparelSelect.addEventListener('change', updateDesignPreview);
+            // shirtSelect.addEventListener('change', updateDesignPreview);
         });
 
         //Cuff Type
