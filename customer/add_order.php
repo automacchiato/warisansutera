@@ -334,7 +334,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="row g-2 mb-2">
                         <div class="col">
                             <label class="fw-bold">Apparel Type*</label>
-                            <select name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
+                            <select id="item_type" name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
                                 <option value="">Select Apparel</option>
                                 <option value="SHIRT">Shirt</option>
                                 <option value="TROUSER">Trousers</option>
@@ -447,7 +447,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Shirt Type</label>
-                                <select name="shirt_type[]" class="form-control" required>
+                                <select id="shirt_type" name="shirt_type[]" class="form-control" required>
                                     <option value="" disabled selected >Select Shirt Type</option>
                                     <option value="SH/S">Shirt (Short Sleeve)</option>
                                     <option value="SH/L">Shirt (Long Sleeve)</option>
@@ -661,7 +661,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="form-group">
                                     <label>Drawing Option:</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="drawing_option" id="use_default" value="default" checked>
+                                        <input class="form-check-input" type="radio" name="drawing_option" id="useß_default" value="default" checked>
                                         <label class="form-check-label" for="use_default">Use Default Drawing</label>
                                     </div>
                                     <div class="form-check">
