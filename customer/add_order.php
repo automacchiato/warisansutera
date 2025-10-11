@@ -1284,54 +1284,74 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             document.getElementById('additional_amount').value = additionalAmount.toFixed(2);
         }
 
-        //Upload handle
-        // document.addEventListener('DOMContentLoaded', function() {
-        //             const itemType = document.getElementById('item_type');
-        //             const shirtType = document.getElementById('shirt_type');
-        //             const defaultImg = document.getElementById('default_image');
-        //             const useDefault = document.getElementById('use_default');
-        //             const uploadOwn = document.getElementById('upload_own');
-        //             const defaultPreview = document.getElementById('default_preview');
-        //             const uploadSection = document.getElementById('upload_section');
+        //draw and upload
+        const optionSelect = document.getElementById('designOption');
+        const uploadSection = document.getElementById('uploadSection');
+        const drawSection = document.getElementById('drawSection');
+        const baseImage = document.getElementById('baseImage');
+        const canvas = document.getElementById('designCanvas');
+        const ctx = canvas.getContext('2d');
+        const drawingDataInput = document.getElementById('drawingData');
 
-        //     function updateDefaultImage() {
-        //         const type = itemType.value;
-        //         const shirtVariant = shirtType.value;
-        //         let imgSrc = '';
+        // Toggle between upload/draw
+        optionSelect.addEventListener('change', function() {
+            if (this.value === 'draw') {
+                uploadSection.classList.add('d-none');
+                drawSection.classList.remove('d-none');
+            } else {
+                uploadSection.classList.remove('d-none');
+                drawSection.classList.add('d-none');
+            }
+        });
 
-        //         if (type === 'SHIRT') {
-        //             shirtSection.style.display = 'block';
-        //             if (shirtVariant === 'SH/S' || 'BSH/S') imgSrc = 'defaults/drawing_short_sleeve.jpg';
-        //             // else if (shirtVariant === 'LONG SLEEVE') imgSrc = 'defaults/shirt_long_sleeve.jpg';
-        //             // else if (shirtVariant === 'MANDARIN COLLAR') imgSrc = 'defaults/shirt_mandarin_collar.jpg';
-        //             else imgSrc = 'defaults/drawing_long_sleeve.jpg';
-        //         } else {
-        //             shirtSection.style.display = 'none';
-        //             if (type === 'TROUSERS') imgSrc = 'defaults/trousers.jpg';
-        //             else if (type === 'JACKET') imgSrc = 'defaults/jacket.jpg';
-        //             else if (type === 'BAJU MELAYU') imgSrc = 'defaults/bajumelayu.jpg';
-        //             else imgSrc = '';
-        //         }
+        // Setup canvas size once image loads
+        baseImage.onload = function() {
+            canvas.width = baseImage.width;
+            canvas.height = baseImage.height;
+        };
 
-        //         defaultImg.src = imgSrc;
-        //         defaultPreview.style.display = imgSrc ? 'block' : 'none';
-        //     }
+        let drawing = false;
 
-        //     function toggleUpload() {
-        //         if (uploadOwn.checked) {
-        //             uploadSection.style.display = 'block';
-        //             defaultPreview.style.display = 'none';
-        //         } else {
-        //             uploadSection.style.display = 'none';
-        //             updateDefaultImage();
-        //         }
-        //     }
+        canvas.addEventListener('mousedown', () => {
+            drawing = true;
+        });
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+            ctx.beginPath();
+        });
+        canvas.addEventListener('mousemove', draw);
 
-        //     itemType.addEventListener('change', updateDefaultImage);
-        //     shirtType.addEventListener('change', updateDefaultImage);
-        //     useDefault.addEventListener('change', toggleUpload);
-        //     uploadOwn.addEventListener('change', toggleUpload);
-        // });
+        function draw(e) {
+            if (!drawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#000';
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        // Clear drawing
+        document.getElementById('clearCanvas').onclick = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        // Save canvas as base64 image
+        document.getElementById('saveCanvas').onclick = () => {
+            const mergedCanvas = document.createElement('canvas');
+            mergedCanvas.width = canvas.width;
+            mergedCanvas.height = canvas.height;
+            const mergedCtx = mergedCanvas.getContext('2d');
+            mergedCtx.drawImage(baseImage, 0, 0);
+            mergedCtx.drawImage(canvas, 0, 0);
+            const imageData = mergedCanvas.toDataURL('image/png');
+            drawingDataInput.value = imageData;
+            alert('Design saved and ready for upload!');
+        };
     </script>
 </body>
 
