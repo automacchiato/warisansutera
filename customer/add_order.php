@@ -308,8 +308,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </nav>
 
-    <div class="container">
-        <h2 class="text-center mt-2">Create Order</h2>
+    <div class="container p-4">
+        <h2 class="text-center mb-4">Create Order</h2>
         <form method="post" enctype="multipart/form-data">
             <h4>Customer Details</h4>
             <div class="mb-3">
