@@ -51,10 +51,10 @@ $result = $conn->query("
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="../customer/add_order.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../test/index.php">Overview</a>
+                        <a class="nav-link active" href="index.php">Overview</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="add_order.php">Add Order</a>
