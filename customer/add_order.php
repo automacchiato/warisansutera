@@ -309,7 +309,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </nav>
 
     <div class="container">
-        <h2 class="text-center mt-2">Create Invoice</h2>
+        <h2 class="text-center mt-2">Create Order</h2>
         <form method="post" enctype="multipart/form-data">
             <h4>Customer Details</h4>
             <div class="mb-3">

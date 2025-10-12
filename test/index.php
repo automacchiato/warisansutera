@@ -68,7 +68,7 @@ $result = $conn->query("
     </nav>
 
     <div class="container p-4">
-        <h2 class="mb-4">Invoices</h2>
+        <h2 class="text-center mb-4">Invoices</h2>
 
         <!-- Search Box -->
         <div class="mb-3">
