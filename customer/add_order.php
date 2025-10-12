@@ -360,7 +360,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <select id="item_type" name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
                                 <option value="">Select Apparel</option>
                                 <option value="SHIRT">Shirt</option>
-                                <option value="TROUSER">Trousers</option>
+                                <option value="TROUSERS">Trousers</option>
                                 <option value="JACKET">Jacket</option>
                                 <option value="BAJU MELAYU" disabled>Baju Melayu</option>
                             </select>
@@ -945,10 +945,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
-                            <div class="form-group">
-                                <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
-                                <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                            <div class="row mb-2">
+                        <div class="col">
+                            <label class="fw-bold">Design Option</label>
+                            <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
+                                <option value="" disabled selected>Select Design Option</option>
+                                <option value="default">Use Default Design</option>
+                                <option value="upload">Upload Own Design</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2 upload-design d-none">
+                        <div class="col">
+                            <label class="fw-bold">Upload Drawing</label>
+                            <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
+                            <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
+                        </div>
+                    </div>
+                    <div class="row mb-3 default-design-preview d-none">
+                        <div class="col">
+                            <label class="fw-bold">Default Design Preview</label>
+                            <div class="border rounded p-2 text-center bg-light">
+                                <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
                             </div>
+                        </div>
+                    </div>
                         </div>
                         `;
                     break;
@@ -1087,10 +1108,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
-                            <div class="form-group col">
-                                <label for="drawing">Upload Drawing (PDF/JPG/PNG):</label>
-                                <input type="file" name="drawing[]" id="drawing" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                            <div class="row mb-2">
+                        <div class="col">
+                            <label class="fw-bold">Design Option</label>
+                            <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
+                                <option value="" disabled selected>Select Design Option</option>
+                                <option value="default">Use Default Design</option>
+                                <option value="upload">Upload Own Design</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2 upload-design d-none">
+                        <div class="col">
+                            <label class="fw-bold">Upload Drawing</label>
+                            <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
+                            <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
+                        </div>
+                    </div>
+                    <div class="row mb-3 default-design-preview d-none">
+                        <div class="col">
+                            <label class="fw-bold">Default Design Preview</label>
+                            <div class="border rounded p-2 text-center bg-light">
+                                <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
                             </div>
+                        </div>
+                    </div>
                         </div>
                         `;
                     break;
@@ -1098,12 +1140,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     html = `
                     <div class="row mb-2">
                             <div class="col">
-                            <label class="fw-bold">Manufacturer</label>
-                            <select name="manufacturer[]" class="form-control" required>
-                                <option value="" disabled selected>Select Manufacturer</option>
-                                <option value="In-House Factory">In-House Factory</option>
-                                <option value="Fabrica">Fabrica</option>
-                            </select>
+                                <label class="fw-bold">Manufacturer</label>
+                                <select name="manufacturer[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Manufacturer</option>
+                                    <option value="In-House Factory">In-House Factory</option>
+                                    <option value="Fabrica">Fabrica</option>
+                                </select>
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Salesman</label>
@@ -1122,7 +1164,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <select name="gender[]" class="form-control" required>
                                     <option value="" disabled selected>Select Gender</option>
                                     <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
                                 </select>   
                             </div>
                         </div>
@@ -1147,7 +1188,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row mb-2">
                             <div class="col">
                                 <label class="fw-bold">Collar Type</label>
-                                <select name="collar_type[]" class="form-control" required>
+                                <select name="collar_type[]" class="form-control">
+                                    <option value="" disabled selected>Select Collar Design</option>
                                     <option value="Teluk Belanga">Teluk Belanga</option>
                                     <option value="Cekak Musang">Cekak Musang</option>
                                     <option value="Mandarin">Mandarin</option>
@@ -1172,6 +1214,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Collar Length</label>
                                 <input type="number" name="collar_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Back Length</label>
+                                <input type="number" name="back_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Front Length</label>
+                                <input type="number" name="front_length[]" class="form-control" step="0.01" max="999.99">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -1201,6 +1253,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                         <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Shoulder Type</label>
+                                <select name="shoulder_type[]" class="form-control">
+                                    <option value="Square">Square</option>
+                                    <option value="Drop" selected>Drop</option>
+                                </select>   
+                            </div>
                             <div class="col">
                                 <label class="fw-bold">Shoulder Length</label>
                                 <input type="number" name="shoulder[]" class="form-control" step="0.01" max="999.99">
@@ -1233,22 +1292,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Front Cutting</label>
-                                <select name="front_cutting[]" class="form-control" required>
+                                <select name="cutting_type[]" class="form-control">
                                     <option value="" disabled selected>Select Front Cutting</option>
-                                    <option value="Straight">Straight</option>
-                                    <option value="Rounded">Rounded</option>
+                                    <option value="Slim Fit">Slim Fit</option>
+                                    <option value="Normal Size">Normal Size</option>
                                 </select>   
                             </div>
                             <div class="col">
-                                <label class="fw-bold">Placket Type</label>
-                                <select name="placket_type[]" class="form-control" required>
-                                    <option value="" disabled selected>Select Placket Type</option>
-                                    <option value="Hidden Button">Hidden Button</option>
-                                    <option value="Live Placket">Live Placket</option>
-                                    <option value="Front Placket">Front Placket</option>
-                                </select>   
+                                <label class="fw-bold">Buttons Type</label>
+                                <input type="text" name="buttons_type[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Pesak</label>
+                                <input type="number" name="pesak[]" class="form-control" step="0.01" max="999.99">  
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Top Initial</label>
+                                <input type="text" name="top_initial[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Bottom Initial</label>
+                                <input type="text" name="bottom_initial[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cleaning Type</label>
+                                <select name="cleaning_type[]" class="form-control">
+                                    <option value="" disabled selected>Select Cleaning Type</option>
+                                    <option value="No Restriction">No Restriction</option>
+                                    <option value="Dry Clean Only">Dry Clean Only</option>
+                                    <option value="Hand Wash Only">Hand Wash Only</option>
+                                </select>   
+                            </div>
+                            <div class="row mb-2">
+                        <div class="col">
+                            <label class="fw-bold">Design Option</label>
+                            <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
+                                <option value="" disabled selected>Select Design Option</option>
+                                <option value="default">Use Default Design</option>
+                                <option value="upload">Upload Own Design</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2 upload-design d-none">
+                        <div class="col">
+                            <label class="fw-bold">Upload Drawing</label>
+                            <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
+                            <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
+                        </div>
+                    </div>
+                    <div class="row mb-3 default-design-preview d-none">
+                        <div class="col">
+                            <label class="fw-bold">Default Design Preview</label>
+                            <div class="border rounded p-2 text-center bg-light">
+                                <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
+                            </div>
+                        </div>
+                    </div>
                         `;
                     break;
             }
