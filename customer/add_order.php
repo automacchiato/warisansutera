@@ -463,48 +463,234 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             switch (type) {
                 case "SHIRT":
                     html = `
-                    <div class="row mb-2">
-                        <div class="col">
-                            <label class="fw-bold">Manufacturer</label>
-                            <select name="manufacturer[]" class="form-control" required>
-                                <option value="" disabled selected>Select Manufacturer</option>
-                                <option value="In-House Factory">In-House Factory</option>
-                                <option value="Fabrica">Fabrica</option>
-                            </select>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Manufacturer</label>
+                                <select name="manufacturer[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Manufacturer</option>
+                                    <option value="In-House Factory">In-House Factory</option>
+                                    <option value="Fabrica">Fabrica</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Salesman</label>
+                                <input type="text" name="salesman_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cutter Name</label>
+                                <input type="text" name="cutter_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Tailor Name</label>
+                                <input type="text" name="tailor_name[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Shirt Type</label>
+                                <select id="shirt_type" name="shirt_type[]" class="form-control" required>
+                                    <option value="" disabled selected >Select Shirt Type</option>
+                                    <option value="SH/S">Shirt (Short Sleeve)</option>
+                                    <option value="SH/L">Shirt (Long Sleeve)</option>
+                                    <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
+                                    <option value="BSH/L">Batik Shirt (Long Sleeve)</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Gender</label>
+                                <select name="gender[]" class="form-control" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>   
+                            </div>
                         </div>
-                        <div class="col">
-                            <label class="fw-bold">Salesman</label>
-                            <input type="text" name="salesman_name[]" class="form-control">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Special Instructions</label>
+                                <input type="text" name="special_instructions[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Previous Invoice No.</label>
+                                <input type="text" name="previous_invoice_number[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Fabric Direction</label>
+                                <select name="fabric_direction[]" class="form-control">
+                                    <option value="No Direction" selected>No Direction</option>
+                                    <option value="Vertical">Vertical</option>
+                                    <option value="Horizontal">Horizontal</option>
+                                </select>   
+                            </div>
                         </div>
-                        <div class="col">
-                            <label class="fw-bold">Cutter Name</label>
-                            <input type="text" name="cutter_name[]" class="form-control">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Collar Design</label>
+                                <select name="collar_design[]" class="form-control">
+                                    <option value="" disabled selected>Select Collar Design</option>
+                                    <option value="Button Down (C1)">Button Down (C1)</option>
+                                    <option value="Classic (C2)">Classic (C2)</option>
+                                    <option value="Cutaway (C3)">Cutaway (C3)</option>
+                                    <option value="Wing (C4)">Wing (C4)</option>
+                                    <option value="Wing (Narrow) (C5)">Wing (Narrow) (C5)</option>
+                                    <option value="Wing (Round Tip) (C6)">Wing (Round Tip) (C6)</option>
+                                    <option value="Tab Collar (C7)">Tab Collar (C7)</option>
+                                    <option value="Button Loop (C8)">Button Loop (C8)</option>
+                                    <option value="BDI (C9)">BDI (C9)</option>
+                                    <option value="NAP (C10)">NAP (C10)</option>
+                                    <option value="MAPS (C11)">MAPS (C11)</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Height</label>
+                                <input type="number" name="collar_height[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Width</label>
+                                <input type="number" name="collar_width[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Gap</label>
+                                <input type="number" name="collar_gap[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Meet</label>
+                                <input type="number" name="collar_meet[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Collar Length</label>
+                                <input type="number" name="collar_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label class="fw-bold">Tailor Name</label>
-                            <input type="text" name="tailor_name[]" class="form-control">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Back Length</label>
+                                <input type="number" name="back_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Front Length</label>
+                                <input type="number" name="front_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label class="fw-bold">Shirt Type</label>
-                            <select name="shirt_type[]" class="form-control shirt-type-select" required onchange="updateShirtDesignPreview(this)">
-                                <option value="" disabled selected>Select Shirt Type</option>
-                                <option value="SH/S">Shirt (Short Sleeve)</option>
-                                <option value="SH/L">Shirt (Long Sleeve)</option>
-                                <option value="BSH/S">Batik Shirt (Short Sleeve)</option>
-                                <option value="BSH/L">Batik Shirt (Long Sleeve)</option>
-                            </select>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Chest (Fit)</label>
+                                <input type="number" name="chest_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Chest (Loose)</label>
+                                <input type="number" name="chest_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Waist (Fit)</label>
+                                <input type="number" name="waist_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Waist (Loose)</label>
+                                <input type="number" name="waist_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Hip (Fit)</label>
+                                <input type="number" name="hip_fit[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Hip (Loose)</label>
+                                <input type="number" name="hip_loose[]" class="form-control" step="0.01" max="999.99">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label class="fw-bold">Gender</label>
-                            <select name="gender[]" class="form-control" required>
-                                <option value="" disabled selected>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>   
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Shoulder Type</label>
+                                <select name="shoulder_type[]" class="form-control">
+                                    <option value="Square">Square</option>
+                                    <option value="Drop" selected>Drop</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Shoulder Length</label>
+                                <input type="number" name="shoulder[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Sleeve Length</label>
+                                <input type="number" name="sleeve_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Arm Length</label>
+                                <input type="number" name="arm_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Elbow</label>
+                                <input type="number" name="elbow_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cuff Type</label>
+                                <select name="cuff_type[]" class="form-control" required>
+                                    <option value="No Cuff" selected>No Cuff</option>
+                                    <option value="Single Cuff">Single Cuff</option>
+                                    <option value="Double Cuff">Double Cuff</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cuff Length</label>
+                                <input type="number" name="cuff_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cuff Width</label>
+                                <input type="number" name="cuff_width[]" class="form-control" step="0.01" max="999.99">
+                            </div>
                         </div>
-                    </div>
-                    <!-- Rest of shirt fields... -->
-                    <div class="row mb-2">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Armhole</label>
+                                <input type="number" name="armhole_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Erect</label>
+                                <input type="number" name="erect[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Hunch</label>
+                                <input type="number" name="hunch[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Corpulent</label>
+                                <input type="number" name="corpulent[]" class="form-control" step="0.01" max="999.99">  
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Front Cutting</label>
+                                <select name="front_cutting[]" class="form-control">
+                                    <option value="" disabled selected>Select Front Cutting</option>
+                                    <option value="Straight">Straight</option>
+                                    <option value="Rounded">Rounded</option>
+                                </select>   
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Placket Type</label>
+                                <select name="placket_type[]" class="form-control">
+                                    <option value="" disabled selected>Select Placket Type</option>
+                                    <option value="Hidden Button">Hidden Button</option>
+                                    <option value="Live Placket">Live Placket</option>
+                                    <option value="Front Placket">Front Placket</option>
+                                </select>   
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Top Initial</label>
+                                <input type="text" name="top_initial[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Bottom Initial</label>
+                                <input type="text" name="bottom_initial[]" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Cleaning Type</label>
+                                <select name="cleaning_type[]" class="form-control">
+                                    <option value="" disabled selected>Select Cleaning Type</option>
+                                    <option value="No Restriction">No Restriction</option>
+                                    <option value="Dry Clean Only">Dry Clean Only</option>
+                                    <option value="Hand Wash Only">Hand Wash Only</option>
+                                </select>   
+                            </div>
+                            <div class="row mb-2">
                         <div class="col">
                             <label class="fw-bold">Design Option</label>
                             <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
