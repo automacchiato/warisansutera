@@ -51,13 +51,13 @@ $result = $conn->query("
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../customer/add_order.php">Home</a>
+                        <a class="nav-link disabled" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="index.php">Overview</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="add_order.php">Add Order</a>
+                        <a class="nav-link" aria-current="page" href="../customer/add_order.php">Add Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
