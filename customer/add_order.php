@@ -676,6 +676,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
+                                    <label class="fw-bold">Design Option</label>
+                                        <select name="design_option[]" class="form-control design-option" required>
+                                        <option value="" disabled selected>Select Design Option</option>
+                                        <option value="default">Use Default Design</option>
+                                        <option value="upload">Upload Own Design</option>
+                                    </select>
+                                </div>
+                                <div class="col">
                                     <label class="fw-bold">Upload Drawing</label>
                                     <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
                                     <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
