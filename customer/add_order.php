@@ -1365,7 +1365,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'BSH/L': 'defaults/default_batik_long.png',
             },
             TROUSERS: 'defaults/default_trousers.png',
-            JACKET: 'defaults/default_jacket.png',
+            JACKET: 'defaults/default_jackets.png',
             'BAJU MELAYU': 'defaults/default_bajumelayu.png'
         };
 
