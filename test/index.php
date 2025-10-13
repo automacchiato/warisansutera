@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -24,8 +25,9 @@ $result = $conn->query("
     <meta charset="UTF-8">
     <title>Invoice List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- ✅ Bootstrap Table CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css">
+
+    <!-- DataTables Bootstrap 5 CSS -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -41,6 +43,7 @@ $result = $conn->query("
                     <li class="nav-item"><a class="nav-link disabled" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="index.php">Overview</a></li>
                     <li class="nav-item"><a class="nav-link" href="../customer/add_order.php">Add Order</a></li>
+                    <li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
                 </ul>
             </div>
         </div>
@@ -49,23 +52,14 @@ $result = $conn->query("
     <div class="container p-4">
         <h2 class="text-center mb-4">Invoices</h2>
 
-        <!-- ✅ Bootstrap Table -->
-        <table
-            id="invoiceTable"
-            class="table table-striped table-bordered"
-            data-toggle="table"
-            data-search="true"
-            data-pagination="true"
-            data-page-size="10"
-            data-page-list="[5, 10, 20, 50, 100, all]"
-            data-sortable="true">
+        <table id="invoiceTable" class="table table-bordered table-striped align-middle">
             <thead class="table-dark">
                 <tr>
-                    <th data-field="invoice_number" data-sortable="true">Invoice No</th>
-                    <th data-field="customer_name" data-sortable="true">Customer</th>
-                    <th data-field="order_date" data-sortable="true">Order Date</th>
-                    <th data-field="delivery_date" data-sortable="true">Delivery Date</th>
-                    <th data-field="action">Action</th>
+                    <th>Invoice No</th>
+                    <th>Customer</th>
+                    <th>Order Date</th>
+                    <th>Delivery Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -85,9 +79,35 @@ $result = $conn->query("
         </table>
     </div>
 
-    <!-- ✅ Bootstrap & Bootstrap Table JS -->
+    <!-- jQuery + Bootstrap + DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#invoiceTable').DataTable({
+                "order": [
+                    [0, "desc"]
+                ],
+                "pageLength": 10,
+                "lengthMenu": [5, 10, 25, 50, 100],
+                "language": {
+                    "search": "Search invoices:",
+                    "lengthMenu": "Show _MENU_ entries per page",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ invoices",
+                    "paginate": {
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Prev"
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
