@@ -70,7 +70,7 @@ $result = $conn->query("
                         <td><?= htmlspecialchars($row['order_date']) ?></td>
                         <td><?= htmlspecialchars($row['delivery_date']) ?></td>
                         <td class="text-center">
-                            <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm">Show Workslip</a>
+                            <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm" target="_blank">Show Workslip</a>
                         </td>
                     </tr>
                 <?php } ?>
