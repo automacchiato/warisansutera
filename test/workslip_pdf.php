@@ -610,7 +610,7 @@ while ($row = $items->fetch_assoc()) {
             // Extra notes / signatures
             $pdf->Cell(0, 8, "Special Instructions: " . ($work['special_instructions'] ?? ""), 0, 1);
 
-            $pdf->Ln(100);
+            $pdf->Ln(200);
             break;
 
         // case 'JACKET':
