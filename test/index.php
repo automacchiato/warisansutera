@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -25,19 +24,8 @@ $result = $conn->query("
     <meta charset="UTF-8">
     <title>Invoice List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        th {
-            cursor: pointer;
-        }
-
-        th.sort-asc::after {
-            content: " 🔼";
-        }
-
-        th.sort-desc::after {
-            content: " 🔽";
-        }
-    </style>
+    <!-- ✅ Bootstrap Table CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css">
 </head>
 
 <body class="bg-light">
@@ -45,23 +33,14 @@ $result = $conn->query("
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">CMS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Overview</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="../customer/add_order.php">Add Order</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link disabled" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">Overview</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../customer/add_order.php">Add Order</a></li>
                 </ul>
             </div>
         </div>
@@ -70,19 +49,23 @@ $result = $conn->query("
     <div class="container p-4">
         <h2 class="text-center mb-4">Invoices</h2>
 
-        <!-- Search Box -->
-        <div class="mb-3">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search invoices...">
-        </div>
-
-        <table id="invoiceTable" class="table table-bordered table-striped align-middle">
+        <!-- ✅ Bootstrap Table -->
+        <table
+            id="invoiceTable"
+            class="table table-striped table-bordered"
+            data-toggle="table"
+            data-search="true"
+            data-pagination="true"
+            data-page-size="10"
+            data-page-list="[5, 10, 20, 50, 100, all]"
+            data-sortable="true">
             <thead class="table-dark">
                 <tr>
-                    <th data-column="invoice_number">Invoice No</th>
-                    <th data-column="customer_name">Customer</th>
-                    <th data-column="order_date">Order Date</th>
-                    <th data-column="delivery_date">Delivery Date</th>
-                    <th>Action</th>
+                    <th data-field="invoice_number" data-sortable="true">Invoice No</th>
+                    <th data-field="customer_name" data-sortable="true">Customer</th>
+                    <th data-field="order_date" data-sortable="true">Order Date</th>
+                    <th data-field="delivery_date" data-sortable="true">Delivery Date</th>
+                    <th data-field="action">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -102,48 +85,9 @@ $result = $conn->query("
         </table>
     </div>
 
-    <script>
-        // --- SEARCH FUNCTION ---
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            let filter = this.value.toLowerCase();
-            let rows = document.querySelectorAll('#invoiceTable tbody tr');
-
-            rows.forEach(row => {
-                let text = row.textContent.toLowerCase();
-                row.style.display = text.includes(filter) ? '' : 'none';
-            });
-        });
-
-        // --- SORT FUNCTION ---
-        document.querySelectorAll('#invoiceTable th[data-column]').forEach(th => {
-            th.addEventListener('click', function() {
-                let table = th.closest('table');
-                let tbody = table.querySelector('tbody');
-                let rows = Array.from(tbody.querySelectorAll('tr'));
-                let index = Array.from(th.parentNode.children).indexOf(th);
-                let ascending = !th.classList.contains('sort-asc');
-
-                // Reset other column classes
-                table.querySelectorAll('th').forEach(header => header.classList.remove('sort-asc', 'sort-desc'));
-
-                th.classList.toggle('sort-asc', ascending);
-                th.classList.toggle('sort-desc', !ascending);
-
-                rows.sort((a, b) => {
-                    let cellA = a.children[index].innerText.trim().toLowerCase();
-                    let cellB = b.children[index].innerText.trim().toLowerCase();
-
-                    if (!isNaN(Date.parse(cellA)) && !isNaN(Date.parse(cellB))) {
-                        return ascending ? new Date(cellA) - new Date(cellB) : new Date(cellB) - new Date(cellA);
-                    }
-
-                    return ascending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-                });
-
-                rows.forEach(row => tbody.appendChild(row));
-            });
-        });
-    </script>
+    <!-- ✅ Bootstrap & Bootstrap Table JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
 </body>
 
 </html>
