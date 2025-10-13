@@ -239,7 +239,67 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "Error: " . $stmt->error;
             }
         } elseif ($item === 'BAJU MELAYU') {
-            // BAJU MELAYU WORKSLIP (mapping only) 
+
+            $drawingFile = null; // default if no file uploaded
+            if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
+                $targetDir = "uploads/drawings/";
+                if (!file_exists($targetDir)) {
+                    mkdir($targetDir, 0777, true);
+                }
+
+                $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
+                $targetFile = $targetDir . $fileName;
+
+                if (move_uploaded_file($_FILES['drawing']['tmp_name'][$key], $targetFile)) {
+                    $drawingFile = $fileName;
+                }
+            }
+
+            $stmt = $conn->prepare("INSERT INTO workslip_baju_melayu
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fabric_direction, collar_type, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, arm_length, armhole_length, erect, hunch, shoulder_type, corpulent, buttons_type, cutting_type, pesak, top_initial, bottom_initial, cleaning_type, drawing)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param(
+                "isssssssssdddddddddddddddddddsdssdssss",
+                $invoice_item_id, //i
+                $_POST['manufacturer'][$key], //s
+                $_POST['salesman_name'][$key], //s
+                $_POST['cutter_name'][$key], //s
+                $_POST['tailor_name'][$key], //s
+                $_POST['gender'][$key], //s
+                $_POST['special_instructions'][$key], //s
+                $_POST['previous_invoice_number'][$key], //s
+                $_POST['fabric_direction'][$key], //s
+                $_POST['collar_type'][$key], //s
+                $_POST['collar_height'][$key], //d
+                $_POST['collar_width'][$key], //d
+                $_POST['collar_gap'][$key], //d
+                $_POST['collar_meet'][$key], //d
+                $_POST['collar_length'][$key], //d
+                $_POST['back_length'][$key], //d
+                $_POST['front_length'][$key], ///d
+                $_POST['chest_fit'][$key], //d
+                $_POST['chest_loose'][$key], //d
+                $_POST['waist_fit'][$key], //d
+                $_POST['waist_loose'][$key], //d
+                $_POST['hip_fit'][$key], //d
+                $_POST['hip_loose'][$key], //d
+                $_POST['shoulder'][$key], //d
+                $_POST['sleeve_length'][$key], //d
+                $_POST['arm_length'][$key], //d
+                $_POST['armhole_length'][$key], //d
+                $_POST['erect'][$key], //double
+                $_POST['hunch'][$key], //double
+                $_POST['shoulder_type'][$key], //s
+                $_POST['corpulent'][$key], // double
+                $_POST['buttons_type'][$key], //s
+                $_POST['cutting_type'][$key], //s
+                $_POST['pesak'][$key], //d
+                $_POST['top_initial'][$key], //s
+                $_POST['bottom_initial'][$key], //s
+                $_POST['cleaning_type'][$key], //s
+                $drawingFile
+            );
+            $stmt->execute();
         }
     }
 
@@ -254,7 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 
 <head>
-    <title>Create Invoice</title>
+    <title>Create Order</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         .canvas-container {
