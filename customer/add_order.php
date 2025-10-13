@@ -265,7 +265,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['salesman_name'][$key], //s
                 $_POST['cutter_name'][$key], //s
                 $_POST['tailor_name'][$key], //s
-                $_POST['gender'][$key], //s
+                $_POST['gender'][$key], //ss
                 $_POST['special_instructions'][$key], //s
                 $_POST['previous_invoice_number'][$key], //s
                 $_POST['fabric_direction'][$key], //s
