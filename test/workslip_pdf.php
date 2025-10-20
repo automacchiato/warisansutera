@@ -381,7 +381,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(35, 10, $row['fabric_usage'], 1, 0, "C");
             $pdf->Cell(35, 10, $work['cleaning_type'], 1, 1, "C");
 
-            //Drawing
+            //Drawingg
             $pdf->Image(__DIR__ . "/../customer/uploads/drawings/" . $work['drawing'], 110, 125, 80, 80);
 
             // Extra notes / signatures
