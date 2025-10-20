@@ -613,19 +613,180 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Ln(200);
             break;
 
-        // case 'JACKET':
-        //     $sql = "SELECT shoulder, chest, sleeve, lining, vent_type 
-        //             FROM jacket_workslip WHERE invoice_item_id = $item_id";
-        //     $work = $conn->query($sql)->fetch_assoc();
+        case 'JACKET':
+            $sql = "SELECT * FROM workslip_jacket WHERE item_id = $item_id";
+            $work = $conn->query($sql)->fetch_assoc();
 
-        //     $pdf->MultiCell(0,8,
-        //         "- Shoulder: ".$work['shoulder']."\n".
-        //         "- Chest: ".$work['chest']."\n".
-        //         "- Sleeve: ".$work['sleeve']."\n".
-        //         "- Lining: ".$work['lining']."\n".
-        //         "- Vent: ".$work['vent_type']
-        //     );
-        //     break;
+            //Line 1
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(38, 10, "Invoice No.", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(38, 10, $invoice['invoice_number'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(38, 10, "Manufacturer", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(38, 10, $work['manufacturer'], 1);
+            $pdf->SetFont('Arial', 'B', 14);
+            $pdf->Cell(38, 10, "MUST", 1, 1, "C");
+
+            //Line 2
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Salesman", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.7, 10, $work['salesman_name'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Cutter", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.7, 10, $work['cutter_name'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Tailor", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.6, 10, $work['tailor_name'], 1, 1);
+
+            //Line 3
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Fitting Date", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.7, 10, $invoice['fitting_date'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Deliver Date", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.7, 10, $invoice['delivery_date'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(31.7, 10, "Gender", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(31.7, 10, $work['gender'], 1, 1);
+
+            //Line 6
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Back", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['back_length'], 1, 1);
+
+            //Line 7
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Front", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['front_length'], 1, 1);
+
+            //Line 8
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Chest", 1);
+            $pdf->Cell(15, 10, "Fit", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(15, 10, $work['chest_fit'], 1, 0, "C");
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(15, 10, "Loose", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(15, 10, $work['chest_loose'], 1, 0, "C");
+            $pdf->Cell(30, 10, "", 1, 0, "C");
+
+            //Line 9
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Waist", 1);
+            $pdf->Cell(15, 10, "Fit", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(15, 10, $work['waist_fit'], 1, 0, "C");
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(15, 10, "Loose", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(15, 10, $work['waist_loose'], 1, 1, "C");
+
+            //Line 10
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Hip", 1);
+            $pdf->Cell(15, 10, "Fit", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(15, 10, $work['hip_fit'], 1, 0, "C");
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(15, 10, "Loose", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(15, 10, $work['hip_loose'], 1, 1, "C");
+
+            //Line 11
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Shoulder", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['shoulder'], 1, 1);
+
+            //Line 12
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Sleeve", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['sleeve_length'], 1, 1);
+
+            //Line 13
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Cuff", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['cuff_length'], 1, 1);
+
+            //Line 14
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Cross Back", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['cross_back'], 1, 1);
+
+            //Line 15
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Cross Front", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['cross_front'], 1, 1);
+
+            //Line 16
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Vest Length", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['vest_length'], 1, 1);
+
+            //Line 17
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Back Neck to Waist", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['back_neck_to_waist'], 1, 1);
+
+            //Line 18
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Front Neck to Waist", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['back_neck_to_front_waist'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(25, 10, "Sleeve Button", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 10);
+            $pdf->Cell(25, 10, $work['sleeve_button'], 1, 0, "C");
+
+            //Line 19
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Top Initial", 1);
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(60, 10, $work['top_initial'], 1);
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Bottom Initial", 1, 0, "C");
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(70, 10, $work['bottom_initial'], 1, 1);
+
+            //Line 21
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(30, 10, "Fabric Code", 1, 0, "C");
+            $pdf->Cell(60, 10, "Fabric Name", 1, 0, "C");
+            $pdf->Cell(30, 10, "Fabric Color", 1, 0, "C");
+            $pdf->Cell(35, 10, "Fabric Usage (m)", 1, 0, "C");
+            $pdf->Cell(35, 10, "Cleaning Type", 1, 1, "C");
+
+            //Line 22
+            $pdf->SetFont('Arial', '', 11);
+            $pdf->Cell(30, 10, $row['fabric_code'], 1, 0, "C");
+            $pdf->Cell(60, 10, $row['fabric_name'], 1, 0, "C");
+            $pdf->Cell(30, 10, $row['fabric_color'], 1, 0, "C");
+            $pdf->Cell(35, 10, $row['fabric_usage'], 1, 0, "C");
+            $pdf->Cell(35, 10, $work['cleaning_type'], 1, 1, "C");
+
+            //Drawing
+            $pdf->Image(__DIR__ . "/../customer/uploads/drawings/" . $work['drawing'], 110, 125, 80, 80);
+
+            // Extra notes / signatures
+            $pdf->Cell(0, 8, "Special Instructions: " . ($work['special_instructions'] ?? ""), 0, 1);
+            break;
 
         default:
             $pdf->MultiCell(0, 8, "- No specific workslip data available.");
