@@ -1421,8 +1421,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             SHIRT: {
                 'SH/S': 'defaults/default_shirt_short.png',
                 'SH/L': 'defaults/default_shirt_long.png',
-                'BSH/S': 'defaults/default_batik_short.png',
-                'BSH/L': 'defaults/default_batik_long.png',
+                'BSH/S': 'defaults/default_shirt_short.png',
+                'BSH/L': 'defaults/default_shirt_long.png',
             },
             TROUSERS: 'defaults/default_trousers.png',
             JACKET: 'defaults/default_jackets.png',
