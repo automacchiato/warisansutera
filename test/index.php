@@ -71,42 +71,72 @@ $result = $conn->query("
                         <td><?= htmlspecialchars($row['delivery_date']) ?></td>
                         <td class="text-center">
                             <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm" target="_blank">Show Workslip</a>
-                            <a href="deleteworkslip.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-danger btn-sm"">Delete Workslip</a>
-                        </td>
+                            <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-invoice-id="<?= $row['invoice_id']; ?>">Delete</a>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
 
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this invoice? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="#" id="confirmDeleteBtn" class="btn btn-danger">Yes, Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- jQuery + Bootstrap + DataTables JS -->
     <script src=" https://code.jquery.com/jquery-3.7.0.min.js"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-                                <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-                                <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
-                                <script>
-                                    $(document).ready(function() {
-                                        $('#invoiceTable').DataTable({
-                                            "order": [
-                                                [0, "desc"]
-                                            ],
-                                            "pageLength": 10,
-                                            "lengthMenu": [5, 10, 25, 50, 100],
-                                            "language": {
-                                                "search": "Search invoices:",
-                                                "lengthMenu": "Show _MENU_ entries per page",
-                                                "info": "Showing _START_ to _END_ of _TOTAL_ invoices",
-                                                "paginate": {
-                                                    "first": "First",
-                                                    "last": "Last",
-                                                    "next": "Next",
-                                                    "previous": "Prev"
-                                                }
-                                            }
-                                        });
-                                    });
-                                </script>
+    <script>
+        $(document).ready(function() {
+            $('#invoiceTable').DataTable({
+                "order": [
+                    [0, "desc"]
+                ],
+                "pageLength": 10,
+                "lengthMenu": [5, 10, 25, 50, 100],
+                "language": {
+                    "search": "Search invoices:",
+                    "lengthMenu": "Show _MENU_ entries per page",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ invoices",
+                    "paginate": {
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Prev"
+                    }
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteModal = document.getElementById('confirmDeleteModal');
+            const confirmBtn = document.getElementById('confirmDeleteBtn');
+
+            deleteModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const invoiceId = button.getAttribute('data-invoice-id');
+                confirmBtn.href = `delete_invoice.php?invoice_id=${invoiceId}`;
+            });
+        });
+    </script>
 
 </body>
 
