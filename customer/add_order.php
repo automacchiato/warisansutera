@@ -769,7 +769,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="row mb-3 default-design-preview d-none">
                 <div class="col">
-                    <label class="fw-bold">Default Design Preview</label>
+                    <label class="fw-bold">Default Design Previewss</label>
                     <div class="border rounded p-2 text-center bg-light">
                         <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
                     </div>
