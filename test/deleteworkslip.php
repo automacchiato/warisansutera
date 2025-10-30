@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include 'db.php';
 
 if (isset($_GET['invoice_id'])) {
     $invoice_id = $_GET['invoice_id'];
