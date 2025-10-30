@@ -768,13 +768,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="row mb-3 default-design-preview d-none">
-                        <div class="col">
-                            <label class="fw-bold">Default Design Preview</label>
-                            <div class="border rounded p-2 text-center bg-light">
-                                <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
-                            </div>
-                        </div>
+                <div class="col">
+                    <label class="fw-bold">Default Design Preview</label>
+                    <div class="border rounded p-2 text-center bg-light">
+                        <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
                     </div>
+                    <!-- 🆕 New Button -->
+                    <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
+                        Use This Design as My Drawing
+                    </button>
+                </div>
+            </div>
+        </div>
                         `;
                     break;
                 case "TROUSERS":
