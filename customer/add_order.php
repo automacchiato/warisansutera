@@ -750,16 +750,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
-                            <div class="row mb-2">
-                        <div class="col">
-                            <label class="fw-bold">Design Option</label>
-                            <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
-                                <option value="" disabled selected>Select Design Option</option>
-                                <option value="default">Use Default Design</option>
-                                <option value="upload">Upload Own Design</option>
-                            </select>
                         </div>
-                    </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Design Option</label>
+                                <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
+                                    <option value="" disabled selected>Select Design Option</option>
+                                    <option value="default">Use Default Design</option>
+                                    <option value="upload">Upload Own Design</option>
+                                </select>
+                            </div>
+                        </div>
                     <div class="row mb-2 upload-design d-none">
                         <div class="col">
                             <label class="fw-bold">Upload Drawing</label>
@@ -768,19 +769,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="row mb-3 default-design-preview d-none">
-                <div class="col">
-                    <label class="fw-bold">Default Design Previewss</label>
-                    <div class="border rounded p-2 text-center bg-light">
-                        <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
+                        <div class="col">
+                            <label class="fw-bold">Default Design Preview</label>
+                            <div class="border rounded p-2 text-center bg-light">
+                                <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
+                            </div>
+                            <!-- 🆕 New Button -->
+                            <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
+                                Use This Design as My Drawing
+                            </button>
+                        </div>
                     </div>
-                    <!-- 🆕 New Button -->
-                    <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
-                        Use This Design as My Drawing
-                    </button>
-                </div>
-            </div>
-        </div>
-                        `;
+                    `;
                     break;
                 case "TROUSERS":
                     html = `
@@ -1033,9 +1033,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="border rounded p-2 text-center bg-light">
                                 <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
                             </div>
+                            <!-- 🆕 New Button -->
+                            <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
+                                Use This Design as My Drawing
+                            </button>
                         </div>
                     </div>
-                        </div>
                         `;
                     break;
                 case "JACKET":
@@ -1192,13 +1195,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="row mb-3 default-design-preview d-none">
                         <div class="col">
-                            <label class="fw-bold">Default Design Preview</label>
+                            <label class="fw-bold">Default Design Previewss</label>
                             <div class="border rounded p-2 text-center bg-light">
                                 <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
                             </div>
+                            <!-- 🆕 New Button -->
+                            <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
+                                Use This Design as My Drawing
+                            </button>
                         </div>
                     </div>
-                        </div>
                         `;
                     break;
                 case "BAJU MELAYU":
@@ -1409,10 +1415,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="row mb-3 default-design-preview d-none">
                         <div class="col">
-                            <label class="fw-bold">Default Design Preview</label>
+                            <label class="fw-bold">Default Design Previewss</label>
                             <div class="border rounded p-2 text-center bg-light">
                                 <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
                             </div>
+                            <!-- 🆕 New Button -->
+                            <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
+                                Use This Design as My Drawing
+                            </button>
                         </div>
                     </div>
                         `;
