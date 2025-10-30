@@ -1443,6 +1443,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const uploadInput = uploadCol.querySelector('input[type="file"]');
             const previewRow = itemBlock.querySelector('.default-design-preview');
             const previewImg = itemBlock.querySelector('.default-design-img');
+            const useDefaultBtn = itemBlock.querySelector('.use-default-btn'); // 🆕
 
             // Reset
             uploadCol.classList.add('d-none');
@@ -1467,6 +1468,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (imagePath) {
                     previewImg.src = imagePath;
                     previewRow.classList.remove('d-none');
+                    if (useDefaultBtn) useDefaultBtn.classList.remove('d-none'); // 🆕 Show button
                 }
             }
         }
@@ -1481,6 +1483,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 updateDesignPreview(designSelect);
             }
         }
+
+        // 🆕 Allow user to "upload" default design automatically
+        document.addEventListener('click', async function(e) {
+            if (e.target.classList.contains('use-default-btn')) {
+                const itemBlock = e.target.closest('.item-block');
+                const previewImg = itemBlock.querySelector('.default-design-img');
+                const uploadInput = itemBlock.querySelector('.upload-design input[type="file"]');
+
+                try {
+                    const response = await fetch(previewImg.src);
+                    const blob = await response.blob();
+                    const file = new File([blob], 'default_design.png', {
+                        type: blob.type
+                    });
+
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    uploadInput.files = dataTransfer.files;
+
+                    // Show upload section
+                    itemBlock.querySelector('.upload-design').classList.remove('d-none');
+                    uploadInput.setAttribute('required', 'required');
+
+                    // Feedback
+                    e.target.textContent = 'Design Selected ✓';
+                    e.target.classList.replace('btn-primary', 'btn-success');
+                    e.target.disabled = true;
+                } catch (err) {
+                    alert('Error selecting design: ' + err.message);
+                }
+            }
+        });
+
 
         //Cuff Type
         document.querySelectorAll('.cuff_type').forEach(function(select) {
