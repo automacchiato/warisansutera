@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include 'db.php';
+include './customer/db.php';
 
 if (isset($_GET['invoice_id'])) {
     $invoice_id = $_GET['invoice_id'];
