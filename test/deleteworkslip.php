@@ -51,8 +51,6 @@ if (isset($_GET['invoice_id'])) {
 
         // Commit all
         $conn->commit();
-
-        header("Location: index.php?msg=deleted");
         exit;
     } catch (Exception $e) {
         $conn->rollback();
