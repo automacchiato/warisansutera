@@ -71,7 +71,7 @@ $result = $conn->query("
                         <td><?= htmlspecialchars($row['delivery_date']) ?></td>
                         <td class="text-center">
                             <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm" target="_blank">Show Workslip</a>
-                            <a href="deleteworkslip.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-danger btn-sm" target="_blank">Delete Workslip</a>
+                            <a href="deleteworkslip.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-danger btn-sm"">Delete Workslip</a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -80,33 +80,33 @@ $result = $conn->query("
     </div>
 
     <!-- jQuery + Bootstrap + DataTables JS -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src=" https://code.jquery.com/jquery-3.7.0.min.js"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+                                <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#invoiceTable').DataTable({
-                "order": [
-                    [0, "desc"]
-                ],
-                "pageLength": 10,
-                "lengthMenu": [5, 10, 25, 50, 100],
-                "language": {
-                    "search": "Search invoices:",
-                    "lengthMenu": "Show _MENU_ entries per page",
-                    "info": "Showing _START_ to _END_ of _TOTAL_ invoices",
-                    "paginate": {
-                        "first": "First",
-                        "last": "Last",
-                        "next": "Next",
-                        "previous": "Prev"
-                    }
-                }
-            });
-        });
-    </script>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#invoiceTable').DataTable({
+                                            "order": [
+                                                [0, "desc"]
+                                            ],
+                                            "pageLength": 10,
+                                            "lengthMenu": [5, 10, 25, 50, 100],
+                                            "language": {
+                                                "search": "Search invoices:",
+                                                "lengthMenu": "Show _MENU_ entries per page",
+                                                "info": "Showing _START_ to _END_ of _TOTAL_ invoices",
+                                                "paginate": {
+                                                    "first": "First",
+                                                    "last": "Last",
+                                                    "next": "Next",
+                                                    "previous": "Prev"
+                                                }
+                                            }
+                                        });
+                                    });
+                                </script>
 
 </body>
 
