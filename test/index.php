@@ -133,7 +133,7 @@ $result = $conn->query("
             deleteModal.addEventListener('show.bs.modal', function(event) {
                 const button = event.relatedTarget;
                 const invoiceId = button.getAttribute('data-invoice-id');
-                confirmBtn.href = `delete_invoice.php?invoice_id=${invoiceId}`;
+                confirmBtn.href = `deleteworkslip.php?invoice_id=${invoiceId}`;
             });
         });
     </script>
