@@ -1522,14 +1522,14 @@ unset($item); // Break reference
         // Default design paths
         const defaultDesignPaths = {
             SHIRT: {
-                'SH/S': './customer/defaults/default_shirt_short.png',
-                'SH/L': './customer/defaults/default_shirt_long.png',
-                'BSH/S': './customer/defaults/default_shirt_short.png',
-                'BSH/L': './customer/defaults/default_shirt_long.png',
+                'SH/S': 'defaults/default_shirt_short.png',
+                'SH/L': 'defaults/default_shirt_long.png',
+                'BSH/S': 'defaults/default_shirt_short.png',
+                'BSH/L': 'defaults/default_shirt_long.png',
             },
-            TROUSERS: './customer/defaults/default_trousers.png',
-            JACKET: './customer/defaults/default_jackets.png',
-            'BAJU MELAYU': './customer/defaults/default_bajumelayu.png'
+            TROUSERS: 'defaults/default_trousers.png',
+            JACKET: 'defaults/default_jackets.png',
+            'BAJU MELAYU': 'defaults/default_bajumelayu.png'
         };
 
         // Update design preview (works for any item block)
