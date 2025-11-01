@@ -1402,7 +1402,7 @@ unset($item); // Break reference
             if (!drawingDisplay || !drawingFilename) return;
 
             const fileExt = drawingFilename.split('.').pop().toLowerCase();
-            const drawingPath = 'uploads/drawings/' + drawingFilename;
+            const drawingPath = './customer/uploads/drawings/' + drawingFilename;
 
             let html = '<div class="border rounded p-2 bg-light">';
 
