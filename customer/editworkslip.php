@@ -522,7 +522,7 @@ unset($item); // Break reference
         </div>
         
         <!-- Existing Drawing Display -->
-        <div class="row mb-2 existing-drawing-section d-none">
+        <div class="row mb-2 existing-drawing-section">
             <div class="col">
                 <label class="fw-bold">Current Drawing</label>
                 <div class="existing-drawing-display"></div>
