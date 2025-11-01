@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include 'db.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -1402,7 +1402,7 @@ unset($item); // Break reference
             if (!drawingDisplay || !drawingFilename) return;
 
             const fileExt = drawingFilename.split('.').pop().toLowerCase();
-            const drawingPath = './customer/uploads/drawings/' + drawingFilename;
+            const drawingPath = 'uploads/drawings/' + drawingFilename;
 
             let html = '<div class="border rounded p-2 bg-light">';
 
