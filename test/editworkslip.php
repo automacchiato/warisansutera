@@ -289,7 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                         <!-- Workslip section (hidden by default) -->
-                        <div class="workslip mt-2" style="display:none;">
+                        <div class="workslip mt-2">
                             <h6>Workslip</h6>
                             <div class="workslip-fields"></div>
                         </div>
