@@ -1,128 +1,86 @@
 <?php
-include 'db_connect.php'; // your DB connection file
+include 'db_connect.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+if (!isset($_GET['invoice_id'])) {
+    die("Invoice ID not provided.");
+}
+
+$invoice_id = $_GET['invoice_id'];
+
+// --- FETCH EXISTING DATA ---
+$invoiceQuery = $conn->prepare("SELECT * FROM invoices WHERE invoice_id = ?");
+$invoiceQuery->bind_param("i", $invoice_id);
+$invoiceQuery->execute();
+$invoice = $invoiceQuery->get_result()->fetch_assoc();
+
+$customerQuery = $conn->prepare("SELECT * FROM customers WHERE customer_id = ?");
+$customerQuery->bind_param("i", $invoice['customer_id']);
+$customerQuery->execute();
+$customer = $customerQuery->get_result()->fetch_assoc();
+
+$itemsQuery = $conn->prepare("SELECT * FROM invoice_items WHERE invoice_id = ?");
+$itemsQuery->bind_param("i", $invoice_id);
+$itemsQuery->execute();
+$invoice_items = $itemsQuery->get_result()->fetch_all(MYSQLI_ASSOC);
+
+// --- UPDATE ON SUBMIT ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Insert customer
-    $stmt = $conn->prepare("INSERT INTO customers (customer_name, customer_address, customer_email, customer_phone) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $_POST['customer_name'], $_POST['customer_address'], $_POST['customer_email'], $_POST['customer_phone']);
-    $stmt->execute();
-    $customer_id = $stmt->insert_id;
+    $conn->begin_transaction();
 
-    // Insert invoice
-    $stmt = $conn->prepare("INSERT INTO invoices 
-        (invoice_number, invoice_details, customer_id, order_date, fitting_date, delivery_date, total_amount, deposit_amount, balance_amount, additional_deposit, additional_balance)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param(
-        "ssisssddddd",
-        $_POST['invoice_number'],
-        $_POST['invoice_details'],
-        $customer_id,
-        $_POST['order_date'],
-        $_POST['fitting_date'],
-        $_POST['delivery_date'],
-        $_POST['total_amount'],
-        $_POST['deposit_amount'],
-        $_POST['balance_amount'],
-        $_POST['additional_deposit'],
-        $_POST['additional_balance']
-    );
-    $stmt->execute();
-    $invoice_id = $stmt->insert_id;
+    try {
+        // Update Customer
+        $stmt = $conn->prepare("UPDATE customers SET customer_name=?, customer_address=?, customer_email=?, customer_phone=? WHERE customer_id=?");
+        $stmt->bind_param("ssssi", $_POST['customer_name'], $_POST['customer_address'], $_POST['customer_email'], $_POST['customer_phone'], $_POST['customer_id']);
+        $stmt->execute();
 
-    // Insert items
-    foreach ($_POST['item_type'] as $key => $item) {
-        $stmt = $conn->prepare("INSERT INTO invoice_items 
-            (invoice_id, item_type, quantity, fabric_code, fabric_name, fabric_color, fabric_usage, amount) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        // Update Invoice
+        $stmt = $conn->prepare("UPDATE invoices 
+            SET invoice_number=?, invoice_details=?, order_date=?, fitting_date=?, delivery_date=?, 
+                total_amount=?, deposit_amount=?, balance_amount=?, additional_deposit=?, additional_balance=?
+            WHERE invoice_id=?");
         $stmt->bind_param(
-            "isisssdd",
-            $invoice_id,
-            $_POST['item_type'][$key],
-            $_POST['quantity'][$key],
-            $_POST['fabric_code'][$key],
-            $_POST['fabric_name'][$key],
-            $_POST['fabric_color'][$key],
-            $_POST['fabric_usage'][$key],
-            $_POST['amount'][$key]
+            "ssssddddddi",
+            $_POST['invoice_number'],
+            $_POST['invoice_details'],
+            $_POST['order_date'],
+            $_POST['fitting_date'],
+            $_POST['delivery_date'],
+            $_POST['total_amount'],
+            $_POST['deposit_amount'],
+            $_POST['balance_amount'],
+            $_POST['additional_deposit'],
+            $_POST['additional_balance'],
+            $_POST['invoice_id']
         );
         $stmt->execute();
-        $invoice_item_id = $stmt->insert_id;
 
-        //Workslip handling
-        if ($item === 'SHIRT') {
-
-            $drawingFile = null; // default if no file uploaded
-            if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
-                $targetDir = "uploads/drawings/";
-                if (!file_exists($targetDir)) {
-                    mkdir($targetDir, 0777, true);
-                }
-
-                $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
-                $targetFile = $targetDir . $fileName;
-
-                if (move_uploaded_file($_FILES['drawing']['tmp_name'][$key], $targetFile)) {
-                    $drawingFile = $fileName;
-                }
-            }
-
-            $stmt = $conn->prepare("INSERT INTO workslip_shirts
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, shirt_type, gender, special_instructions, previous_invoice_number, fabric_direction, collar_design, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, arm_length, elbow_length, cuff_type, cuff_length, cuff_width, armhole_length, erect, hunch, shoulder_type, corpulent, front_cutting, placket_type, top_initial, bottom_initial, cleaning_type, drawing)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        // Update Items
+        foreach ($_POST['item_id'] as $key => $item_id) {
+            $stmt = $conn->prepare("UPDATE invoice_items 
+                SET item_type=?, quantity=?, fabric_code=?, fabric_name=?, fabric_color=?, fabric_usage=?, amount=? 
+                WHERE item_id=?");
             $stmt->bind_param(
-                "issssssssssdddddddddddddddddsdddddsdssssss",
-                $invoice_item_id,
-                $_POST['manufacturer'][$key], //s
-                $_POST['salesman_name'][$key], //s
-                $_POST['cutter_name'][$key], //s
-                $_POST['tailor_name'][$key], //s
-                $_POST['shirt_type'][$key], //s
-                $_POST['gender'][$key], //s
-                $_POST['special_instructions'][$key], //s
-                $_POST['previous_invoice_number'][$key], //s
-                $_POST['fabric_direction'][$key], //s
-                $_POST['collar_design'][$key], //s
-                $_POST['collar_height'][$key], //d
-                $_POST['collar_width'][$key], //d
-                $_POST['collar_gap'][$key], //d
-                $_POST['collar_meet'][$key], //d
-                $_POST['collar_length'][$key], //d
-                $_POST['back_length'][$key], //d
-                $_POST['front_length'][$key], ///d
-                $_POST['chest_fit'][$key], //d
-                $_POST['chest_loose'][$key], //d
-                $_POST['waist_fit'][$key], //d
-                $_POST['waist_loose'][$key], //d
-                $_POST['hip_fit'][$key], //d
-                $_POST['hip_loose'][$key], //d
-                $_POST['shoulder'][$key], //d
-                $_POST['sleeve_length'][$key], //d
-                $_POST['arm_length'][$key], //d
-                $_POST['elbow_length'][$key], //d
-                $_POST['cuff_type'][$key], //s
-                $_POST['cuff_length'][$key], //d
-                $_POST['cuff_width'][$key], //d
-                $_POST['armhole_length'][$key], //d
-                $_POST['erect'][$key], //double
-                $_POST['hunch'][$key], //double
-                $_POST['shoulder_type'][$key], //s
-                $_POST['corpulent'][$key], // double
-                $_POST['front_cutting'][$key], //s
-                $_POST['placket_type'][$key], //s
-                $_POST['top_initial'][$key], //s
-                $_POST['bottom_initial'][$key], //s
-                $_POST['cleaning_type'][$key], //s
-                $drawingFile
+                "sisssddi",
+                $_POST['item_type'][$key],
+                $_POST['quantity'][$key],
+                $_POST['fabric_code'][$key],
+                $_POST['fabric_name'][$key],
+                $_POST['fabric_color'][$key],
+                $_POST['fabric_usage'][$key],
+                $_POST['amount'][$key],
+                $item_id
             );
             $stmt->execute();
-        } elseif ($item === 'TROUSERS') {
 
-            $drawingFile = null; // default if no file uploaded
+            $itemType = $_POST['item_type'][$key];
+            $drawingFile = $_POST['existing_drawing'][$key] ?? null;
+
+            // Replace drawing if new file uploaded
             if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
                 $targetDir = "uploads/drawings/";
-                if (!file_exists($targetDir)) {
-                    mkdir($targetDir, 0777, true);
-                }
+                if (!file_exists($targetDir)) mkdir($targetDir, 0777, true);
 
                 $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
                 $targetFile = $targetDir . $fileName;
@@ -132,183 +90,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
 
-            $stmt = $conn->prepare("INSERT INTO workslip_trousers
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fly_hs, side_pocket_hs, side_seams_hs, pocket_pull, pleat_num, waist_fit, waist_loose, hip_fit, hip_loose, top_hip_fit, top_hip_loose, length, thigh, knee, bottom, crotch, position_on_waist, corpulent, seating_type, turn_up, turn_up_length, inside_pocket_num, inside_pocket_width, inside_pocket_length, loop_num, loop_width, loop_length, right_pocket, left_pocket, lining_type, bottom_initial, cleaning_type, drawing)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            $stmt->bind_param(
-                "issssssssssssdddddddddddsdssdsddsddssssss",
-                $invoice_item_id, //i
-                $_POST['manufacturer'][$key], //s
-                $_POST['salesman_name'][$key], //s
-                $_POST['cutter_name'][$key], //s
-                $_POST['tailor_name'][$key], //s
-                $_POST['gender'][$key], //s
-                $_POST['special_instructions'][$key], //s
-                $_POST['previous_invoice_number'][$key], //s
-                $_POST['fly_hs'][$key], //s
-                $_POST['side_pocket_hs'][$key], //s
-                $_POST['side_seams_hs'][$key], //s
-                $_POST['pocket_pull'][$key], ///s
-                $_POST['pleat_num'][$key], //s
-                $_POST['waist_fit'][$key], //d
-                $_POST['waist_loose'][$key], //d
-                $_POST['hip_fit'][$key], //d
-                $_POST['hip_loose'][$key], //d
-                $_POST['top_hip_fit'][$key], //d
-                $_POST['top_hip_loose'][$key], //d
-                $_POST['length'][$key], //d
-                $_POST['thigh'][$key], //d
-                $_POST['knee'][$key], //d
-                $_POST['bottom'][$key], //d
-                $_POST['crotch'][$key], //d
-                $_POST['position_on_waist'][$key], //s
-                $_POST['corpulent'][$key], //double
-                $_POST['seating_type'][$key], //s
-                $_POST['turn_up'][$key], //s
-                $_POST['turn_up_length'][$key], //d
-                $_POST['inside_pocket_num'][$key], //s
-                $_POST['inside_pocket_width'][$key], //d
-                $_POST['inside_pocket_length'][$key], //d
-                $_POST['loop_num'][$key], //s
-                $_POST['loop_width'][$key], //d
-                $_POST['loop_length'][$key], //d
-                $_POST['right_pocket'][$key], //s
-                $_POST['left_pocket'][$key], //s
-                $_POST['lining_type'][$key], //s
-                $_POST['bottom_initial'][$key], //s
-                $_POST['cleaning_type'][$key], //s
-                $drawingFile
-            );
-            $stmt->execute();
-        } elseif ($item === 'JACKET') {
-
-            $drawingFile = null; // default if no file uploaded
-            if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
-                $targetDir = "uploads/drawings/";
-                if (!file_exists($targetDir)) {
-                    mkdir($targetDir, 0777, true);
-                }
-
-                $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
-                $targetFile = $targetDir . $fileName;
-
-                if (move_uploaded_file($_FILES['drawing']['tmp_name'][$key], $targetFile)) {
-                    $drawingFile = $fileName;
-                }
+            // Update respective workslip table
+            $table = '';
+            switch ($itemType) {
+                case 'SHIRT':
+                    $table = 'workslip_shirts';
+                    break;
+                case 'TROUSERS':
+                    $table = 'workslip_trousers';
+                    break;
+                case 'JACKET':
+                    $table = 'workslip_jacket';
+                    break;
+                case 'BAJU MELAYU':
+                    $table = 'workslip_baju_melayu';
+                    break;
             }
 
-            $stmt = $conn->prepare("INSERT INTO workslip_jacket
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, cuff_length, cross_back, cross_front, vest_length, back_neck_to_waist, back_neck_to_front_waist, sleeve_button, top_initial, bottom_initial, cleaning_type, drawing)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            $stmt->bind_param(
-                "isssssssddddddddddddddddissss",
-                $invoice_item_id, //i
-                $_POST['manufacturer'][$key], //s
-                $_POST['salesman_name'][$key], //s
-                $_POST['cutter_name'][$key], //s
-                $_POST['tailor_name'][$key], //s
-                $_POST['gender'][$key], //s
-                $_POST['special_instructions'][$key], //s
-                $_POST['previous_invoice_number'][$key], //s
-                $_POST['back_length'][$key], //d
-                $_POST['front_length'][$key], ///d
-                $_POST['chest_fit'][$key], //d
-                $_POST['chest_loose'][$key], //d
-                $_POST['waist_fit'][$key], //d
-                $_POST['waist_loose'][$key], //d
-                $_POST['hip_fit'][$key], //d
-                $_POST['hip_loose'][$key], //d
-                $_POST['shoulder'][$key], //d
-                $_POST['sleeve_length'][$key], //d
-                $_POST['cuff_length'][$key], //d
-                $_POST['cross_back'][$key], //d
-                $_POST['cross_front'][$key], //d
-                $_POST['vest_length'][$key], //d
-                $_POST['back_neck_to_waist'][$key], //d
-                $_POST['back_neck_to_front_waist'][$key], //d
-                $_POST['sleeve_button'][$key], //i
-                $_POST['top_initial'][$key], //s
-                $_POST['bottom_initial'][$key], //s
-                $_POST['cleaning_type'][$key], //s
-                $drawingFile //s
-            );
+            if ($table) {
+                // Dynamically get columns from POST
+                $columns = array_keys($_POST);
+                $setClauses = [];
+                $params = [];
+                $types = '';
 
-            if ($stmt->execute()) {
-                echo "Insert successful!";
-            } else {
-                echo "Error: " . $stmt->error;
-            }
-        } elseif ($item === 'BAJU MELAYU') {
-
-            $drawingFile = null; // default if no file uploaded
-            if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
-                $targetDir = "uploads/drawings/";
-                if (!file_exists($targetDir)) {
-                    mkdir($targetDir, 0777, true);
+                foreach ($_POST as $field => $values) {
+                    if (is_array($values) && isset($values[$key])) {
+                        $setClauses[] = "$field = ?";
+                        $params[] = $values[$key];
+                        $types .= 's';
+                    }
                 }
 
-                $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
-                $targetFile = $targetDir . $fileName;
+                $sql = "UPDATE $table SET " . implode(', ', $setClauses) . ", drawing=? WHERE item_id=?";
+                $stmt = $conn->prepare($sql);
+                $params[] = $drawingFile;
+                $params[] = $item_id;
+                $types .= 'si';
 
-                if (move_uploaded_file($_FILES['drawing']['tmp_name'][$key], $targetFile)) {
-                    $drawingFile = $fileName;
-                }
+                $stmt->bind_param($types, ...$params);
+                $stmt->execute();
             }
-
-            $stmt = $conn->prepare("INSERT INTO workslip_baju_melayu
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, fabric_direction, collar_type, collar_height, collar_width, collar_gap, collar_meet, collar_length, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, arm_length, armhole_length, erect, hunch, shoulder_type, corpulent, buttons_type, cutting_type, pesak, top_initial, bottom_initial, cleaning_type, drawing)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            $stmt->bind_param(
-                "isssssssssdddddddddddddddddddsdssdssss",
-                $invoice_item_id, //i
-                $_POST['manufacturer'][$key], //s
-                $_POST['salesman_name'][$key], //s
-                $_POST['cutter_name'][$key], //s
-                $_POST['tailor_name'][$key], //s
-                $_POST['gender'][$key], //ss
-                $_POST['special_instructions'][$key], //s
-                $_POST['previous_invoice_number'][$key], //s
-                $_POST['fabric_direction'][$key], //s
-                $_POST['collar_type'][$key], //s
-                $_POST['collar_height'][$key], //d
-                $_POST['collar_width'][$key], //d
-                $_POST['collar_gap'][$key], //d
-                $_POST['collar_meet'][$key], //d
-                $_POST['collar_length'][$key], //d
-                $_POST['back_length'][$key], //d
-                $_POST['front_length'][$key], ///d
-                $_POST['chest_fit'][$key], //d
-                $_POST['chest_loose'][$key], //d
-                $_POST['waist_fit'][$key], //d
-                $_POST['waist_loose'][$key], //d
-                $_POST['hip_fit'][$key], //d
-                $_POST['hip_loose'][$key], //d
-                $_POST['shoulder'][$key], //d
-                $_POST['sleeve_length'][$key], //d
-                $_POST['arm_length'][$key], //d
-                $_POST['armhole_length'][$key], //d
-                $_POST['erect'][$key], //double
-                $_POST['hunch'][$key], //double
-                $_POST['shoulder_type'][$key], //s
-                $_POST['corpulent'][$key], // double
-                $_POST['buttons_type'][$key], //s
-                $_POST['cutting_type'][$key], //s
-                $_POST['pesak'][$key], //d
-                $_POST['top_initial'][$key], //s
-                $_POST['bottom_initial'][$key], //s
-                $_POST['cleaning_type'][$key], //s
-                $drawingFile
-            );
-            $stmt->execute();
         }
+
+        $conn->commit();
+        echo "<div class='alert alert-success'>Invoice Updated Successfully!</div>";
+    } catch (Exception $e) {
+        $conn->rollback();
+        echo "<div class='alert alert-danger'>Error updating invoice: " . $e->getMessage() . "</div>";
     }
-
-    //Insert workslip
-
-
-    echo "<div class='alert alert-success'>Invoice Saved!</div>";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -374,18 +207,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h4>Customer Details</h4>
             <div class="mb-3">
                 <label class="fw-bold">Name*</label>
-                <input type="text" name="customer_name" class="form-control" value="<?= htmlspecialchars($invoice['customer_name'] ?? '') ?>" required>
+                <input type="text" name="customer_name" class="form-control" value="<?= htmlspecialchars($customer['customer_name'] ?? '') ?>" required>
             </div>
             <div class="mb-3">
                 <label class="fw-bold">Address*</label>
-                <textarea name="customer_address" class="form-control" required><?= htmlspecialchars($invoice['customer_address'] ?? '') ?></textarea>
+                <textarea name="customer_address" class="form-control" required><?= htmlspecialchars($customer['customer_address'] ?? '') ?></textarea>
             </div>
             <div class="mb-3">
                 <label class="fw-bold">Email</label>
-                <input type="text" name="customer_email" class="form-control" value="<?= htmlspecialchars($invoice['customer_email'] ?? '') ?>">
+                <input type="text" name="customer_email" class="form-control" value="<?= htmlspecialchars($customer['customer_email'] ?? '') ?>">
                 <div class="mb-3">
                     <label class="fw-bold">Phone*</label>
-                    <input type="text" name="customer_phone" class="form-control" value="<?= htmlspecialchars($invoice['customer_phone'] ?? '') ?>" required>
+                    <input type="text" name="customer_phone" class="form-control" value="<?= htmlspecialchars($customer['customer_phone'] ?? '') ?>" required>
                 </div>
 
                 <h4>Invoice Details</h4>
