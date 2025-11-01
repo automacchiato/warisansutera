@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         WHERE item_id = ?");
 
                     $updateWorkslip->bind_param(
-                        "sssssssssddddddddddddddsddddsddddddssssi",
+                        "sssssssssddddddddddddddsddddsddddddssssisi",
                         $_POST['manufacturer'][$index],
                         $_POST['salesman_name'][$index],
                         $_POST['cutter_name'][$index],
