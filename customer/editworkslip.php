@@ -9,6 +9,326 @@ if (!isset($_GET['invoice_id'])) {
 
 $invoice_id = $_GET['invoice_id'];
 
+// --- HANDLE FORM SUBMISSION ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $conn->begin_transaction();
+
+        // Update customer
+        $updateCustomer = $conn->prepare("UPDATE customers SET customer_name = ?, customer_address = ?, customer_email = ?, customer_phone = ? WHERE customer_id = ?");
+        $updateCustomer->bind_param(
+            "ssssi",
+            $_POST['customer_name'],
+            $_POST['customer_address'],
+            $_POST['customer_email'],
+            $_POST['customer_phone'],
+            $_POST['customer_id']
+        );
+        $updateCustomer->execute();
+
+        // Update invoice
+        $updateInvoice = $conn->prepare("UPDATE invoices SET invoice_number = ?, invoice_details = ?, order_date = ?, fitting_date = ?, delivery_date = ?, total_amount = ?, deposit_amount = ?, balance_amount = ?, additional_deposit = ?, additional_balance = ? WHERE invoice_id = ?");
+        $updateInvoice->bind_param(
+            "sssssdddddi",
+            $_POST['invoice_number'],
+            $_POST['invoice_details'],
+            $_POST['order_date'],
+            $_POST['fitting_date'],
+            $_POST['delivery_date'],
+            $_POST['total_amount'],
+            $_POST['deposit_amount'],
+            $_POST['balance_amount'],
+            $_POST['additional_deposit'],
+            $_POST['additional_balance'],
+            $_POST['invoice_id']
+        );
+        $updateInvoice->execute();
+
+        // Update items and workslips
+        foreach ($_POST['item_id'] as $index => $item_id) {
+            $item_type = $_POST['item_type'][$index];
+
+            // Update invoice_items
+            $updateItem = $conn->prepare("UPDATE invoice_items SET item_type = ?, quantity = ?, fabric_code = ?, fabric_name = ?, fabric_color = ?, fabric_usage = ?, amount = ? WHERE item_id = ?");
+            $updateItem->bind_param(
+                "sisssddi",
+                $item_type,
+                $_POST['quantity'][$index],
+                $_POST['fabric_code'][$index],
+                $_POST['fabric_name'][$index],
+                $_POST['fabric_color'][$index],
+                $_POST['fabric_usage'][$index],
+                $_POST['amount'][$index],
+                $item_id
+            );
+            $updateItem->execute();
+
+            // Handle drawing upload
+            $drawingFilename = null;
+            $designOption = $_POST['design_option'][$index] ?? 'keep_existing';
+
+            if ($designOption === 'upload' && isset($_FILES['drawing']['name'][$index]) && $_FILES['drawing']['error'][$index] === 0) {
+                $uploadDir = 'uploads/drawings/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true);
+                }
+
+                $fileExt = strtolower(pathinfo($_FILES['drawing']['name'][$index], PATHINFO_EXTENSION));
+                $allowedExts = ['jpg', 'jpeg', 'png', 'pdf'];
+
+                if (in_array($fileExt, $allowedExts) && $_FILES['drawing']['size'][$index] <= 5242880) {
+                    $drawingFilename = 'drawing_' . $item_id . '_' . time() . '.' . $fileExt;
+                    move_uploaded_file($_FILES['drawing']['tmp_name'][$index], $uploadDir . $drawingFilename);
+                }
+            } elseif ($designOption === 'keep_existing') {
+                $drawingFilename = $_POST['existing_drawing'][$index];
+            }
+
+            // Update workslip based on item type
+            switch ($item_type) {
+                case 'SHIRT':
+                    $updateWorkslip = $conn->prepare("UPDATE workslip_shirts SET 
+                        manufacturer = ?, salesman_name = ?, cutter_name = ?, tailor_name = ?, 
+                        shirt_type = ?, gender = ?, special_instructions = ?, previous_invoice_number = ?,
+                        fabric_direction = ?, collar_design = ?, collar_height = ?, collar_width = ?,
+                        collar_gap = ?, collar_meet = ?, collar_length = ?, back_length = ?,
+                        front_length = ?, chest_fit = ?, chest_loose = ?, waist_fit = ?,
+                        waist_loose = ?, hip_fit = ?, hip_loose = ?, shoulder_type = ?,
+                        shoulder = ?, sleeve_length = ?, arm_length = ?, elbow_length = ?,
+                        cuff_type = ?, cuff_length = ?, cuff_width = ?, armhole_length = ?,
+                        erect = ?, hunch = ?, corpulent = ?, front_cutting = ?,
+                        placket_type = ?, top_initial = ?, bottom_initial = ?, cleaning_type = ?,
+                        drawing = ?
+                        WHERE item_id = ?");
+
+                    $updateWorkslip->bind_param(
+                        "sssssssssddddddddddddddsddddsddddddssssi",
+                        $_POST['manufacturer'][$index],
+                        $_POST['salesman_name'][$index],
+                        $_POST['cutter_name'][$index],
+                        $_POST['tailor_name'][$index],
+                        $_POST['shirt_type'][$index],
+                        $_POST['gender'][$index],
+                        $_POST['special_instructions'][$index],
+                        $_POST['previous_invoice_number'][$index],
+                        $_POST['fabric_direction'][$index],
+                        $_POST['collar_design'][$index],
+                        $_POST['collar_height'][$index],
+                        $_POST['collar_width'][$index],
+                        $_POST['collar_gap'][$index],
+                        $_POST['collar_meet'][$index],
+                        $_POST['collar_length'][$index],
+                        $_POST['back_length'][$index],
+                        $_POST['front_length'][$index],
+                        $_POST['chest_fit'][$index],
+                        $_POST['chest_loose'][$index],
+                        $_POST['waist_fit'][$index],
+                        $_POST['waist_loose'][$index],
+                        $_POST['hip_fit'][$index],
+                        $_POST['hip_loose'][$index],
+                        $_POST['shoulder_type'][$index],
+                        $_POST['shoulder'][$index],
+                        $_POST['sleeve_length'][$index],
+                        $_POST['arm_length'][$index],
+                        $_POST['elbow_length'][$index],
+                        $_POST['cuff_type'][$index],
+                        $_POST['cuff_length'][$index],
+                        $_POST['cuff_width'][$index],
+                        $_POST['armhole_length'][$index],
+                        $_POST['erect'][$index],
+                        $_POST['hunch'][$index],
+                        $_POST['corpulent'][$index],
+                        $_POST['front_cutting'][$index],
+                        $_POST['placket_type'][$index],
+                        $_POST['top_initial'][$index],
+                        $_POST['bottom_initial'][$index],
+                        $_POST['cleaning_type'][$index],
+                        $drawingFilename,
+                        $item_id
+                    );
+                    $updateWorkslip->execute();
+                    break;
+
+                case 'TROUSERS':
+                    $updateWorkslip = $conn->prepare("UPDATE workslip_trousers SET 
+                        manufacturer = ?, salesman_name = ?, cutter_name = ?, tailor_name = ?,
+                        gender = ?, special_instructions = ?, previous_invoice_number = ?,
+                        fly_hs = ?, side_pocket_hs = ?, side_seams_hs = ?, pocket_pull = ?,
+                        pleat_num = ?, waist_fit = ?, waist_loose = ?, hip_fit = ?,
+                        hip_loose = ?, top_hip_fit = ?, top_hip_loose = ?, length = ?,
+                        thigh = ?, knee = ?, bottom = ?, crotch = ?, position_on_waist = ?,
+                        corpulent = ?, seating_type = ?, turn_up = ?, turn_up_length = ?,
+                        right_pocket = ?, left_pocket = ?, inside_pocket_num = ?, inside_pocket_width = ?,
+                        inside_pocket_length = ?, loop_num = ?, loop_width = ?, loop_length = ?,
+                        lining_type = ?, bottom_initial = ?, cleaning_type = ?, drawing = ?
+                        WHERE item_id = ?");
+
+                    $updateWorkslip->bind_param(
+                        "sssssssssssidddddddddddsdssdsssddsddsssi",
+                        $_POST['manufacturer'][$index],
+                        $_POST['salesman_name'][$index],
+                        $_POST['cutter_name'][$index],
+                        $_POST['tailor_name'][$index],
+                        $_POST['gender'][$index],
+                        $_POST['special_instructions'][$index],
+                        $_POST['previous_invoice_number'][$index],
+                        $_POST['fly_hs'][$index],
+                        $_POST['side_pocket_hs'][$index],
+                        $_POST['side_seams_hs'][$index],
+                        $_POST['pocket_pull'][$index],
+                        $_POST['pleat_num'][$index],
+                        $_POST['waist_fit'][$index],
+                        $_POST['waist_loose'][$index],
+                        $_POST['hip_fit'][$index],
+                        $_POST['hip_loose'][$index],
+                        $_POST['top_hip_fit'][$index],
+                        $_POST['top_hip_loose'][$index],
+                        $_POST['length'][$index],
+                        $_POST['thigh'][$index],
+                        $_POST['knee'][$index],
+                        $_POST['bottom'][$index],
+                        $_POST['crotch'][$index],
+                        $_POST['position_on_waist'][$index],
+                        $_POST['corpulent'][$index],
+                        $_POST['seating_type'][$index],
+                        $_POST['turn_up'][$index],
+                        $_POST['turn_up_length'][$index],
+                        $_POST['right_pocket'][$index],
+                        $_POST['left_pocket'][$index],
+                        $_POST['inside_pocket_num'][$index],
+                        $_POST['inside_pocket_width'][$index],
+                        $_POST['inside_pocket_length'][$index],
+                        $_POST['loop_num'][$index],
+                        $_POST['loop_width'][$index],
+                        $_POST['loop_length'][$index],
+                        $_POST['lining_type'][$index],
+                        $_POST['bottom_initial'][$index],
+                        $_POST['cleaning_type'][$index],
+                        $drawingFilename,
+                        $item_id
+                    );
+                    $updateWorkslip->execute();
+                    break;
+
+                case 'JACKET':
+                    $updateWorkslip = $conn->prepare("UPDATE workslip_jacket SET 
+                        manufacturer = ?, salesman_name = ?, cutter_name = ?, tailor_name = ?,
+                        gender = ?, previous_invoice_number = ?, special_instructions = ?,
+                        back_length = ?, front_length = ?, chest_fit = ?, chest_loose = ?,
+                        waist_fit = ?, waist_loose = ?, hip_fit = ?, hip_loose = ?,
+                        shoulder = ?, sleeve_length = ?, cuff_length = ?, cross_back = ?,
+                        cross_front = ?, vest_length = ?, back_neck_to_waist = ?,
+                        back_neck_to_front_waist = ?, sleeve_button = ?, top_initial = ?,
+                        bottom_initial = ?, cleaning_type = ?, drawing = ?
+                        WHERE item_id = ?");
+
+                    $updateWorkslip->bind_param(
+                        "sssssssddddddddddddddddissssi",
+                        $_POST['manufacturer'][$index],
+                        $_POST['salesman_name'][$index],
+                        $_POST['cutter_name'][$index],
+                        $_POST['tailor_name'][$index],
+                        $_POST['gender'][$index],
+                        $_POST['previous_invoice_number'][$index],
+                        $_POST['special_instructions'][$index],
+                        $_POST['back_length'][$index],
+                        $_POST['front_length'][$index],
+                        $_POST['chest_fit'][$index],
+                        $_POST['chest_loose'][$index],
+                        $_POST['waist_fit'][$index],
+                        $_POST['waist_loose'][$index],
+                        $_POST['hip_fit'][$index],
+                        $_POST['hip_loose'][$index],
+                        $_POST['shoulder'][$index],
+                        $_POST['sleeve_length'][$index],
+                        $_POST['cuff_length'][$index],
+                        $_POST['cross_back'][$index],
+                        $_POST['cross_front'][$index],
+                        $_POST['vest_length'][$index],
+                        $_POST['back_neck_to_waist'][$index],
+                        $_POST['back_neck_to_front_waist'][$index],
+                        $_POST['sleeve_button'][$index],
+                        $_POST['top_initial'][$index],
+                        $_POST['bottom_initial'][$index],
+                        $_POST['cleaning_type'][$index],
+                        $drawingFilename,
+                        $item_id
+                    );
+                    $updateWorkslip->execute();
+                    break;
+
+                case 'BAJU MELAYU':
+                    $updateWorkslip = $conn->prepare("UPDATE workslip_baju_melayu SET 
+                        manufacturer = ?, salesman_name = ?, cutter_name = ?, tailor_name = ?,
+                        gender = ?, special_instructions = ?, previous_invoice_number = ?,
+                        fabric_direction = ?, collar_type = ?, collar_height = ?, collar_width = ?,
+                        collar_gap = ?, collar_meet = ?, collar_length = ?, back_length = ?,
+                        front_length = ?, chest_fit = ?, chest_loose = ?, waist_fit = ?,
+                        waist_loose = ?, hip_fit = ?, hip_loose = ?, shoulder_type = ?,
+                        shoulder = ?, sleeve_length = ?, arm_length = ?, armhole_length = ?,
+                        erect = ?, hunch = ?, corpulent = ?, cutting_type = ?,
+                        buttons_type = ?, pesak = ?, top_initial = ?, bottom_initial = ?,
+                        cleaning_type = ?, drawing = ?
+                        WHERE item_id = ?");
+
+                    $updateWorkslip->bind_param(
+                        "ssssssssddddddddddddddsdddddddssdsssi",
+                        $_POST['manufacturer'][$index],
+                        $_POST['salesman_name'][$index],
+                        $_POST['cutter_name'][$index],
+                        $_POST['tailor_name'][$index],
+                        $_POST['gender'][$index],
+                        $_POST['special_instructions'][$index],
+                        $_POST['previous_invoice_number'][$index],
+                        $_POST['fabric_direction'][$index],
+                        $_POST['collar_type'][$index],
+                        $_POST['collar_height'][$index],
+                        $_POST['collar_width'][$index],
+                        $_POST['collar_gap'][$index],
+                        $_POST['collar_meet'][$index],
+                        $_POST['collar_length'][$index],
+                        $_POST['back_length'][$index],
+                        $_POST['front_length'][$index],
+                        $_POST['chest_fit'][$index],
+                        $_POST['chest_loose'][$index],
+                        $_POST['waist_fit'][$index],
+                        $_POST['waist_loose'][$index],
+                        $_POST['hip_fit'][$index],
+                        $_POST['hip_loose'][$index],
+                        $_POST['shoulder_type'][$index],
+                        $_POST['shoulder'][$index],
+                        $_POST['sleeve_length'][$index],
+                        $_POST['arm_length'][$index],
+                        $_POST['armhole_length'][$index],
+                        $_POST['erect'][$index],
+                        $_POST['hunch'][$index],
+                        $_POST['corpulent'][$index],
+                        $_POST['cutting_type'][$index],
+                        $_POST['buttons_type'][$index],
+                        $_POST['pesak'][$index],
+                        $_POST['top_initial'][$index],
+                        $_POST['bottom_initial'][$index],
+                        $_POST['cleaning_type'][$index],
+                        $drawingFilename,
+                        $item_id
+                    );
+                    $updateWorkslip->execute();
+                    break;
+            }
+        }
+
+        $conn->commit();
+        echo "<div class='alert alert-success'>Invoice Updated Successfully!</div>";
+
+        // Refresh the page data
+        header("Refresh:2; url=editworkslip.php?invoice_id=$invoice_id");
+    } catch (Exception $e) {
+        $conn->rollback();
+        echo "<div class='alert alert-danger'>Error updating invoice: " . $e->getMessage() . "</div>";
+    }
+}
+
+
 // --- FETCH EXISTING DATA ---
 $invoiceQuery = $conn->prepare("SELECT * FROM invoices WHERE invoice_id = ?");
 $invoiceQuery->bind_param("i", $invoice_id);
