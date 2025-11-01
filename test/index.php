@@ -71,7 +71,7 @@ $result = $conn->query("
                         <td><?= htmlspecialchars($row['delivery_date']) ?></td>
                         <td class="text-center">
                             <a href="workslip_pdf.php?invoice_id=<?= $row['invoice_id'] ?>" class="btn btn-primary btn-sm" target="_blank">Show Workslip</a>
-                            <a href="../customer/editworkslip.php<?= $row['invoice_id'] ?>" class="btn btn-secondary btn-sm" target="_blank">Edit</a>
+                            <a href="../customer/editworkslip.php?invoice_id<?= $row['invoice_id'] ?>" class="btn btn-secondary btn-sm" target="_blank">Edit</a>
                             <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-invoice-id="<?= $row['invoice_id']; ?>">Delete</a>
                     </tr>
                 <?php } ?>
