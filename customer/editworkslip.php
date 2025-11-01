@@ -1587,7 +1587,7 @@ unset($item); // Break reference
             const designSelect = itemBlock.querySelector('.design-option');
 
             // Only update if default design is selected
-            if (designSelect && designSelect.value === 'default') {
+            if (designSelect && designSelect.value === 'upload') {
                 updateDesignPreview(designSelect);
             }
         }
