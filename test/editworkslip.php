@@ -170,7 +170,8 @@ unset($item); // Break reference
                 <?php foreach ($invoice_items as $item): ?>
                     <div class="item-block border rounded p-2 mb-3">
                         <input type="hidden" name="item_id[]" value="<?= $item['item_id'] ?>">
-                        <input type="hidden" name="existing_drawing[]" value="<?= htmlspecialchars($item['drawing'] ?? '') ?>">
+                        <!-- Use drawing from workslip table, not invoice_items -->
+                        <input type="hidden" name="existing_drawing[]" value="<?= htmlspecialchars($item['workslip']['drawing'] ?? '') ?>">
                         <div class="row g-2 mb-2">
                             <div class="col">
                                 <label class="fw-bold">Apparel Type*</label>
@@ -509,34 +510,44 @@ unset($item); // Break reference
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col">
-                                <label class="fw-bold">Design Option</label>
-                                <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
-                                    <option value="" disabled selected>Select Design Option</option>
-                                    <option value="default">Use Default Design</option>
-                                    <option value="upload">Upload Own Design</option>
-                                </select>
-                            </div>
-                        </div>
-                    <div class="row mb-2 upload-design d-none">
-                        <div class="col">
-                            <label class="fw-bold">Upload Drawing</label>
-                            <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
-                            <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
-                        </div>
-                    </div>
-                    <div class="row mb-3 default-design-preview d-none">
-                        <div class="col">
-                            <label class="fw-bold">Default Design Preview</label>
-                            <div class="border rounded p-2 text-center bg-light">
-                                <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
-                            </div>
-                            <!-- 🆕 New Button -->
-                            <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
-                                Use This Design as My Drawing
-                            </button>
-                        </div>
-                    </div>
+            <div class="col">
+                <label class="fw-bold">Design Option</label>
+                <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
+                    <option value="" disabled>Select Design Option</option>
+                    <option value="keep_existing">Keep Existing Drawing</option>
+                    <option value="default">Use Default Design</option>
+                    <option value="upload">Upload New Design</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Existing Drawing Display -->
+        <div class="row mb-2 existing-drawing-section d-none">
+            <div class="col">
+                <label class="fw-bold">Current Drawing</label>
+                <div class="existing-drawing-display"></div>
+            </div>
+        </div>
+        
+        <div class="row mb-2 upload-design d-none">
+            <div class="col">
+                <label class="fw-bold">Upload New Drawing</label>
+                <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
+                <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
+            </div>
+        </div>
+        
+        <div class="row mb-3 default-design-preview d-none">
+            <div class="col">
+                <label class="fw-bold">Default Design Preview</label>
+                <div class="border rounded p-2 text-center bg-light">
+                    <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
+                </div>
+                <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
+                    Use This Design as My Drawing
+                </button>
+            </div>
+        </div>
                     `;
                     break;
                 case "TROUSERS":
@@ -1210,15 +1221,25 @@ unset($item); // Break reference
             const uploadInput = uploadCol.querySelector('input[type="file"]');
             const previewRow = itemBlock.querySelector('.default-design-preview');
             const previewImg = itemBlock.querySelector('.default-design-img');
-            const useDefaultBtn = itemBlock.querySelector('.use-default-btn'); // 🆕
+            const useDefaultBtn = itemBlock.querySelector('.use-default-btn');
+            const existingSection = itemBlock.querySelector('.existing-drawing-section');
 
             // Reset
             uploadCol.classList.add('d-none');
             uploadInput.removeAttribute('required');
             previewRow.classList.add('d-none');
+            existingSection.classList.add('d-none');
             previewImg.src = '';
 
-            if (designOption === 'upload') {
+            if (designOption === 'keep_existing') {
+                // Show existing drawing
+                existingSection.classList.remove('d-none');
+                const existingDrawing = itemBlock.querySelector('input[name="existing_drawing[]"]').value;
+                if (existingDrawing) {
+                    const fieldsDiv = itemBlock.querySelector('.workslip-fields');
+                    showExistingDrawing(fieldsDiv, existingDrawing);
+                }
+            } else if (designOption === 'upload') {
                 uploadCol.classList.remove('d-none');
                 uploadInput.setAttribute('required', 'required');
             } else if (designOption === 'default') {
@@ -1235,7 +1256,7 @@ unset($item); // Break reference
                 if (imagePath) {
                     previewImg.src = imagePath;
                     previewRow.classList.remove('d-none');
-                    if (useDefaultBtn) useDefaultBtn.classList.remove('d-none'); // 🆕 Show button
+                    if (useDefaultBtn) useDefaultBtn.classList.remove('d-none');
                 }
             }
         }
@@ -1348,6 +1369,12 @@ unset($item); // Break reference
                     // Populate the fields with existing data
                     setTimeout(() => {
                         populateWorkslipData(fieldsDiv, workslipData);
+
+                        // Show existing drawing if available
+                        const existingDrawing = itemBlock.querySelector('input[name="existing_drawing[]"]').value;
+                        if (existingDrawing) {
+                            showExistingDrawing(fieldsDiv, existingDrawing);
+                        }
                     }, 100);
                 }
             });
@@ -1367,6 +1394,43 @@ unset($item); // Break reference
                     }
                 }
             });
+        }
+
+        // Function to display existing drawing
+        function showExistingDrawing(container, drawingFilename) {
+            const drawingDisplay = container.querySelector('.existing-drawing-display');
+            if (!drawingDisplay || !drawingFilename) return;
+
+            const fileExt = drawingFilename.split('.').pop().toLowerCase();
+            const drawingPath = 'uploads/drawings/' + drawingFilename;
+
+            let html = '<div class="border rounded p-2 bg-light">';
+
+            if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExt)) {
+                // Image preview
+                html += `
+            <img src="${drawingPath}" alt="Current Drawing" class="img-fluid mb-2" style="max-height: 200px;">
+            <br>
+        `;
+            } else if (fileExt === 'pdf') {
+                // PDF link
+                html += `
+            <p class="mb-2">
+                <i class="bi bi-file-pdf"></i> PDF Document
+            </p>
+        `;
+            }
+
+            html += `
+        <a href="${drawingPath}" target="_blank" class="btn btn-sm btn-info">
+            View/Download Current Drawing
+        </a>
+        <p class="text-muted small mt-2 mb-0">
+            Upload a new file below to replace this drawing
+        </p>
+    </div>`;
+
+            drawingDisplay.innerHTML = html;
         }
     </script>
 </body>
