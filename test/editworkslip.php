@@ -204,6 +204,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container p-4">
         <h2 class="text-center mb-4">Edit Order</h2>
         <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="customer_id" value="<?= $customer['customer_id'] ?>">
+            <input type="hidden" name="invoice_id" value="<?= $invoice['invoice_id'] ?>">
             <h4>Customer Details</h4>
             <div class="mb-3">
                 <label class="fw-bold">Name*</label>
@@ -216,108 +218,111 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-3">
                 <label class="fw-bold">Email</label>
                 <input type="text" name="customer_email" class="form-control" value="<?= htmlspecialchars($customer['customer_email'] ?? '') ?>">
-                <div class="mb-3">
-                    <label class="fw-bold">Phone*</label>
-                    <input type="text" name="customer_phone" class="form-control" value="<?= htmlspecialchars($customer['customer_phone'] ?? '') ?>" required>
-                </div>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Phone*</label>
+                <input type="text" name="customer_phone" class="form-control" value="<?= htmlspecialchars($customer['customer_phone'] ?? '') ?>" required>
+            </div>
 
-                <h4>Invoice Details</h4>
-                <div class="mb-3">
-                    <label class="fw-bold">Invoice Number*</label>
-                    <input type="text" name="invoice_number" class="form-control" value="<?= htmlspecialchars($invoice['invoice_number'] ?? '') ?>" required>
-                    <label class="fw-bold">Invoice Description</label>
-                    <input type="text" name="invoice_details" class="form-control" value="<?= htmlspecialchars($invoice['invoice_details'] ?? '') ?>">
+            <h4>Invoice Details</h4>
+            <div class="mb-3">
+                <label class="fw-bold">Invoice Number*</label>
+                <input type="text" name="invoice_number" class="form-control" value="<?= htmlspecialchars($invoice['invoice_number'] ?? '') ?>" required>
+                <label class="fw-bold">Invoice Description</label>
+                <input type="text" name="invoice_details" class="form-control" value="<?= htmlspecialchars($invoice['invoice_details'] ?? '') ?>">
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="fw-bold">Order Date*</label>
+                    <input type="date" name="order_date" class="form-control" value="<?= htmlspecialchars($invoice['order_date'] ?? '') ?>" required>
                 </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label class="fw-bold">Order Date*</label>
-                        <input type="date" name="order_date" class="form-control" value="<?= htmlspecialchars($invoice['order_date'] ?? '') ?>" required>
-                    </div>
-                    <div class="col">
-                        <label class="fw-bold">Fitting Date</label>
-                        <input type="date" name="fitting_date" class="form-control" value="<?= htmlspecialchars($invoice['fitting_date'] ?? '') ?>">
-                    </div>
-                    <div class="col">
-                        <label class="fw-bold">Delivery Date</label>
-                        <input type="date" name="delivery_date" class="form-control" value="<?= htmlspecialchars($invoice['delivery_date'] ?? '') ?>">
-                    </div>
+                <div class="col">
+                    <label class="fw-bold">Fitting Date</label>
+                    <input type="date" name="fitting_date" class="form-control" value="<?= htmlspecialchars($invoice['fitting_date'] ?? '') ?>">
                 </div>
+                <div class="col">
+                    <label class="fw-bold">Delivery Date</label>
+                    <input type="date" name="delivery_date" class="form-control" value="<?= htmlspecialchars($invoice['delivery_date'] ?? '') ?>">
+                </div>
+            </div>
 
-                <h4>Items</h4>
-                <div id="items">
-                    <?php while ($item = $invoice_items->fetch_assoc()): ?>
-                        <div class="item-block border rounded p-2 mb-3">
-                            <div class="row g-2 mb-2">
-                                <div class="col">
-                                    <label class="fw-bold">Apparel Type*</label>
-                                    <select id="item_type" name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
-                                        <option value="SHIRT" <?= $item['item_type'] == 'SHIRT' ? 'selected' : '' ?>>Shirt</option>
-                                        <option value="TROUSERS" <?= $item['item_type'] == 'TROUSERS' ? 'selected' : '' ?>>Trousers</option>
-                                        <option value="JACKET" <?= $item['item_type'] == 'JACKET' ? 'selected' : '' ?>>Jacket</option>
-                                        <option value="BAJU MELAYU" <?= $item['item_type'] == 'BAJU MELAYU' ? 'selected' : '' ?>>Baju Melayu</option>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label class="fw-bold">Quantity*</label>
-                                    <input type="number" name="quantity[]" class="form-control" value="<?= htmlspecialchars($item['quantity'] ?? '') ?>" required>
-                                </div>
-                                <div class="col">
-                                    <label class="fw-bold">Fabric Code</label>
-                                    <input type="text" name="fabric_code[]" class="form-control" value="<?= htmlspecialchars($item['fabric_code'] ?? '') ?>">
-                                </div>
-                                <div class="col">
-                                    <label class="fw-bold">Fabric Name*</label>
-                                    <input type="text" name="fabric_name[]" class="form-control" value="<?= htmlspecialchars($item['fabric_name'] ?? '') ?>" required>
-                                </div>
-                                <div class="col">
-                                    <label class="fw-bold">Fabric Color</label>
-                                    <input type="text" name="fabric_color[]" class="form-control" value="<?= htmlspecialchars($item['fabric_color'] ?? '') ?>">
-                                </div>
-                                <div class="col">
-                                    <label class="fw-bold">Fabric Usage</label>
-                                    <input type="number" step="0.01" name="fabric_usage[]" class="form-control" value="<?= htmlspecialchars($item['fabric_usage'] ?? '') ?>">
-                                </div>
-                                <div class="col">
-                                    <label class="fw-bold">Amount</label>
-                                    <input type="number" step="0.01" name="amount[]" class="form-control" value="<?= htmlspecialchars($item['amount'] ?? '') ?>">
-                                </div>
+            <h4>Items</h4>
+            <div id="items">
+                <?php foreach ($invoice_items as $item): ?>
+                    <div class="item-block border rounded p-2 mb-3">
+                        <input type="hidden" name="item_id[]" value="<?= $item['item_id'] ?>">
+                        <input type="hidden" name="existing_drawing[]" value="<?= htmlspecialchars($item['drawing'] ?? '') ?>">
+                        <div class="row g-2 mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Apparel Type*</label>
+                                <select id="item_type" name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
+                                    <option value="SHIRT" <?= $item['item_type'] == 'SHIRT' ? 'selected' : '' ?>>Shirt</option>
+                                    <option value="TROUSERS" <?= $item['item_type'] == 'TROUSERS' ? 'selected' : '' ?>>Trousers</option>
+                                    <option value="JACKET" <?= $item['item_type'] == 'JACKET' ? 'selected' : '' ?>>Jacket</option>
+                                    <option value="BAJU MELAYU" <?= $item['item_type'] == 'BAJU MELAYU' ? 'selected' : '' ?>>Baju Melayu</option>
+                                </select>
                             </div>
-
-                            <!-- Workslip section (hidden by default) -->
-                            <div class="workslip mt-2" style="display:none;">
-                                <h6>Workslip</h6>
-                                <div class="workslip-fields"></div>
+                            <div class="col">
+                                <label class="fw-bold">Quantity*</label>
+                                <input type="number" name="quantity[]" class="form-control" value="<?= htmlspecialchars($item['quantity'] ?? '') ?>" required>
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Fabric Code</label>
+                                <input type="text" name="fabric_code[]" class="form-control" value="<?= htmlspecialchars($item['fabric_code'] ?? '') ?>">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Fabric Name*</label>
+                                <input type="text" name="fabric_name[]" class="form-control" value="<?= htmlspecialchars($item['fabric_name'] ?? '') ?>" required>
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Fabric Color</label>
+                                <input type="text" name="fabric_color[]" class="form-control" value="<?= htmlspecialchars($item['fabric_color'] ?? '') ?>">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Fabric Usage</label>
+                                <input type="number" step="0.01" name="fabric_usage[]" class="form-control" value="<?= htmlspecialchars($item['fabric_usage'] ?? '') ?>">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Amount</label>
+                                <input type="number" step="0.01" name="amount[]" class="form-control" value="<?= htmlspecialchars($item['amount'] ?? '') ?>">
                             </div>
                         </div>
-                    <?php endwhile; ?>
-                </div>
-                <button type="button" class="btn btn-secondary mb-3" onclick="addItem()">+ Add Item</button>
 
-                <h4>Payments</h4>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label class="fw-bold">Total</label>
-                        <input type="number" step="0.01" id="total_amount" name="total_amount" class="form-control" value="<?= htmlspecialchars($invoice['total_amount'] ?? '0.00') ?>">
+                        <!-- Workslip section (hidden by default) -->
+                        <div class="workslip mt-2" style="display:none;">
+                            <h6>Workslip</h6>
+                            <div class="workslip-fields"></div>
+                        </div>
                     </div>
-                    <div class="col">
-                        <label class="fw-bold">Deposit</label>
-                        <input type="number" step="0.01" id="deposit_amount" name="deposit_amount" class="form-control" value="<?= htmlspecialchars($invoice['deposit_amount'] ?? '0.00') ?>">
-                    </div>
-                    <div class="col">
-                        <label class="fw-bold">Balance</label>
-                        <input type="number" step="0.01" id="balance_amount" name="balance_amount" class="form-control" value="<?= htmlspecialchars($invoice['balance_amount'] ?? '0.00') ?>">
-                    </div>
-                    <div class="col">
-                        <label class="fw-bold">Additional Deposit</label>
-                        <input type="number" step="0.01" id="additional_deposit" name="additional_deposit" class="form-control" value="<?= htmlspecialchars($invoice['additional_deposit'] ?? '0.00') ?>">
-                    </div>
-                    <div class="col">
-                        <label class="fw-bold">Final Balance</label>
-                        <input type="number" step="0.01" id="additional_balance" name="additional_balance" class="form-control" value="<?= htmlspecialchars($invoice['additional_balance'] ?? '0.00') ?>">
-                    </div>
-                </div>
+                <?php endforeach; ?>
+            </div>
+            <button type="button" class="btn btn-secondary mb-3" onclick="addItem()">+ Add Item</button>
 
-                <button type="submit" class="btn btn-primary">Update Invoice</button>
+            <h4>Payments</h4>
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="fw-bold">Total</label>
+                    <input type="number" step="0.01" id="total_amount" name="total_amount" class="form-control" value="<?= htmlspecialchars($invoice['total_amount'] ?? '0.00') ?>">
+                </div>
+                <div class="col">
+                    <label class="fw-bold">Deposit</label>
+                    <input type="number" step="0.01" id="deposit_amount" name="deposit_amount" class="form-control" value="<?= htmlspecialchars($invoice['deposit_amount'] ?? '0.00') ?>">
+                </div>
+                <div class="col">
+                    <label class="fw-bold">Balance</label>
+                    <input type="number" step="0.01" id="balance_amount" name="balance_amount" class="form-control" value="<?= htmlspecialchars($invoice['balance_amount'] ?? '0.00') ?>">
+                </div>
+                <div class="col">
+                    <label class="fw-bold">Additional Deposit</label>
+                    <input type="number" step="0.01" id="additional_deposit" name="additional_deposit" class="form-control" value="<?= htmlspecialchars($invoice['additional_deposit'] ?? '0.00') ?>">
+                </div>
+                <div class="col">
+                    <label class="fw-bold">Final Balance</label>
+                    <input type="number" step="0.01" id="additional_balance" name="additional_balance" class="form-control" value="<?= htmlspecialchars($invoice['additional_balance'] ?? '0.00') ?>">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Invoice</button>
         </form>
     </div>
 
@@ -1405,7 +1410,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // --- 3. Calculate additional amount ---
             const additionalDeposit = parseFloat(document.getElementById('additional_deposit').value) || 0;
             const additionalAmount = balance - additionalDeposit;
-            document.getElementById('additional_amount').value = additionalAmount.toFixed(2);
+            document.getElementById('additional_balance').value = additionalAmount.toFixed(2);
         }
     </script>
 </body>
