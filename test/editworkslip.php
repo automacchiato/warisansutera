@@ -25,121 +25,40 @@ $itemsQuery->bind_param("i", $invoice_id);
 $itemsQuery->execute();
 $invoice_items = $itemsQuery->get_result()->fetch_all(MYSQLI_ASSOC);
 
-// --- UPDATE ON SUBMIT ---
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn->begin_transaction();
+// Fetch workslip data for each item
+foreach ($invoice_items as &$item) {
+    $table = '';
+    switch ($item['item_type']) {
+        case 'SHIRT':
+            $table = 'workslip_shirts';
+            break;
+        case 'TROUSERS':
+            $table = 'workslip_trousers';
+            break;
+        case 'JACKET':
+            $table = 'workslip_jacket';
+            break;
+        case 'BAJU MELAYU':
+            $table = 'workslip_baju_melayu';
+            break;
+    }
 
-    try {
-        // Update Customer
-        $stmt = $conn->prepare("UPDATE customers SET customer_name=?, customer_address=?, customer_email=?, customer_phone=? WHERE customer_id=?");
-        $stmt->bind_param("ssssi", $_POST['customer_name'], $_POST['customer_address'], $_POST['customer_email'], $_POST['customer_phone'], $_POST['customer_id']);
-        $stmt->execute();
-
-        // Update Invoice
-        $stmt = $conn->prepare("UPDATE invoices 
-            SET invoice_number=?, invoice_details=?, order_date=?, fitting_date=?, delivery_date=?, 
-                total_amount=?, deposit_amount=?, balance_amount=?, additional_deposit=?, additional_balance=?
-            WHERE invoice_id=?");
-        $stmt->bind_param(
-            "ssssddddddi",
-            $_POST['invoice_number'],
-            $_POST['invoice_details'],
-            $_POST['order_date'],
-            $_POST['fitting_date'],
-            $_POST['delivery_date'],
-            $_POST['total_amount'],
-            $_POST['deposit_amount'],
-            $_POST['balance_amount'],
-            $_POST['additional_deposit'],
-            $_POST['additional_balance'],
-            $_POST['invoice_id']
-        );
-        $stmt->execute();
-
-        // Update Items
-        foreach ($_POST['item_id'] as $key => $item_id) {
-            $stmt = $conn->prepare("UPDATE invoice_items 
-                SET item_type=?, quantity=?, fabric_code=?, fabric_name=?, fabric_color=?, fabric_usage=?, amount=? 
-                WHERE item_id=?");
-            $stmt->bind_param(
-                "sisssddi",
-                $_POST['item_type'][$key],
-                $_POST['quantity'][$key],
-                $_POST['fabric_code'][$key],
-                $_POST['fabric_name'][$key],
-                $_POST['fabric_color'][$key],
-                $_POST['fabric_usage'][$key],
-                $_POST['amount'][$key],
-                $item_id
-            );
-            $stmt->execute();
-
-            $itemType = $_POST['item_type'][$key];
-            $drawingFile = $_POST['existing_drawing'][$key] ?? null;
-
-            // Replace drawing if new file uploaded
-            if (isset($_FILES['drawing']['name'][$key]) && $_FILES['drawing']['error'][$key] == 0) {
-                $targetDir = "uploads/drawings/";
-                if (!file_exists($targetDir)) mkdir($targetDir, 0777, true);
-
-                $fileName = time() . "_" . basename($_FILES['drawing']['name'][$key]);
-                $targetFile = $targetDir . $fileName;
-
-                if (move_uploaded_file($_FILES['drawing']['tmp_name'][$key], $targetFile)) {
-                    $drawingFile = $fileName;
-                }
-            }
-
-            // Update respective workslip table
-            $table = '';
-            switch ($itemType) {
-                case 'SHIRT':
-                    $table = 'workslip_shirts';
-                    break;
-                case 'TROUSERS':
-                    $table = 'workslip_trousers';
-                    break;
-                case 'JACKET':
-                    $table = 'workslip_jacket';
-                    break;
-                case 'BAJU MELAYU':
-                    $table = 'workslip_baju_melayu';
-                    break;
-            }
-
-            if ($table) {
-                // Dynamically get columns from POST
-                $columns = array_keys($_POST);
-                $setClauses = [];
-                $params = [];
-                $types = '';
-
-                foreach ($_POST as $field => $values) {
-                    if (is_array($values) && isset($values[$key])) {
-                        $setClauses[] = "$field = ?";
-                        $params[] = $values[$key];
-                        $types .= 's';
-                    }
-                }
-
-                $sql = "UPDATE $table SET " . implode(', ', $setClauses) . ", drawing=? WHERE item_id=?";
-                $stmt = $conn->prepare($sql);
-                $params[] = $drawingFile;
-                $params[] = $item_id;
-                $types .= 'si';
-
-                $stmt->bind_param($types, ...$params);
-                $stmt->execute();
-            }
-        }
-
-        $conn->commit();
-        echo "<div class='alert alert-success'>Invoice Updated Successfully!</div>";
-    } catch (Exception $e) {
-        $conn->rollback();
-        echo "<div class='alert alert-danger'>Error updating invoice: " . $e->getMessage() . "</div>";
+    if ($table) {
+        $workslipQuery = $conn->prepare("SELECT * FROM $table WHERE item_id = ?");
+        $workslipQuery->bind_param("i", $item['item_id']);
+        $workslipQuery->execute();
+        $item['workslip'] = $workslipQuery->get_result()->fetch_assoc();
     }
 }
+unset($item); // Break reference
+
+//         $conn->commit();
+//         echo "<div class='alert alert-success'>Invoice Updated Successfully!</div>";
+//     } catch (Exception $e) {
+//         $conn->rollback();
+//         echo "<div class='alert alert-danger'>Error updating invoice: " . $e->getMessage() . "</div>";
+//     }
+// }
 ?>
 
 
@@ -255,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row g-2 mb-2">
                             <div class="col">
                                 <label class="fw-bold">Apparel Type*</label>
-                                <select id="item_type" name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
+                                <select id="item_type_<?= $item['item_id'] ?>" name="item_type[]" class="form-control item-type" required onchange="showWorkslip(this)">
                                     <option value="SHIRT" <?= $item['item_type'] == 'SHIRT' ? 'selected' : '' ?>>Shirt</option>
                                     <option value="TROUSERS" <?= $item['item_type'] == 'TROUSERS' ? 'selected' : '' ?>>Trousers</option>
                                     <option value="JACKET" <?= $item['item_type'] == 'JACKET' ? 'selected' : '' ?>>Jacket</option>
@@ -288,10 +207,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
 
-                        <!-- Workslip section (hidden by default) -->
-                        <div class="workslip mt-2">
+                        <!-- Workslip section - Show if data exists -->
+                        <div class="workslip mt-2" style="display: <?= isset($item['workslip']) ? 'block' : 'none' ?>;">
                             <h6>Workslip</h6>
-                            <div class="workslip-fields"></div>
+                            <div class="workslip-fields" data-item-type="<?= $item['item_type'] ?>" data-workslip='<?= isset($item['workslip']) ? json_encode($item['workslip']) : '{}' ?>'></div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -1364,7 +1283,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         });
 
-
         //Cuff Type
         document.querySelectorAll('.cuff_type').forEach(function(select) {
             select.addEventListener('change', function() {
@@ -1411,6 +1329,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const additionalDeposit = parseFloat(document.getElementById('additional_deposit').value) || 0;
             const additionalAmount = balance - additionalDeposit;
             document.getElementById('additional_balance').value = additionalAmount.toFixed(2);
+        }
+
+        // Add this at the end of your script section, before closing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Populate existing workslips
+            document.querySelectorAll('.workslip-fields').forEach(function(fieldsDiv) {
+                const itemType = fieldsDiv.getAttribute('data-item-type');
+                const workslipData = JSON.parse(fieldsDiv.getAttribute('data-workslip') || '{}');
+
+                if (itemType && Object.keys(workslipData).length > 0) {
+                    const itemBlock = fieldsDiv.closest('.item-block');
+                    const select = itemBlock.querySelector('.item-type');
+
+                    // Generate the workslip HTML
+                    showWorkslip(select);
+
+                    // Populate the fields with existing data
+                    setTimeout(() => {
+                        populateWorkslipData(fieldsDiv, workslipData);
+                    }, 100);
+                }
+            });
+        });
+
+        // Function to populate workslip fields with existing data
+        function populateWorkslipData(container, data) {
+            Object.keys(data).forEach(key => {
+                if (key === 'item_id' || key === 'drawing') return; // Skip these fields
+
+                const input = container.querySelector(`[name="${key}[]"]`);
+                if (input && data[key] !== null) {
+                    if (input.type === 'checkbox') {
+                        input.checked = data[key] == 1;
+                    } else {
+                        input.value = data[key];
+                    }
+                }
+            });
         }
     </script>
 </body>
