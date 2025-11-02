@@ -788,7 +788,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(35, 10, $work['cleaning_type'], 1, 1, "C");
 
             //Drawing
-            $pdf->Image(__DIR__ . "/../customer/uploads/drawings/" . $work['drawing'], 100, 80, 100, 100);
+            $pdf->Image(__DIR__ . "/../customer/uploads/drawings/" . $work['drawing'], 100, 75, 100, 100);
 
             // Extra notes / signatures
             $pdf->Cell(0, 8, "Special Instructions: " . ($work['special_instructions'] ?? ""), 0, 1);
