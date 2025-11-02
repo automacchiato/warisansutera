@@ -388,7 +388,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(0, 8, "Special Instructions: " . ($work['special_instructions'] ?? ""), 0, 1);
             break;
 
-        case 'TROUSER':
+        case 'TROUSERS':
             $sql = "SELECT * FROM workslip_trousers WHERE item_id = $item_id";
             $work = $conn->query($sql)->fetch_assoc();
 
