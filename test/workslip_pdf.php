@@ -745,13 +745,13 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(60, 10, $work['armhole'], 1, 1);
 
             //Line 17
-            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(30, 10, "B.Neck to Waist", 1);
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(60, 10, $work['back_neck_to_waist'], 1, 1);
 
             //Line 18
-            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(30, 10, "F.Neck to Waist", 1);
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(60, 10, $work['back_neck_to_front_waist'], 1, 1);
@@ -788,7 +788,7 @@ while ($row = $items->fetch_assoc()) {
             $pdf->Cell(35, 10, $work['cleaning_type'], 1, 1, "C");
 
             //Drawing
-            $pdf->Image(__DIR__ . "/../customer/uploads/drawings/" . $work['drawing'], 110, 80, 90, 90);
+            $pdf->Image(__DIR__ . "/../customer/uploads/drawings/" . $work['drawing'], 110, 80, 100, 100);
 
             // Extra notes / signatures
             $pdf->Cell(0, 8, "Special Instructions: " . ($work['special_instructions'] ?? ""), 0, 1);
