@@ -229,8 +229,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_POST['cutter_name'][$index], //s
                         $_POST['tailor_name'][$index], //s
                         $_POST['gender'][$index], //s
-                        $_POST['special_instructions'][$index], //s
                         $_POST['previous_invoice_number'][$index], //s
+                        $_POST['special_instructions'][$index], //s
                         $_POST['back_length'][$index], //d
                         $_POST['front_length'][$index], ///d
                         $_POST['chest_fit'][$index], //d
