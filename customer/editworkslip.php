@@ -217,13 +217,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         back_length = ?, front_length = ?, chest_fit = ?, chest_loose = ?,
                         waist_fit = ?, waist_loose = ?, hip_fit = ?, hip_loose = ?,
                         shoulder = ?, sleeve_length = ?, cuff_length = ?, cross_back = ?,
-                        cross_front = ?, vest_length = ?, back_neck_to_waist = ?,
+                        cross_front = ?, vest_length = ?, armhole = ?, back_neck_to_waist = ?,
                         back_neck_to_front_waist = ?, sleeve_button = ?, top_initial = ?,
                         bottom_initial = ?, cleaning_type = ?, drawing = ?
                         WHERE item_id = ?");
 
                     $updateWorkslip->bind_param(
-                        "sssssssddddddddddddddddissssi",
+                        "sssssssdddddddddddddddddissssi",
                         $_POST['manufacturer'][$index], //s
                         $_POST['salesman_name'][$index], //s
                         $_POST['cutter_name'][$index], //s
@@ -245,6 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_POST['cross_back'][$index], //d
                         $_POST['cross_front'][$index], //d
                         $_POST['vest_length'][$index], //d
+                        $_POST['armhole'][$index], //d
                         $_POST['back_neck_to_waist'][$index], //d
                         $_POST['back_neck_to_front_waist'][$index], //d
                         $_POST['sleeve_button'][$index], //i
@@ -1241,6 +1242,10 @@ unset($item); // Break reference
                             <div class="col">
                                 <label class="fw-bold">Vest/Elbow Length</label>
                                 <input type="number" name="vest_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Armhole</label>
+                                <input type="number" name="armhole[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Back Neck to Waist</label>
