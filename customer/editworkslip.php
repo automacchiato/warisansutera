@@ -102,49 +102,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         WHERE item_id = ?");
 
                     $updateWorkslip->bind_param(
-                        "sssssssssddddddddddddddsddddsddddddssssisi",
-                        $_POST['manufacturer'][$index],
-                        $_POST['salesman_name'][$index],
-                        $_POST['cutter_name'][$index],
-                        $_POST['tailor_name'][$index],
-                        $_POST['shirt_type'][$index],
-                        $_POST['gender'][$index],
-                        $_POST['special_instructions'][$index],
-                        $_POST['previous_invoice_number'][$index],
-                        $_POST['fabric_direction'][$index],
-                        $_POST['collar_design'][$index],
-                        $_POST['collar_height'][$index],
-                        $_POST['collar_width'][$index],
-                        $_POST['collar_gap'][$index],
-                        $_POST['collar_meet'][$index],
-                        $_POST['collar_length'][$index],
-                        $_POST['back_length'][$index],
-                        $_POST['front_length'][$index],
-                        $_POST['chest_fit'][$index],
-                        $_POST['chest_loose'][$index],
-                        $_POST['waist_fit'][$index],
-                        $_POST['waist_loose'][$index],
-                        $_POST['hip_fit'][$index],
-                        $_POST['hip_loose'][$index],
-                        $_POST['shoulder_type'][$index],
-                        $_POST['shoulder'][$index],
-                        $_POST['sleeve_length'][$index],
-                        $_POST['arm_length'][$index],
-                        $_POST['elbow_length'][$index],
-                        $_POST['cuff_type'][$index],
-                        $_POST['cuff_length'][$index],
-                        $_POST['cuff_width'][$index],
-                        $_POST['armhole_length'][$index],
-                        $_POST['erect'][$index],
-                        $_POST['hunch'][$index],
-                        $_POST['corpulent'][$index],
-                        $_POST['front_cutting'][$index],
-                        $_POST['placket_type'][$index],
-                        $_POST['top_initial'][$index],
-                        $_POST['bottom_initial'][$index],
-                        $_POST['cleaning_type'][$index],
-                        $drawingFilename,
-                        $item_id
+                        "ssssssssssdddddddddddddsddddsddddddssssssi", //42 param
+                        $_POST['manufacturer'][$index], //s
+                        $_POST['salesman_name'][$index], //s
+                        $_POST['cutter_name'][$index], //s
+                        $_POST['tailor_name'][$index], //s
+                        $_POST['shirt_type'][$index], //s
+                        $_POST['gender'][$index], //s
+                        $_POST['special_instructions'][$index], //s
+                        $_POST['previous_invoice_number'][$index], //s
+                        $_POST['fabric_direction'][$index], //s
+                        $_POST['collar_design'][$index], //s
+                        $_POST['collar_height'][$index], //d
+                        $_POST['collar_width'][$index], //d
+                        $_POST['collar_gap'][$index], //d
+                        $_POST['collar_meet'][$index], //d
+                        $_POST['collar_length'][$index], //d
+                        $_POST['back_length'][$index], //d
+                        $_POST['front_length'][$index], //d
+                        $_POST['chest_fit'][$index], //d
+                        $_POST['chest_loose'][$index], //d
+                        $_POST['waist_fit'][$index], //d
+                        $_POST['waist_loose'][$index], //d
+                        $_POST['hip_fit'][$index], //d
+                        $_POST['hip_loose'][$index], //d
+                        $_POST['shoulder_type'][$index], //s
+                        $_POST['shoulder'][$index], //d
+                        $_POST['sleeve_length'][$index], //d
+                        $_POST['arm_length'][$index], //d
+                        $_POST['elbow_length'][$index], //d
+                        $_POST['cuff_type'][$index], //s
+                        $_POST['cuff_length'][$index], //d
+                        $_POST['cuff_width'][$index], //d
+                        $_POST['armhole_length'][$index], //d
+                        $_POST['erect'][$index], //d
+                        $_POST['hunch'][$index], //d
+                        $_POST['corpulent'][$index], //d
+                        $_POST['front_cutting'][$index], //s
+                        $_POST['placket_type'][$index], //s
+                        $_POST['top_initial'][$index], //s
+                        $_POST['bottom_initial'][$index], //s
+                        $_POST['cleaning_type'][$index], //s
+                        $drawingFilename, //s
+                        $item_id //i
                     );
                     $updateWorkslip->execute();
                     break;
