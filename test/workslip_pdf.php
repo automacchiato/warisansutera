@@ -754,12 +754,12 @@ while ($row = $items->fetch_assoc()) {
             $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(30, 10, "F.Neck to Waist", 1);
             $pdf->SetFont('Arial', '', 11);
-            $pdf->Cell(60, 10, $work['back_neck_to_front_waist'], 1, 1);
+            $pdf->Cell(60, 10, $work['back_neck_to_front_waist'], 1, 0);
 
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(30, 10, "Sleeve Button", 1, 0, "C");
             $pdf->SetFont('Arial', '', 10);
-            $pdf->Cell(60, 10, $work['sleeve_button'], 1, 1, "C");
+            $pdf->Cell(30, 10, $work['sleeve_button'], 1, 1, "C");
 
             //Line 19
             $pdf->SetFont('Arial', 'B', 11);
