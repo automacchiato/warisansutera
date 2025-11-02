@@ -198,10 +198,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             $stmt = $conn->prepare("INSERT INTO workslip_jacket
-                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, cuff_length, cross_back, cross_front, vest_length, back_neck_to_waist, back_neck_to_front_waist, sleeve_button, top_initial, bottom_initial, cleaning_type, drawing)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                (item_id, manufacturer, salesman_name, cutter_name, tailor_name, gender, special_instructions, previous_invoice_number, back_length, front_length, chest_fit, chest_loose, waist_fit, waist_loose, hip_fit, hip_loose, shoulder, sleeve_length, cuff_length, cross_back, cross_front, vest_length, armhole, back_neck_to_waist, back_neck_to_front_waist, sleeve_button, top_initial, bottom_initial, cleaning_type, drawing)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param(
-                "isssssssddddddddddddddddissss",
+                "isssssssdddddddddddddddddissss",
                 $invoice_item_id, //i
                 $_POST['manufacturer'][$key], //s
                 $_POST['salesman_name'][$key], //s
@@ -224,6 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['cross_back'][$key], //d
                 $_POST['cross_front'][$key], //d
                 $_POST['vest_length'][$key], //d
+                $_POST['armhole'][$key], //d
                 $_POST['back_neck_to_waist'][$key], //d
                 $_POST['back_neck_to_front_waist'][$key], //d
                 $_POST['sleeve_button'][$key], //i
@@ -1145,6 +1146,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <label class="fw-bold">Vest/Elbow Length</label>
                                 <input type="number" name="vest_length[]" class="form-control" step="0.01" max="999.99">
+                            </div>
+                            <div class="col">
+                                <label class="fw-bold">Armhole</label>
+                                <input type="number" name="armhole[]" class="form-control" step="0.01" max="999.99">
                             </div>
                             <div class="col">
                                 <label class="fw-bold">Back Neck to Waist</label>
