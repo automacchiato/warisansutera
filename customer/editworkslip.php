@@ -164,46 +164,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         WHERE item_id = ?");
 
                     $updateWorkslip->bind_param(
-                        "sssssssssssidddddddddddsdssdsssddsddsssi",
-                        $_POST['manufacturer'][$index],
-                        $_POST['salesman_name'][$index],
-                        $_POST['cutter_name'][$index],
-                        $_POST['tailor_name'][$index],
-                        $_POST['gender'][$index],
-                        $_POST['special_instructions'][$index],
-                        $_POST['previous_invoice_number'][$index],
-                        $_POST['fly_hs'][$index],
-                        $_POST['side_pocket_hs'][$index],
-                        $_POST['side_seams_hs'][$index],
-                        $_POST['pocket_pull'][$index],
-                        $_POST['pleat_num'][$index],
-                        $_POST['waist_fit'][$index],
-                        $_POST['waist_loose'][$index],
-                        $_POST['hip_fit'][$index],
-                        $_POST['hip_loose'][$index],
-                        $_POST['top_hip_fit'][$index],
-                        $_POST['top_hip_loose'][$index],
-                        $_POST['length'][$index],
-                        $_POST['thigh'][$index],
-                        $_POST['knee'][$index],
-                        $_POST['bottom'][$index],
-                        $_POST['crotch'][$index],
-                        $_POST['position_on_waist'][$index],
-                        $_POST['corpulent'][$index],
-                        $_POST['seating_type'][$index],
-                        $_POST['turn_up'][$index],
-                        $_POST['turn_up_length'][$index],
-                        $_POST['right_pocket'][$index],
-                        $_POST['left_pocket'][$index],
-                        $_POST['inside_pocket_num'][$index],
-                        $_POST['inside_pocket_width'][$index],
-                        $_POST['inside_pocket_length'][$index],
-                        $_POST['loop_num'][$index],
-                        $_POST['loop_width'][$index],
-                        $_POST['loop_length'][$index],
-                        $_POST['lining_type'][$index],
-                        $_POST['bottom_initial'][$index],
-                        $_POST['cleaning_type'][$index],
+                        "ssssssssssssdddddddddddsdssdsddsddssssssi",
+                        $_POST['manufacturer'][$index], //s
+                        $_POST['salesman_name'][$index], //s
+                        $_POST['cutter_name'][$index], //s
+                        $_POST['tailor_name'][$index], //s
+                        $_POST['gender'][$index], //s
+                        $_POST['special_instructions'][$index], //s
+                        $_POST['previous_invoice_number'][$index], //s
+                        $_POST['fly_hs'][$index], //s
+                        $_POST['side_pocket_hs'][$index], //s
+                        $_POST['side_seams_hs'][$index], //s
+                        $_POST['pocket_pull'][$index], ///s
+                        $_POST['pleat_num'][$index], //s
+                        $_POST['waist_fit'][$index], //d
+                        $_POST['waist_loose'][$index], //d
+                        $_POST['hip_fit'][$index], //d
+                        $_POST['hip_loose'][$index], //d
+                        $_POST['top_hip_fit'][$index], //d
+                        $_POST['top_hip_loose'][$index], //d
+                        $_POST['length'][$index], //d
+                        $_POST['thigh'][$index], //d
+                        $_POST['knee'][$index], //d
+                        $_POST['bottom'][$index], //d
+                        $_POST['crotch'][$index], //d
+                        $_POST['position_on_waist'][$index], //s
+                        $_POST['corpulent'][$index], //d
+                        $_POST['seating_type'][$index], //s
+                        $_POST['turn_up'][$index], //s
+                        $_POST['turn_up_length'][$index], //d
+                        $_POST['inside_pocket_num'][$index], //s
+                        $_POST['inside_pocket_width'][$index], //d
+                        $_POST['inside_pocket_length'][$index], //d
+                        $_POST['loop_num'][$index], //s
+                        $_POST['loop_width'][$index], //d
+                        $_POST['loop_length'][$index], //d
+                        $_POST['right_pocket'][$index], //s
+                        $_POST['left_pocket'][$index], //s
+                        $_POST['lining_type'][$index], //s
+                        $_POST['bottom_initial'][$index], //s
+                        $_POST['cleaning_type'][$index], //s
                         $drawingFilename,
                         $item_id
                     );
