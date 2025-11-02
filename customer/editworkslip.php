@@ -224,33 +224,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     $updateWorkslip->bind_param(
                         "sssssssddddddddddddddddissssi",
-                        $_POST['manufacturer'][$index],
-                        $_POST['salesman_name'][$index],
-                        $_POST['cutter_name'][$index],
-                        $_POST['tailor_name'][$index],
-                        $_POST['gender'][$index],
-                        $_POST['previous_invoice_number'][$index],
-                        $_POST['special_instructions'][$index],
-                        $_POST['back_length'][$index],
-                        $_POST['front_length'][$index],
-                        $_POST['chest_fit'][$index],
-                        $_POST['chest_loose'][$index],
-                        $_POST['waist_fit'][$index],
-                        $_POST['waist_loose'][$index],
-                        $_POST['hip_fit'][$index],
-                        $_POST['hip_loose'][$index],
-                        $_POST['shoulder'][$index],
-                        $_POST['sleeve_length'][$index],
-                        $_POST['cuff_length'][$index],
-                        $_POST['cross_back'][$index],
-                        $_POST['cross_front'][$index],
-                        $_POST['vest_length'][$index],
-                        $_POST['back_neck_to_waist'][$index],
-                        $_POST['back_neck_to_front_waist'][$index],
-                        $_POST['sleeve_button'][$index],
-                        $_POST['top_initial'][$index],
-                        $_POST['bottom_initial'][$index],
-                        $_POST['cleaning_type'][$index],
+                        $_POST['manufacturer'][$index], //s
+                        $_POST['salesman_name'][$index], //s
+                        $_POST['cutter_name'][$index], //s
+                        $_POST['tailor_name'][$index], //s
+                        $_POST['gender'][$index], //s
+                        $_POST['special_instructions'][$index], //s
+                        $_POST['previous_invoice_number'][$index], //s
+                        $_POST['back_length'][$index], //d
+                        $_POST['front_length'][$index], ///d
+                        $_POST['chest_fit'][$index], //d
+                        $_POST['chest_loose'][$index], //d
+                        $_POST['waist_fit'][$index], //d
+                        $_POST['waist_loose'][$index], //d
+                        $_POST['hip_fit'][$index], //d
+                        $_POST['hip_loose'][$index], //d
+                        $_POST['shoulder'][$index], //d
+                        $_POST['sleeve_length'][$index], //d
+                        $_POST['cuff_length'][$index], //d
+                        $_POST['cross_back'][$index], //d
+                        $_POST['cross_front'][$index], //d
+                        $_POST['vest_length'][$index], //d
+                        $_POST['back_neck_to_waist'][$index], //d
+                        $_POST['back_neck_to_front_waist'][$index], //d
+                        $_POST['sleeve_button'][$index], //i
+                        $_POST['top_initial'][$index], //s
+                        $_POST['bottom_initial'][$index], //s
+                        $_POST['cleaning_type'][$index], //s
                         $drawingFilename,
                         $item_id
                     );
