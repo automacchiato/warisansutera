@@ -1098,33 +1098,43 @@ unset($item); // Break reference
                                 </select>   
                             </div>
                             <div class="row mb-2">
-                                <!-- Existing Drawing Display -->
-                                <div class="row mb-2 existing-drawing-section">
-                                    <div class="col">
-                                        <label class="fw-bold">Current Drawing</label>
-                                        <div class="existing-drawing-display"></div>
-                                    </div>
-                                </div>
+                            <div class="col">
+                                <label class="fw-bold">Design Option</label>
+                                <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
+                                    <option value="" disabled>Select Design Option</option>
+                                    <option value="keep_existing">Keep Existing Drawing</option>
+                                    <option value="default">Use Default Design</option>
+                                    <option value="upload">Upload New Design</option>
+                                </select>
+                            </div>
         
-                            <div class="row mb-2 upload-design d-none">
+                            <!-- Existing Drawing Display -->
+                            <div class="row mb-2 existing-drawing-section">
                                 <div class="col">
-                                    <label class="fw-bold">Upload New Drawing</label>
-                                    <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
-                                    <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
+                                    <label class="fw-bold">Current Drawing</label>
+                                    <div class="existing-drawing-display"></div>
                                 </div>
                             </div>
         
-                            <div class="row mb-3 default-design-preview d-none">
-                                <div class="col">
-                                    <label class="fw-bold">Default Design Preview</label>
-                                    <div class="border rounded p-2 text-center bg-light">
-                                        <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
-                                    </div>
-                                    <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
-                                        Use This Design as My Drawing
-                                    </button>
-                                </div>
+                        <div class="row mb-2 upload-design d-none">
+                            <div class="col">
+                                <label class="fw-bold">Upload New Drawing</label>
+                                <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
+                                <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
                             </div>
+                        </div>
+        
+                        <div class="row mb-3 default-design-preview d-none">
+                            <div class="col">
+                                <label class="fw-bold">Default Design Preview</label>
+                                <div class="border rounded p-2 text-center bg-light">
+                                    <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
+                                    Use This Design as My Drawing
+                                </button>
+                            </div>
+                        </div>
                         `;
                     break;
                 case "JACKET":
@@ -1263,22 +1273,24 @@ unset($item); // Break reference
                                 </select>   
                             </div>
                             <div class="row mb-2">
-                        <div class="col">
-                            <label class="fw-bold">Design Option</label>
-                            <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
-                                <option value="" disabled selected>Select Design Option</option>
-                                <option value="default">Use Default Design</option>
-                                <option value="upload">Upload Own Design</option>
-                            </select>
-                        </div>
-                        <!-- Existing Drawing Display -->
-                        <div class="row mb-2 existing-drawing-section">
                             <div class="col">
-                                <label class="fw-bold">Current Drawing</label>
-                                <div class="existing-drawing-display"></div>
+                                <label class="fw-bold">Design Option</label>
+                                <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
+                                    <option value="" disabled>Select Design Option</option>
+                                    <option value="keep_existing">Keep Existing Drawing</option>
+                                    <option value="default">Use Default Design</option>
+                                    <option value="upload">Upload New Design</option>
+                                </select>
                             </div>
-                        </div>
-            
+        
+                            <!-- Existing Drawing Display -->
+                            <div class="row mb-2 existing-drawing-section">
+                                <div class="col">
+                                    <label class="fw-bold">Current Drawing</label>
+                                    <div class="existing-drawing-display"></div>
+                                </div>
+                            </div>
+        
                         <div class="row mb-2 upload-design d-none">
                             <div class="col">
                                 <label class="fw-bold">Upload New Drawing</label>
@@ -1286,7 +1298,7 @@ unset($item); // Break reference
                                 <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
                             </div>
                         </div>
-            
+        
                         <div class="row mb-3 default-design-preview d-none">
                             <div class="col">
                                 <label class="fw-bold">Default Design Preview</label>
@@ -1298,7 +1310,6 @@ unset($item); // Break reference
                                 </button>
                             </div>
                         </div>
-                    </div>
                         `;
                     break;
                 case "BAJU MELAYU":
@@ -1490,7 +1501,17 @@ unset($item); // Break reference
                                     <option value="Hand Wash Only">Hand Wash Only</option>
                                 </select>   
                             </div>
-                        <div class="row mb-2">
+                            <div class="row mb-2">
+                            <div class="col">
+                                <label class="fw-bold">Design Option</label>
+                                <select name="design_option[]" class="form-control design-option" required onchange="updateDesignPreview(this)">
+                                    <option value="" disabled>Select Design Option</option>
+                                    <option value="keep_existing">Keep Existing Drawing</option>
+                                    <option value="default">Use Default Design</option>
+                                    <option value="upload">Upload New Design</option>
+                                </select>
+                            </div>
+        
                             <!-- Existing Drawing Display -->
                             <div class="row mb-2 existing-drawing-section">
                                 <div class="col">
@@ -1499,25 +1520,25 @@ unset($item); // Break reference
                                 </div>
                             </div>
         
-                            <div class="row mb-2 upload-design d-none">
-                                <div class="col">
-                                    <label class="fw-bold">Upload New Drawing</label>
-                                    <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
-                                    <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
-                                </div>
+                        <div class="row mb-2 upload-design d-none">
+                            <div class="col">
+                                <label class="fw-bold">Upload New Drawing</label>
+                                <input type="file" name="drawing[]" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
+                                <small class="text-muted">Accepted formats: JPG, PNG, or PDF (max size 5MB)</small>
                             </div>
-    
-                            <div class="row mb-3 default-design-preview d-none">
-                                <div class="col">
-                                    <label class="fw-bold">Default Design Preview</label>
-                                    <div class="border rounded p-2 text-center bg-light">
-                                        <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
-                                    </div>
-                                    <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
-                                        Use This Design as My Drawing
-                                    </button>
+                        </div>
+        
+                        <div class="row mb-3 default-design-preview d-none">
+                            <div class="col">
+                                <label class="fw-bold">Default Design Preview</label>
+                                <div class="border rounded p-2 text-center bg-light">
+                                    <img src="" alt="Default Design Preview" class="img-fluid default-design-img" style="max-height: 250px;">
                                 </div>
+                                <button type="button" class="btn btn-primary btn-sm mt-2 use-default-btn d-none">
+                                    Use This Design as My Drawing
+                                </button>
                             </div>
+                        </div>
                         `;
                     break;
             }
