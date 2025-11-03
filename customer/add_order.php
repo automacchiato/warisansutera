@@ -10,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert invoice
     $stmt = $conn->prepare("INSERT INTO invoices 
-        (invoice_number, invoice_details, customer_id, order_date, fitting_date, delivery_date, total_amount, deposit_amount, balance_amount, additional_deposit, additional_balance)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        (invoice_number, invoice_details, customer_id, order_date, fitting_date, delivery_date, discount_amount, total_amount, deposit_amount, balance_amount, additional_deposit, additional_balance)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param(
         "ssisssddddd",
         $_POST['invoice_number'],
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST['order_date'],
         $_POST['fitting_date'],
         $_POST['delivery_date'],
+        $_POST['discount_amount'],
         $_POST['total_amount'],
         $_POST['deposit_amount'],
         $_POST['balance_amount'],
@@ -463,6 +464,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <h4>Payments</h4>
             <div class="row mb-3">
+                <div class="col">
+                    <label class="fw-bold">Discount</label>
+                    <input type="number" step="0.01" id="discount_amount" name="discount_amount" class="form-control" placeholder="Discount Amount" autocomplete="on" value="0.00">
+                </div>
                 <div class="col">
                     <label class="fw-bold">Total</label>
                     <input type="number" step="0.01" id="total_amount" name="total_amount" class="form-control" placeholder="Total Amount" autocomplete="on" value="0.00">
@@ -1567,14 +1572,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             document.querySelectorAll('input[name="amount[]"]').forEach(input => {
                 total += parseFloat(input.value) || 0;
             });
-            document.getElementById('total_amount').value = total.toFixed(2);
 
-            // --- 2. Calculate balance amount ---
+            // --- 2. Apply discount ---
+            const discount = parseFloat(document.getElementById('discount_amount').value) || 0;
+            const discountedTotal = total - discount;
+            document.getElementById('total_amount').value = discountedTotal.toFixed(2);
+
+            // --- 3. Calculate balance amount ---
             const deposit = parseFloat(document.getElementById('deposit_amount').value) || 0;
-            const balance = total - deposit;
+            const balance = discountedTotal - deposit;
             document.getElementById('balance_amount').value = balance.toFixed(2);
 
-            // --- 3. Calculate additional amount ---
+            // --- 4. Calculate additional amount ---
             const additionalDeposit = parseFloat(document.getElementById('additional_deposit').value) || 0;
             const additionalAmount = balance - additionalDeposit;
             document.getElementById('additional_amount').value = additionalAmount.toFixed(2);
