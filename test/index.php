@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$host = "127.0.0.1:3306";
+$host = "localhost";
 $user = "u647109978_admin";
 $pass = "Macchiato98@";
 $dbname = "u647109978_wssb";
