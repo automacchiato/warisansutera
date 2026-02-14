@@ -8,9 +8,9 @@ require('fpdf186/fpdf.php');
 
 // Database connection
 $host = "127.0.0.1:3306";
-$user = "u929965336_wssb";
-$pass = "Sutera@23";
-$dbname = "u929965336_warisansutera";
+$user = "u647109978_admin";
+$pass = "Macchiato98@";
+$dbname = "u647109978_wssb";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
